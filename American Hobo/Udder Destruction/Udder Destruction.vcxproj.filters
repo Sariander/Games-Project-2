@@ -15,106 +15,103 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="audio.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cybovine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="milkShot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="textDX.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="textureManager.cpp">
+    <ClCompile Include="winmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="torpedo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turret.cpp">
+    <ClCompile Include="textureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textDX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ship.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="udderDestruction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="winmain.cpp">
+    <ClCompile Include="image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="turret.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cybovine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="milkShot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="audio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bullet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cybovine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dashboard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="milkShot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="textDX.h">
+    <ClInclude Include="torpedo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="textureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="torpedo.h">
+    <ClInclude Include="textDX.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turret.h">
+    <ClInclude Include="ship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="udderDestruction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turret.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cybovine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="milkShot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>
