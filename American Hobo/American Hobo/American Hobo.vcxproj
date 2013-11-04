@@ -24,7 +24,7 @@
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="torpedo.cpp" />
     <ClCompile Include="turret.cpp" />
-    <ClCompile Include="udderDestruction.cpp" />
+    <ClCompile Include="americanHobo.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,13 +43,13 @@
     <ClInclude Include="textureManager.h" />
     <ClInclude Include="torpedo.h" />
     <ClInclude Include="turret.h" />
-    <ClInclude Include="udderDestruction.h" />
+    <ClInclude Include="americanHobo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BF455A99-60B5-4243-B142-38B1F65FC0FA}</ProjectGuid>
+    <ProjectGuid>{D87DF35B-6DDA-456B-B76F-18699F38D6F9}</ProjectGuid>
     <RootNamespace>UdderDestruction</RootNamespace>
     <ProjectName>American Hobo</ProjectName>
   </PropertyGroup>

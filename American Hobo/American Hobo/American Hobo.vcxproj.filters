@@ -45,9 +45,6 @@
     <ClCompile Include="audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="udderDestruction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,6 +55,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="milkShot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="americanHobo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,9 +95,6 @@
     <ClInclude Include="audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="udderDestruction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -108,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="milkShot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="americanHobo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
