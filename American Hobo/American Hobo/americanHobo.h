@@ -1,5 +1,5 @@
-#ifndef _UDDERDESTRUCTION_H    
-#define _UDDERDESTRUCTION_H         
+#ifndef _AMERICANHOBO_H    
+#define _AMERICANHOBO_H         
 #define WIN32_LEAN_AND_MEAN
 
 #include "game.h"
@@ -12,7 +12,7 @@
 #include "cybovine.h"
 using std::string;
 
-class UdderDestruction : public Game
+class AmericanHobo : public Game
 {
 private:
     // game items 
@@ -51,10 +51,10 @@ private:
 
 public:
     // Constructor
-    UdderDestruction();
+    AmericanHobo();
 	TextDX *gameFont;
     // Destructor
-    virtual ~UdderDestruction();
+    virtual ~AmericanHobo();
 
     // Initialize the game
     void initialize(HWND hwnd);

@@ -17,7 +17,7 @@ bool CreateMainWindow(HWND &, HINSTANCE, int);
 LRESULT WINAPI WinProc(HWND, UINT, WPARAM, LPARAM); 
 
 // Game pointer
-UdderDestruction *game = NULL;
+AmericanHobo *game = NULL;
 HWND hwnd = NULL;
 
 //=============================================================================
@@ -34,7 +34,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
     MSG msg;
 
     // Create the game, sets up message handler
-    game = new UdderDestruction;
+    game = new AmericanHobo;
 
     // Create the window
     if (!CreateMainWindow(hwnd, hInstance, nCmdShow))

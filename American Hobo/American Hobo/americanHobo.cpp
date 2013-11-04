@@ -8,7 +8,7 @@ using std::sprintf;
 //=============================================================================
 // Constructor
 //=============================================================================
-UdderDestruction::UdderDestruction()
+AmericanHobo::AmericanHobo()
 {
 	textWait = .50f;
 	textTimer = 0.0f;
@@ -25,7 +25,7 @@ UdderDestruction::UdderDestruction()
 //=============================================================================
 // Destructor
 //=============================================================================
-UdderDestruction::~UdderDestruction()
+AmericanHobo::~AmericanHobo()
 {
     releaseAll();           // call onLostDevice() for every graphics item
 }
@@ -34,7 +34,7 @@ UdderDestruction::~UdderDestruction()
 // Initializes the game
 // Throws GameError on error
 //=============================================================================
-void UdderDestruction::initialize(HWND hwnd)
+void AmericanHobo::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
 
@@ -244,7 +244,7 @@ void UdderDestruction::initialize(HWND hwnd)
 //=============================================================================
 // Update all game items
 //=============================================================================
-void UdderDestruction::update()
+void AmericanHobo::update()
 {	
 	if(textTimer > 0)
 		textTimer -= frameTime;
@@ -288,13 +288,13 @@ void UdderDestruction::update()
 //=============================================================================
 // Artificial Intelligence
 //=============================================================================
-void UdderDestruction::ai()
+void AmericanHobo::ai()
 {}
 
 //=============================================================================
 // Handle collisions
 //=============================================================================
-void UdderDestruction::collisions()
+void AmericanHobo::collisions()
 {
 	VECTOR2 collisionVector;
 	for(int i = 0; i < turretNS::NUM_SHOTS; i++)
@@ -462,7 +462,7 @@ void UdderDestruction::collisions()
 //=============================================================================
 // Render game items
 //=============================================================================
-void UdderDestruction::render()
+void AmericanHobo::render()
 {
     graphics->spriteBegin();
 	
@@ -510,7 +510,7 @@ void UdderDestruction::render()
 // The graphics device was lost.
 // Release all reserved video memory so graphics device may be reset.
 //=============================================================================
-void UdderDestruction::releaseAll()
+void AmericanHobo::releaseAll()
 {
     shipTexture.onLostDevice();
 	shotTexture.onLostDevice();
@@ -537,7 +537,7 @@ void UdderDestruction::releaseAll()
 // The grahics device has been reset.
 // Recreate all surfaces.
 //=============================================================================
-void UdderDestruction::resetAll()
+void AmericanHobo::resetAll()
 {
     shipTexture.onResetDevice();
 	shotTexture.onResetDevice();
