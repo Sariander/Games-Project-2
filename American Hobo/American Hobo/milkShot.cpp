@@ -41,8 +41,6 @@ void MilkShot::update(float frameTime)
     spriteData.x += frameTime * velocity.x;     // move along X 
     spriteData.y += frameTime * velocity.y;     // move along Y
 
-	
-
     if (spriteData.x > GAME_WIDTH) {              // if off right screen edge
 		visible = false;
 		ready = true;
@@ -77,7 +75,6 @@ void MilkShot::fire(Entity *ship, float rotOffset)
     spriteData.y = ship->getCenterY() - spriteData.height/2 + velocity.y/10;
     visible = true;                         // make torpedo visible
     active = true;                          // enable collisions
-    //audio->playCue(TORPEDO_FIRE);
 	ready = false;
 
 	setScale(.4);

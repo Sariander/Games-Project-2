@@ -71,7 +71,6 @@ void Cybovine::update(float frameTime)
 {
 	if(gameStart)
 	{
-		audio->playCue(MOO);
 		gameStart = false;
 	}
 	bossTheta += rotRate;
@@ -221,7 +220,6 @@ void Cybovine::damage(WEAPON weapon)
     switch(weapon)
     {
     case TORPEDO:
-        //audio->playCue(TORPEDO_HIT);
 		colorTimer = cybovineNS::COLOR_WAIT;
         health -= shipNS::TORPEDO_DAMAGE;
         break;
@@ -232,7 +230,6 @@ void Cybovine::damage(WEAPON weapon)
 
 void Cybovine::explode()
 {
-	audio->playCue(MOO2);
     active = false;
 	visible = false;
 	base.setVisible(false);

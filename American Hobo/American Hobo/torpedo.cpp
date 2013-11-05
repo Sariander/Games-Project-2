@@ -77,7 +77,6 @@ void Torpedo::fire(Entity *ship)
     spriteData.y = ship->getCenterY() - spriteData.height/2;
     visible = true;                         // make torpedo visible
     active = true;                          // enable collisions
-    audio->playCue(LASER);
 	ready = false;
 }
 

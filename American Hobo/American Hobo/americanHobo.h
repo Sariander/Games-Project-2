@@ -27,6 +27,11 @@ private:
 	Ship ship;
 	Cybovine cybovine;
 
+	Image streets, stadium, colosseum;
+	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
+
+	GameStates gameStates;
+
 	TextureManager shipTexture; 
 	TextureManager shotTexture, shipShotTexture;
 	TextureManager earthTexture; 
@@ -47,7 +52,7 @@ private:
 	float textTimer;
 	float textWait;
 
-	
+	float timeInState;
 
 public:
     // Constructor
@@ -59,6 +64,7 @@ public:
     // Initialize the game
     void initialize(HWND hwnd);
     void update();      // must override pure virtual from Game
+	void gameStateUpdate();
     void ai();          // "
     void collisions();  // "
     void render();      // "

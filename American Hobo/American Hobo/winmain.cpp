@@ -86,10 +86,6 @@ LRESULT WINAPI WinProc( HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
 	switch( msg )
     {
-        case WM_DESTROY:
-            //tell Windows to kill this program
-            PostQuitMessage(0);
-            return 0;
         case WM_CHAR:               // a character was entered by the keyboard
             switch (wParam)         // the character is in wParam
             {
