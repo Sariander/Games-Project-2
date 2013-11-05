@@ -26,12 +26,19 @@ private:
 
 	Ship ship;
 	Cybovine cybovine;
-
+	//
 	Image streets, stadium, colosseum;
+	Image hero;
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
+	TextureManager heroTexture;
 
 	GameStates gameStates;
 
+	TextDX *timerFont;
+
+	float timerCount;
+	float timeInState;
+	//
 	TextureManager shipTexture; 
 	TextureManager shotTexture, shipShotTexture;
 	TextureManager earthTexture; 
@@ -52,7 +59,7 @@ private:
 	float textTimer;
 	float textWait;
 
-	float timeInState;
+	
 
 public:
     // Constructor

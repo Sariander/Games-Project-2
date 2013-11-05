@@ -34,6 +34,7 @@ const float SHIP_ANGULAR_SPEED = .05f;			////////////////////////////////[added]
 const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";
 const char STADIUM_IMAGE[] = "pictures\\The Stadium.png";
 const char STREETS_IMAGE[] = "pictures\\The Streets.png";
+const char HERO_IMAGE[] = "pictures\\Hero.png";
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.
@@ -64,7 +65,7 @@ const UCHAR SHIP_RIGHT_KEY   = VK_RIGHT;
 
 // weapon types
 enum WEAPON {TORPEDO, MILK, EYE};
-enum GameStates {Level1, Level2, Level3};
+enum GameStates {Level1, Level2, Level3, Menu};
 
 //=============================================================================
 // Function templates for safely dealing with pointer referenced items.

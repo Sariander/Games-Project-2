@@ -53,7 +53,24 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!colosseum.initialize(graphics, 0, 0, 0, &colosseumTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Colosseum"));
 
+	//Initialize Hero Texture
+	if (!heroTexture.initialize(graphics, HERO_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hero texture!"));
+
+	//Initialize Hero
+	if (!hero.initialize(graphics, 0, 0, 0, &heroTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hero"));
+
+	hero.setX(GAME_WIDTH / 2);
+	hero.setY(GAME_HEIGHT / 2);
+
+	timerFont = new TextDX();
+
+	if(timerFont->initialize(graphics, 30, true, false, "Calibri") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing timer font"));
+
 	timeInState = 0;
+	timerCount = 5;
 	gameStates = Level1;
 
     return;
@@ -67,20 +84,26 @@ void AmericanHobo::initialize(HWND hwnd)
 void AmericanHobo::gameStateUpdate()
 {
 	timeInState += frameTime;
-	if (gameStates == Level1 && timeInState > 3)
+	timerCount -= frameTime;
+	if (gameStates == Level1 && timerCount < 0)
 	{
 		gameStates = Level2;
-		timeInState = 0;
+		timerCount = 10;
 	}
-	if (gameStates == Level2 && timeInState > 3)
+	if (gameStates == Level2 && timerCount < 0)
 	{
 		gameStates = Level3;
-		timeInState = 0;
+		timerCount = 15;
 	}
-	if (gameStates == Level3 && timeInState > 3)
+	if (gameStates == Level3 && timerCount < 0)
+	{
+		gameStates = Menu;
+		timerCount = 20;
+	}
+	if (gameStates == Menu && timerCount < 0)
 	{
 		gameStates = Level1;
-		timeInState = 0;
+		timerCount = 5;
 	}
 }
 
@@ -122,17 +145,30 @@ void AmericanHobo::collisions()
 //=============================================================================
 void AmericanHobo::render()
 {
+	std::stringstream s, s2;
+	s << "Dummy Menu Screen";
+	s2 << ceil(timerCount);
     graphics->spriteBegin();
 	switch (gameStates)
 	{
 	case Level1:
 		streets.draw();
+		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		hero.draw();
 		break;
 	case Level2:
 		stadium.draw();
+		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		hero.draw();
 		break;
 	case Level3:
 		colosseum.draw();
+		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		hero.draw();
+		break;
+	case Menu:
+		timerFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
+		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 10);
 		break;
 	}
     graphics->spriteEnd();
