@@ -70,7 +70,7 @@ const UCHAR HERO_DOWN_KEY = VK_DOWN;
 
 
 // weapon types
-enum WEAPON {TORPEDO, MILK, EYE};
+enum WEAPON {SWORD,TORPEDO, MILK, EYE};
 enum GameStates {Level1, Level2, Level3, Menu};
 
 //=============================================================================

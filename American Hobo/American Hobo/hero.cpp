@@ -10,8 +10,6 @@ Hero::Hero() : Entity()
 
 void Hero::update(float frameTime)
 {
-	Entity::update(frameTime);
-
 	if (!visible)
 		return;
 
@@ -63,16 +61,24 @@ void Hero::damage(WEAPON weapon)
 {
 	switch (weapon)
 	{
-
+	case SWORD:
+		
+		break;
 	}
+	if (health <= 0)
+		death();
 }
 
 void Hero::death()
 {
-
+	active = false;
+	visible = false;
+	health = 0;
 }
 
 void Hero::heal()
 {
-
+	active = true;
+	visible = true;
+	health = FULL_HEALTH;
 }
