@@ -63,6 +63,12 @@ const UCHAR SHIP2_FIRE_KEY    = VK_DOWN; // down arrow
 const UCHAR SHIP_LEFT_KEY    = VK_LEFT;    /////////////////////////////[added]
 const UCHAR SHIP_RIGHT_KEY   = VK_RIGHT;    
 
+const UCHAR HERO_LEFT_KEY = VK_LEFT;
+const UCHAR HERO_RIGHT_KEY = VK_RIGHT;
+const UCHAR HERO_UP_KEY = VK_UP;
+const UCHAR HERO_DOWN_KEY = VK_DOWN;
+
+
 // weapon types
 enum WEAPON {TORPEDO, MILK, EYE};
 enum GameStates {Level1, Level2, Level3, Menu};
