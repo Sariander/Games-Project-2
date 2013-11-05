@@ -29,6 +29,7 @@ private:
 	//
 	Image streets, stadium, colosseum;
 	Image hero;
+	//Hero hero;
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
 	TextureManager heroTexture;
 
