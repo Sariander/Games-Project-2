@@ -21,6 +21,7 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="milkShot.cpp" />
     <ClCompile Include="ship.cpp" />
+    <ClCompile Include="sword.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="torpedo.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="milkShot.h" />
     <ClInclude Include="ship.h" />
+    <ClInclude Include="sword.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
     <ClInclude Include="torpedo.h" />

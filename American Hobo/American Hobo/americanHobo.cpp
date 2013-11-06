@@ -64,6 +64,19 @@ void AmericanHobo::initialize(HWND hwnd)
 	hero.setX(GAME_WIDTH / 2);
 	hero.setY(GAME_HEIGHT / 2);
 
+	//Initialize Sword Texture
+	if (!swordTexture.initialize(graphics, SWORD_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Sword texture!"));
+
+	//Initialize Sword
+	if (!sword.initialize(this, 0, 0, 0, &swordTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
+
+	sword.setX(GAME_WIDTH / 2 + 60);
+	sword.setY(GAME_HEIGHT / 2);
+
+
+	//Initialize Fonts
 	timerFont = new TextDX();
 
 	if(timerFont->initialize(graphics, 30, true, false, "Calibri") == false)
@@ -114,12 +127,15 @@ void AmericanHobo::update()
 	{
 	case Level1:
 		hero.update(frameTime);
+		sword.update(frameTime);
 		break;
 	case Level2:
 		hero.update(frameTime);
+		sword.update(frameTime);
 		break;
 	case Level3:
 		hero.update(frameTime);
+		sword.update(frameTime);
 		break;
 	}
 
@@ -155,16 +171,19 @@ void AmericanHobo::render()
 		streets.draw();
 		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
+		sword.draw();
 		break;
 	case Level2:
 		stadium.draw();
 		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
+		sword.draw();
 		break;
 	case Level3:
 		colosseum.draw();
 		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
+		sword.draw();
 		break;
 	case Menu:
 		timerFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);

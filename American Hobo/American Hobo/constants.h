@@ -35,6 +35,7 @@ const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";
 const char STADIUM_IMAGE[] = "pictures\\The Stadium.png";
 const char STREETS_IMAGE[] = "pictures\\The Streets.png";
 const char HERO_IMAGE[] = "pictures\\Hero.png";
+const char SWORD_IMAGE[] = "pictures\\Sword.png";
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.
@@ -70,7 +71,7 @@ const UCHAR HERO_DOWN_KEY = VK_DOWN;
 
 
 // weapon types
-enum WEAPON {SWORD,TORPEDO, MILK, EYE};
+enum WEAPON {SWORD, TORPEDO, MILK, EYE};
 enum GameStates {Level1, Level2, Level3, Menu};
 
 //=============================================================================

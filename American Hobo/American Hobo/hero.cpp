@@ -29,6 +29,10 @@ void Hero::update(float frameTime)
 	{
 		velocity.y = heroNS::SPEED;
 	}
+	if (input->isKeyDown(VK_SPACE))
+	{
+		attack();
+	}
 
 	if (spriteData.x < 0)
 	{
@@ -54,7 +58,7 @@ void Hero::update(float frameTime)
 
 void Hero::attack()
 {
-
+	sword.swing(this);
 }
 
 void Hero::damage(WEAPON weapon)

@@ -5,6 +5,7 @@
 #include "entity.h"
 #include "constants.h"
 #include "textDX.h"
+#include "sword.h"
 
 namespace heroNS
 {
@@ -26,6 +27,8 @@ private:
 public:
 	// constructor
 	Hero();
+
+	Sword sword;
 
 	void update(float frameTime);
 	void attack();
