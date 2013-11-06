@@ -15,9 +15,7 @@ Sword::Sword() : Entity()
 	startFrame = swordNS::START_FRAME;       // first frame of ship animation
 	endFrame = swordNS::END_FRAME;         // last frame of ship animation
 	currentFrame = startFrame;
-	radius = swordNS::COLLISION_RADIUS;  // for circular collision
 	visible = true; //change to false later
-	collisionType = entityNS::CIRCLE;
 }
 
 //=============================================================================
@@ -28,6 +26,25 @@ void Sword::update(float frameTime)
 {
 	if (!visible)
 		return;
+	if (input->isKeyDown(HERO_LEFT_KEY))
+	{
+		velocity.x = -swordNS::SPEED;
+	}
+	if (input->isKeyDown(HERO_RIGHT_KEY))
+	{
+		velocity.x = swordNS::SPEED;
+	}
+	if (input->isKeyDown(HERO_UP_KEY))
+	{
+		velocity.y = -swordNS::SPEED;
+	}
+	if (input->isKeyDown(HERO_DOWN_KEY))
+	{
+		velocity.y = swordNS::SPEED;
+	}
+	spriteData.x += velocity.x * frameTime;
+	spriteData.y += velocity.y * frameTime;
+	velocity = D3DXVECTOR2(0, 0);
 }
 
 //=============================================================================
@@ -36,8 +53,8 @@ void Sword::update(float frameTime)
 //=============================================================================
 void Sword::swing(Entity *hero)
 {
-	spriteData.x = hero->getCenterX() - spriteData.width / 2;
-	spriteData.y = hero->getCenterY() - spriteData.height / 2;
+	setX(hero->getCenterX() - spriteData.width / 2);
+	setY(hero->getCenterY() - spriteData.height / 2);
 	visible = true;                         // make sword visible
 	active = true;                          // enable collisions
 	//Check collision

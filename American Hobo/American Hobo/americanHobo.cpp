@@ -73,6 +73,8 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!sword.initialize(this, 0, 0, 0, &swordTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
 
+	sword.setCollisionType(entityNS::BOX);
+	sword.setEdge(COLLISION_BOX_SWORD);
 	sword.setX(GAME_WIDTH / 2 + 60);
 	sword.setY(GAME_HEIGHT / 2);
 
