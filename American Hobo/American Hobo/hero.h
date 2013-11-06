@@ -9,8 +9,8 @@
 
 namespace heroNS
 {
-	const int   WIDTH = 60;                 // image width (each frame)
-	const int   HEIGHT = 60;                // image height
+	const int   WIDTH = 64;                 // image width (each frame)
+	const int   HEIGHT = 64;                // image height
 	const int   X = GAME_WIDTH / 2 - WIDTH / 2; // location on screen
 	const int   Y = GAME_HEIGHT / 6 - HEIGHT;
 	const float ROTATION_RATE = (float)PI; // radians per second

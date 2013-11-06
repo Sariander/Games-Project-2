@@ -29,7 +29,7 @@ void Hero::update(float frameTime)
 	{
 		velocity.y = heroNS::SPEED;
 	}
-	if (input->isKeyDown(VK_SPACE))
+	if (input->isKeyDown(HERO_ATTACK_KEY))
 	{
 		attack();
 	}
