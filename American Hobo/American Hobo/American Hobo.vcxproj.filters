@@ -66,6 +66,9 @@
     <ClCompile Include="sword.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hobo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="torpedo.h">
@@ -120,6 +123,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sword.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hobo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

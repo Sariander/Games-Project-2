@@ -78,6 +78,17 @@ void AmericanHobo::initialize(HWND hwnd)
 	sword.setX(GAME_WIDTH / 2 + 60);
 	sword.setY(GAME_HEIGHT / 2);
 
+	//Initialize Hobo Texture
+	if (!hoboTexture.initialize(graphics, HOBO_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hobo texture!"));
+
+	//Initialize Hobo
+	if (!hobo.initialize(this, 0, 0, 0, &hoboTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
+	hobo.setCollisionType(entityNS::BOX);
+	hobo.setEdge(COLLISION_BOX_HOBO);
+	hobo.setX(GAME_WIDTH / 3);
+	hobo.setY(GAME_HEIGHT / 3);
 
 	//Initialize Fonts
 	timerFont = new TextDX();
@@ -131,19 +142,21 @@ void AmericanHobo::update()
 	case Level1:
 		hero.update(frameTime);
 		sword.update(frameTime);
+		hobo.update(frameTime);
 		break;
 	case Level2:
 		hero.update(frameTime);
 		sword.update(frameTime);
+		hobo.update(frameTime);
 		break;
 	case Level3:
 		hero.update(frameTime);
 		sword.update(frameTime);
+		hobo.update(frameTime);
 		break;
 	}
 
 }
-
 
 //=============================================================================
 // Artificial Intelligence
@@ -175,18 +188,21 @@ void AmericanHobo::render()
 		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		sword.draw();
+		hobo.draw();
 		break;
 	case Level2:
 		stadium.draw();
 		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		sword.draw();
+		hobo.draw();
 		break;
 	case Level3:
 		colosseum.draw();
 		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		sword.draw();
+		hobo.draw();
 		break;
 	case Menu:
 		timerFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);

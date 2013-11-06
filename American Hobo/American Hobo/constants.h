@@ -32,11 +32,13 @@ const float SHIP_ANGULAR_SPEED = .05f;			////////////////////////////////[added]
 // RECT Definitions
 const RECT COLLISION_BOX_HERO = { -30, -30, 30, 30 };
 const RECT COLLISION_BOX_SWORD = { -30, -30, 30, 30 };
+const RECT COLLISION_BOX_HOBO = { -30, -30, 30, 30 };
 
 // graphic images
 const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";
 const char STADIUM_IMAGE[] = "pictures\\The Stadium.png";
 const char STREETS_IMAGE[] = "pictures\\The Streets.png";
+const char HOBO_IMAGE[] = "pictures\\Hobo.png";
 const char HERO_IMAGE[] = "pictures\\Hero.png";
 const char SWORD_IMAGE[] = "pictures\\Sword.png";
 

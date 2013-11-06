@@ -17,6 +17,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="hero.cpp" />
+    <ClCompile Include="hobo.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="milkShot.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="audio.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="cybovine.h" />
+    <ClInclude Include="hobo.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameError.h" />

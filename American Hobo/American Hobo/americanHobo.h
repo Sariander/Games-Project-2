@@ -12,6 +12,7 @@
 #include "cybovine.h"
 #include "hero.h"
 #include "sword.h"
+#include "hobo.h"
 using std::string;
 
 class AmericanHobo : public Game
@@ -32,8 +33,9 @@ private:
 	Image streets, stadium, colosseum;
 	Sword sword;
 	Hero hero;
+	Hobo hobo;
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
-	TextureManager heroTexture, swordTexture;
+	TextureManager heroTexture, swordTexture, hoboTexture;
 
 	GameStates gameStates;
 
