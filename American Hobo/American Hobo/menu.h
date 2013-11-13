@@ -29,6 +29,7 @@ private:
    Input   *input;         // pointer to the input system
    Graphics *graphics;
    int selectedItem;
+   int currentMoney;
    vector<string> mainMenu;
    vector<string> subMenu1;
    vector<string> subMenu2;
@@ -52,12 +53,16 @@ private:
    bool sub4DepressedLastFrame;
    bool sub5DepressedLastFrame;
    bool sub6DepressedLastFrame;
+   bool sword1;
+   bool sword2;
    menu menuName;
+   ownership ownage;
 
 public:
     // constructor
     Menu();
 	~Menu();
+	bool done;
 	void initialize(Graphics *g, Input *i);
 	void update();
 	void releaseAll();
@@ -73,7 +78,8 @@ public:
 	void buildMenuWithoutTitle(vector<string> Menu, int col, menu menuName);
 	void changeToMenuWithTitle(int desiredInput, menu endMenu);
 	void changeToMenuWithoutTitle(int desiredInput, menu endMenu);
-	bool done;
+	void exitMainMenu();
+	void purchaseThis(int desiredInput, int price, bool &isPurchased);
 };
 #endif
 

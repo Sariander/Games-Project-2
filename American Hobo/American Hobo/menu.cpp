@@ -7,6 +7,7 @@ Menu::Menu()
 	menuItemFont = new TextDX();
 	menuHeadingFont = new TextDX();
 	menuName = main;
+	ownage = null;
 }
 
 Menu::~Menu()
@@ -48,7 +49,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	subMenu6.push_back("200");
 	highlightColor = graphicsNS::RED;
 	normalColor = graphicsNS::WHITE;
-	menuAnchor = D3DXVECTOR2(125,10);
+	menuAnchor = D3DXVECTOR2(75,10);
 	input = i;
 	verticalOffset = 35;
 	horizontalOffset = 150;
@@ -76,7 +77,10 @@ void Menu::initialize(Graphics *g, Input *i)
 	sub4DepressedLastFrame = false;
 	sub5DepressedLastFrame = false;
 	sub6DepressedLastFrame = false;
+	sword1 = false;
+	sword2 = false;
 	done = false;
+	currentMoney = 100;
 }
 
 void Menu::update()
@@ -107,10 +111,7 @@ void Menu::update()
 		changeToMenuWithTitle(1, sub1);
 		changeToMenuWithTitle(2, sub2);
 		changeToMenuWithTitle(3, sub3);
-		if (selectedItem == mainMenu.size() - 1)
-		{
-			done = true;
-		}
+		exitMainMenu();
 		break;
 	case sub1:
 		pointerCheckerWrappingWithTitle(linePtr, subMenu1);
@@ -132,6 +133,8 @@ void Menu::update()
 	case sub4:
 		pointerCheckerWrappingWithTitle(linePtr, subMenu4);
 		confirmChecker(sub4DepressedLastFrame);
+		purchaseThis(1, 100, sword1);
+		purchaseThis(2, 200, sword2);
 		changeToMenuWithTitle(subMenu4.size() - 1, sub1);
 		break;
 	case sub5:
@@ -150,6 +153,18 @@ void Menu::update()
 void Menu::displayMenu()
 {
 	buildMenuWithTitle(mainMenu, 0, main); 
+	if (ownage == owned)
+	{
+		menuHeadingFont->print("Already Owned", GAME_WIDTH / 2, GAME_HEIGHT / 2);
+	}
+	if (ownage == purchased)
+	{
+		menuHeadingFont->print("Purchased", GAME_WIDTH / 2, GAME_HEIGHT / 2);
+	}
+	if (ownage == cannotpurchase)
+	{
+		menuHeadingFont->print("Too Expensive", GAME_WIDTH / 2, GAME_HEIGHT / 2);
+	}
 	if (menuName == sub1 || menuName == sub4 || menuName == sub5)
 	{
 		buildMenuWithTitle(subMenu1, 1, sub1);
@@ -180,24 +195,28 @@ void Menu::pointerCheckerWrappingWithTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 1) pointer = menu.size() - 1;
 	if (pointer > menu.size() - 1) pointer = 1;
+	ownage = null;
 }
 
 void Menu::pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 0) pointer = menu.size() - 1;
 	if (pointer > menu.size() - 1) pointer = 0;
+	ownage = null;
 }
 
 void Menu::pointerCheckerNoWrappingWithTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 1) pointer = 1;
 	if (pointer > menu.size() - 1) pointer = menu.size() - 1;
+	ownage = null;
 }
 
 void Menu::pointerCheckerNoWrappingWithoutTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 0) pointer = 0;
 	if (pointer > menu.size() - 1) pointer = menu.size() - 1;
+	ownage = null;
 }
 
 void Menu::confirmChecker(bool &keyPressed)
@@ -249,6 +268,7 @@ void Menu::changeToMenuWithTitle(int desiredInput, menu endMenu)
 	{
 		menuName = endMenu;
 		linePtr = 1;
+		ownage = null;
 	}
 }
 
@@ -258,6 +278,36 @@ void Menu::changeToMenuWithoutTitle(int desiredInput, menu endMenu)
 	{
 		menuName = endMenu;
 		linePtr = 0;
+		ownage = null;
+	}
+}
+
+void Menu::exitMainMenu()
+{
+	if (selectedItem == mainMenu.size() - 1)
+	{
+		done = true;
+		ownage = null;
+	}
+}
+
+void Menu::purchaseThis(int desiredInput, int price, bool &isPurchased)
+{
+	if (isPurchased)
+	{
+		ownage = owned;
+	}
+	else if (selectedItem == desiredInput && price <= currentMoney && !isPurchased)
+	{
+		ownage = purchased;
+		currentMoney -= price;
+		//Give item
+		isPurchased = true;
+	}
+	else if (selectedItem == desiredInput && price > currentMoney && !isPurchased)
+	{
+		ownage = cannotpurchase;
+		//Notify you cannot buy it
 	}
 }
 

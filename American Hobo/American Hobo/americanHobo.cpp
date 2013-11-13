@@ -102,7 +102,7 @@ void AmericanHobo::initialize(HWND hwnd)
 
 	timeInState = 0;
 	timerCount = 5;
-	gameStates = Level1;
+	gameStates = MenuScreen;
     return;
 }
 
