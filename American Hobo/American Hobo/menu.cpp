@@ -8,6 +8,7 @@ Menu::Menu()
 	menuHeadingFont = new TextDX();
 	menuName = main;
 	ownage = null;
+	currentMoney = 0;
 }
 
 Menu::~Menu()
@@ -17,39 +18,22 @@ Menu::~Menu()
 
 void Menu::initialize(Graphics *g, Input *i)
 {
-	mainMenu.push_back("Main Menu");
-	mainMenu.push_back("Weapons");
-	mainMenu.push_back("Armor");
-	mainMenu.push_back("Stats");
-	mainMenu.push_back("Done");
-	subMenu1.push_back("Weapons");
-	subMenu1.push_back("Swords");
-	subMenu1.push_back("Shields");
-	subMenu1.push_back("Back");
-	subMenu2.push_back("Armor");
-	subMenu2.push_back("Very Long Armor 1 - 800");
-	subMenu2.push_back("Very Long Armor 2 - 1200");
-	subMenu2.push_back("Back");
-	subMenu3.push_back("Stats");
-	subMenu3.push_back("Stat 1 - 300");
-	subMenu3.push_back("Stat 2 - 300");
-	subMenu3.push_back("Stat 3 - 300");
-	subMenu3.push_back("Stat 4 - 300");
-	subMenu3.push_back("Back");
-	subMenu4.push_back("Swords");
-	subMenu4.push_back("Very Long Sword 1 - 100");
-	subMenu4.push_back("Very Long Sword 2 - 200");
-	subMenu4.push_back("Back");
-	subMenu5.push_back("Shields");
-	subMenu5.push_back("Very Long Shield 1 - 300");
-	subMenu5.push_back("Very Long Shield 2 - 500");
-	subMenu5.push_back("Back");
-	subMenu6.push_back("Price");
-	subMenu6.push_back("100");
-	subMenu6.push_back("200");
-	highlightColor = graphicsNS::RED;
-	normalColor = graphicsNS::WHITE;
-	boughtColor = graphicsNS::GRAY;
+	mainMenu.push_back("Main Menu"); mainMenu.push_back("Weapons"); mainMenu.push_back("Armor");
+	mainMenu.push_back("Stats"); mainMenu.push_back("Done");
+	subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
+	subMenu1.push_back("Shields"); subMenu1.push_back("Back");
+	subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800"); 
+	subMenu2.push_back("Very Long Armor 2 - 1200"); subMenu2.push_back("Back");
+	subMenu3.push_back("Stats"); subMenu3.push_back("Stat Up 1 - 300");
+	subMenu3.push_back("Stat Up 2 - 300"); subMenu3.push_back("Stat Up 3 - 300");
+	subMenu3.push_back("Stat Up 4 - 300"); subMenu3.push_back("Back");
+	subMenu4.push_back("Swords"); subMenu4.push_back("Very Long Sword 1 - 100");
+	subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
+	subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
+	subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
+	subMenu6.push_back("Price"); subMenu6.push_back("100"); subMenu6.push_back("200");
+	highlightColor = graphicsNS::RED; 
+	normalColor = graphicsNS::WHITE; 
 	menuAnchor = D3DXVECTOR2(50,50);
 	input = i;
 	verticalOffset = 45;
@@ -131,6 +115,10 @@ void Menu::update()
 	case sub3:
 		pointerCheckerWrappingWithTitle(linePtr, subMenu3);
 		confirmChecker(sub3DepressedLastFrame);
+		purchaseThis(1, 300);
+		purchaseThis(2, 300);
+		purchaseThis(3, 300);
+		purchaseThis(4, 300);
 		changeToMenuWithTitle(subMenu3.size() - 1, main);
 		break;
 	case sub4:
@@ -157,6 +145,7 @@ void Menu::update()
 
 void Menu::displayMenu()
 {
+	moneyDebugger();
 	stringstream s;
 	s << "Current Money: " << currentMoney;
 	menuItemFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 60);
@@ -188,28 +177,28 @@ void Menu::displayMenu()
 	purchaseResponse();
 }
 
-void Menu::pointerCheckerWrappingWithTitle(int &pointer, vector<string> menu)
+void Menu::pointerCheckerWrappingWithTitle(int &pointer, vector<string> menuVector)
 {
-	if (pointer < 1) pointer = menu.size() - 1;
-	if (pointer > menu.size() - 1) pointer = 1;
+	if (pointer < 1) pointer = menuVector.size() - 1;
+	if (pointer > menuVector.size() - 1) pointer = 1;
 }
 
-void Menu::pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menu)
+void Menu::pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menuVector)
 {
-	if (pointer < 0) pointer = menu.size() - 1;
-	if (pointer > menu.size() - 1) pointer = 0;
+	if (pointer < 0) pointer = menuVector.size() - 1;
+	if (pointer > menuVector.size() - 1) pointer = 0;
 }
 
-void Menu::pointerCheckerNoWrappingWithTitle(int &pointer, vector<string> menu)
+void Menu::pointerCheckerNoWrappingWithTitle(int &pointer, vector<string> menuVector)
 {
 	if (pointer < 1) pointer = 1;
-	if (pointer > menu.size() - 1) pointer = menu.size() - 1;
+	if (pointer > menuVector.size() - 1) pointer = menuVector.size() - 1;
 }
 
-void Menu::pointerCheckerNoWrappingWithoutTitle(int &pointer, vector<string> menu)
+void Menu::pointerCheckerNoWrappingWithoutTitle(int &pointer, vector<string> menuVector)
 {
 	if (pointer < 0) pointer = 0;
-	if (pointer > menu.size() - 1) pointer = menu.size() - 1;
+	if (pointer > menuVector.size() - 1) pointer = menuVector.size() - 1;
 }
 
 void Menu::confirmChecker(bool &keyPressed)
@@ -222,37 +211,36 @@ void Menu::confirmChecker(bool &keyPressed)
 	{
 		keyPressed = false;
 		selectedItem = linePtr;
-		ownage = null;
 	}
 	else selectedItem = -1;
 }
 
-void Menu::buildMenuWithTitle(vector<string> Menu, int col, menu menu)
+void Menu::buildMenuWithTitle(vector<string> menuVector, int col, menu menuState)
 {
-	for (int i = 0; i < Menu.size(); ++i)
+	for (int i = 0; i < menuVector.size(); ++i)
 	{
 		if (i == 0)
 		{
-			menuHeadingFont->print(Menu[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
+			menuHeadingFont->print(menuVector[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
 		}
 		else
 		{
-			if (linePtr == i && menuName == menu)
-				menuItemFontHighlight->print(Menu[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
+			if (linePtr == i && menuName == menuState)
+				menuItemFontHighlight->print(menuVector[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
 			else
-				menuItemFont->print(Menu[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
+				menuItemFont->print(menuVector[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
 		}
 	}
 }
 
-void Menu::buildMenuWithoutTitle(vector<string> Menu, int col, menu menu)
+void Menu::buildMenuWithoutTitle(vector<string> menuVector, int col, menu menuState)
 {
-	for (int i = 0; i < Menu.size(); ++i)
+	for (int i = 0; i < menuVector.size(); ++i)
 	{
-		if (linePtr == i && menuName == menu)
-			menuItemFontHighlight->print(Menu[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
+		if (linePtr == i && menuName == menuState)
+			menuItemFontHighlight->print(menuVector[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
 		else
-			menuItemFont->print(Menu[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
+			menuItemFont->print(menuVector[i], menuAnchor.x + horizontalOffset * col, menuAnchor.y + verticalOffset * i);
 	}
 }
 
@@ -325,4 +313,13 @@ void Menu::resetAll()
 	menuHeadingFont->onResetDevice();
 	menuItemFontHighlight->onResetDevice();
 	return;
+}
+
+void Menu::moneyDebugger()
+{
+	if (input->isKeyDown('1') && input->isKeyDown('0'))
+	{
+		menuItemFont->print("Cheating in progress...", GAME_WIDTH / 4 - 100, GAME_HEIGHT / 60);
+		currentMoney += 10;
+	}
 }

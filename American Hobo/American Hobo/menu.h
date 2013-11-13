@@ -70,18 +70,19 @@ public:
 	void resetAll();
 	int getSelectedItem() {return selectedItem;}
 	void displayMenu();
-	void pointerCheckerWrappingWithTitle(int &pointer, vector<string> menu);
-	void pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menu);
-	void pointerCheckerNoWrappingWithTitle(int &pointer, vector<string> menu);
-	void pointerCheckerNoWrappingWithoutTitle(int &pointer, vector<string> menu);
+	void pointerCheckerWrappingWithTitle(int &pointer, vector<string> menuVector);
+	void pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menuVector);
+	void pointerCheckerNoWrappingWithTitle(int &pointer, vector<string> menuVector);
+	void pointerCheckerNoWrappingWithoutTitle(int &pointer, vector<string> menuVector);
 	void confirmChecker(bool &keyPressed);
-	void buildMenuWithTitle(vector<string> Menu, int col, menu menu);
-	void buildMenuWithoutTitle(vector<string> Menu, int col, menu menuName);
+	void buildMenuWithTitle(vector<string> menuVector, int col, menu menuState);
+	void buildMenuWithoutTitle(vector<string> menuVector, int col, menu menuName);
 	void changeToMenuWithTitle(int desiredInput, menu endMenu);
 	void changeToMenuWithoutTitle(int desiredInput, menu endMenu);
 	void exitMainMenu();
 	void purchaseThis(int desiresInput, int price);
 	void purchaseResponse();
+	void moneyDebugger();
 };
 #endif
 
