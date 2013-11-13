@@ -15,6 +15,7 @@ class Menu;
 #include "input.h"
 using std::vector;
 using std::string;
+using std::stringstream;
 
 namespace menuNS
 { }
@@ -37,6 +38,7 @@ private:
    vector<string> subMenu4;
    vector<string> subMenu5;
    vector<string> subMenu6;
+   vector<bool> swords;
    string menuHeading1, menuHeading2;
    D3DXVECTOR2 menuAnchor;
    int verticalOffset;
@@ -44,6 +46,7 @@ private:
    int linePtr;
    COLOR_ARGB highlightColor ;
    COLOR_ARGB normalColor;
+   COLOR_ARGB boughtColor;
    bool upDepressedLastFrame;
    bool downDepressedLastFrame;
    bool mainDepressedLastFrame;
@@ -53,8 +56,6 @@ private:
    bool sub4DepressedLastFrame;
    bool sub5DepressedLastFrame;
    bool sub6DepressedLastFrame;
-   bool sword1;
-   bool sword2;
    menu menuName;
    ownership ownage;
 
@@ -67,19 +68,20 @@ public:
 	void update();
 	void releaseAll();
 	void resetAll();
-	int getSelectedItem() { return selectedItem; }
+	int getSelectedItem() {return selectedItem;}
 	void displayMenu();
 	void pointerCheckerWrappingWithTitle(int &pointer, vector<string> menu);
 	void pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menu);
 	void pointerCheckerNoWrappingWithTitle(int &pointer, vector<string> menu);
 	void pointerCheckerNoWrappingWithoutTitle(int &pointer, vector<string> menu);
 	void confirmChecker(bool &keyPressed);
-	void buildMenuWithTitle(vector<string> Menu, int col, menu menuName);
+	void buildMenuWithTitle(vector<string> Menu, int col, menu menu);
 	void buildMenuWithoutTitle(vector<string> Menu, int col, menu menuName);
 	void changeToMenuWithTitle(int desiredInput, menu endMenu);
 	void changeToMenuWithoutTitle(int desiredInput, menu endMenu);
 	void exitMainMenu();
-	void purchaseThis(int desiredInput, int price, bool &isPurchased);
+	void purchaseThis(int desiresInput, int price);
+	void purchaseResponse();
 };
 #endif
 

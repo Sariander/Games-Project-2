@@ -27,43 +27,44 @@ void Menu::initialize(Graphics *g, Input *i)
 	subMenu1.push_back("Shields");
 	subMenu1.push_back("Back");
 	subMenu2.push_back("Armor");
-	subMenu2.push_back("Armor 1");
-	subMenu2.push_back("Armor 2");
+	subMenu2.push_back("Very Long Armor 1 - 800");
+	subMenu2.push_back("Very Long Armor 2 - 1200");
 	subMenu2.push_back("Back");
 	subMenu3.push_back("Stats");
-	subMenu3.push_back("Stat 1");
-	subMenu3.push_back("Stat 2");
-	subMenu3.push_back("Stat 3");
-	subMenu3.push_back("Stat 4");
+	subMenu3.push_back("Stat 1 - 300");
+	subMenu3.push_back("Stat 2 - 300");
+	subMenu3.push_back("Stat 3 - 300");
+	subMenu3.push_back("Stat 4 - 300");
 	subMenu3.push_back("Back");
 	subMenu4.push_back("Swords");
-	subMenu4.push_back("Sword 1");
-	subMenu4.push_back("Sword 2");
+	subMenu4.push_back("Very Long Sword 1 - 100");
+	subMenu4.push_back("Very Long Sword 2 - 200");
 	subMenu4.push_back("Back");
 	subMenu5.push_back("Shields");
-	subMenu5.push_back("Shield 1");
-	subMenu5.push_back("Shield 2");
+	subMenu5.push_back("Very Long Shield 1 - 300");
+	subMenu5.push_back("Very Long Shield 2 - 500");
 	subMenu5.push_back("Back");
 	subMenu6.push_back("Price");
 	subMenu6.push_back("100");
 	subMenu6.push_back("200");
 	highlightColor = graphicsNS::RED;
 	normalColor = graphicsNS::WHITE;
-	menuAnchor = D3DXVECTOR2(75,10);
+	boughtColor = graphicsNS::GRAY;
+	menuAnchor = D3DXVECTOR2(50,50);
 	input = i;
-	verticalOffset = 35;
-	horizontalOffset = 150;
+	verticalOffset = 45;
+	horizontalOffset = 160;
 	linePtr = 1;
 	selectedItem = -1;
 	graphics = g;
 	menuItemFont = new TextDX();
 	menuHeadingFont = new TextDX();
 	menuItemFontHighlight = new TextDX();
-	if(menuItemFont->initialize(graphics, 17, true, false, "Calibri") == false)
+	if(menuItemFont->initialize(graphics, 20, true, false, "Calibri") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menuItem font"));
-	if(menuItemFontHighlight->initialize(graphics, 20, true, false, "Calibri") == false)
+	if(menuItemFontHighlight->initialize(graphics, 25, true, false, "Calibri") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menuItem font"));
-	if(menuHeadingFont->initialize(graphics, 30, true, false, "Calibri") == false)
+	if(menuHeadingFont->initialize(graphics, 35, true, false, "Calibri") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing menuHeading font"));
 	menuHeadingFont->setFontColor(normalColor);
 	menuItemFont->setFontColor(normalColor);
@@ -77,10 +78,8 @@ void Menu::initialize(Graphics *g, Input *i)
 	sub4DepressedLastFrame = false;
 	sub5DepressedLastFrame = false;
 	sub6DepressedLastFrame = false;
-	sword1 = false;
-	sword2 = false;
 	done = false;
-	currentMoney = 100;
+	currentMoney = 1000;
 }
 
 void Menu::update()
@@ -93,6 +92,7 @@ void Menu::update()
 	{
 		upDepressedLastFrame = false;
 		linePtr--;
+		ownage = null;
 	}
 	if (input->isKeyDown(VK_DOWN))
 	{
@@ -102,6 +102,7 @@ void Menu::update()
 	{
 		downDepressedLastFrame = false;
 		linePtr++;
+		ownage = null;
 	}
 	switch (menuName)
 	{
@@ -123,6 +124,8 @@ void Menu::update()
 	case sub2:
 		pointerCheckerWrappingWithTitle(linePtr, subMenu2);
 		confirmChecker(sub2DepressedLastFrame);
+		purchaseThis(1, 800);
+		purchaseThis(2, 1200);
 		changeToMenuWithTitle(subMenu2.size() - 1, main);
 		break;
 	case sub3:
@@ -133,13 +136,15 @@ void Menu::update()
 	case sub4:
 		pointerCheckerWrappingWithTitle(linePtr, subMenu4);
 		confirmChecker(sub4DepressedLastFrame);
-		purchaseThis(1, 100, sword1);
-		purchaseThis(2, 200, sword2);
+		purchaseThis(1, 100);
+		purchaseThis(2, 200);
 		changeToMenuWithTitle(subMenu4.size() - 1, sub1);
 		break;
 	case sub5:
 		pointerCheckerWrappingWithTitle(linePtr, subMenu5);
 		confirmChecker(sub5DepressedLastFrame);
+		purchaseThis(1, 300);
+		purchaseThis(2, 500);
 		changeToMenuWithTitle(subMenu5.size() - 1, sub1);
 		break;
 	case sub6:
@@ -152,19 +157,10 @@ void Menu::update()
 
 void Menu::displayMenu()
 {
+	stringstream s;
+	s << "Current Money: " << currentMoney;
+	menuItemFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 60);
 	buildMenuWithTitle(mainMenu, 0, main); 
-	if (ownage == owned)
-	{
-		menuHeadingFont->print("Already Owned", GAME_WIDTH / 2, GAME_HEIGHT / 2);
-	}
-	if (ownage == purchased)
-	{
-		menuHeadingFont->print("Purchased", GAME_WIDTH / 2, GAME_HEIGHT / 2);
-	}
-	if (ownage == cannotpurchase)
-	{
-		menuHeadingFont->print("Too Expensive", GAME_WIDTH / 2, GAME_HEIGHT / 2);
-	}
 	if (menuName == sub1 || menuName == sub4 || menuName == sub5)
 	{
 		buildMenuWithTitle(subMenu1, 1, sub1);
@@ -189,34 +185,31 @@ void Menu::displayMenu()
 	{
 		buildMenuWithTitle(subMenu6, 2, sub6);
 	}
+	purchaseResponse();
 }
 
 void Menu::pointerCheckerWrappingWithTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 1) pointer = menu.size() - 1;
 	if (pointer > menu.size() - 1) pointer = 1;
-	ownage = null;
 }
 
 void Menu::pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 0) pointer = menu.size() - 1;
 	if (pointer > menu.size() - 1) pointer = 0;
-	ownage = null;
 }
 
 void Menu::pointerCheckerNoWrappingWithTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 1) pointer = 1;
 	if (pointer > menu.size() - 1) pointer = menu.size() - 1;
-	ownage = null;
 }
 
 void Menu::pointerCheckerNoWrappingWithoutTitle(int &pointer, vector<string> menu)
 {
 	if (pointer < 0) pointer = 0;
 	if (pointer > menu.size() - 1) pointer = menu.size() - 1;
-	ownage = null;
 }
 
 void Menu::confirmChecker(bool &keyPressed)
@@ -229,6 +222,7 @@ void Menu::confirmChecker(bool &keyPressed)
 	{
 		keyPressed = false;
 		selectedItem = linePtr;
+		ownage = null;
 	}
 	else selectedItem = -1;
 }
@@ -291,23 +285,29 @@ void Menu::exitMainMenu()
 	}
 }
 
-void Menu::purchaseThis(int desiredInput, int price, bool &isPurchased)
+void Menu::purchaseThis(int desiredInput, int price)
 {
-	if (isPurchased)
-	{
-		ownage = owned;
-	}
-	else if (selectedItem == desiredInput && price <= currentMoney && !isPurchased)
+	if (selectedItem == desiredInput && price <= currentMoney)
 	{
 		ownage = purchased;
 		currentMoney -= price;
 		//Give item
-		isPurchased = true;
 	}
-	else if (selectedItem == desiredInput && price > currentMoney && !isPurchased)
+	else if (selectedItem == desiredInput && price > currentMoney)
 	{
 		ownage = cannotpurchase;
-		//Notify you cannot buy it
+	}
+}
+
+void Menu::purchaseResponse()
+{
+	if (ownage == purchased)
+	{
+		menuHeadingFont->print("Purchased", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2);
+	}
+	if (ownage == cannotpurchase)
+	{
+		menuHeadingFont->print("Too Expensive", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 2);
 	}
 }
 
