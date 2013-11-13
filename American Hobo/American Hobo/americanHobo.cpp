@@ -96,10 +96,13 @@ void AmericanHobo::initialize(HWND hwnd)
 	if(timerFont->initialize(graphics, 30, true, false, "Calibri") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing timer font"));
 
+	//Initialize Menus
+	mainMenu = new Menu();
+	mainMenu->initialize(graphics, input);
+
 	timeInState = 0;
 	timerCount = 5;
 	gameStates = Level1;
-
     return;
 }
 
@@ -115,21 +118,21 @@ void AmericanHobo::gameStateUpdate()
 	if (gameStates == Level1 && timerCount < 0)
 	{
 		gameStates = Level2;
-		timerCount = 10;
+		timerCount = 5;
 	}
 	if (gameStates == Level2 && timerCount < 0)
 	{
 		gameStates = Level3;
-		timerCount = 15;
+		timerCount = 5;
 	}
 	if (gameStates == Level3 && timerCount < 0)
 	{
-		gameStates = Menu;
-		timerCount = 5;
+		gameStates = MenuScreen;
 	}
-	if (gameStates == Menu && timerCount < 0)
+	if (gameStates == MenuScreen && mainMenu->done)
 	{
 		gameStates = Level1;
+		mainMenu->done = false;
 		timerCount = 5;
 	}
 }
@@ -154,6 +157,9 @@ void AmericanHobo::update()
 		sword.update(frameTime);
 		hobo.update(frameTime);
 		break;
+	case MenuScreen:
+		mainMenu->update();
+		break;
 	}
 
 }
@@ -177,36 +183,34 @@ void AmericanHobo::collisions()
 //=============================================================================
 void AmericanHobo::render()
 {
-	std::stringstream s, s2;
-	s << "Dummy Menu Screen";
-	s2 << ceil(timerCount);
+	std::stringstream s;
+	s << ceil(timerCount);
     graphics->spriteBegin();
 	switch (gameStates)
 	{
 	case Level1:
 		streets.draw();
-		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		sword.draw();
 		hobo.draw();
 		break;
 	case Level2:
 		stadium.draw();
-		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		sword.draw();
 		hobo.draw();
 		break;
 	case Level3:
 		colosseum.draw();
-		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		sword.draw();
 		hobo.draw();
 		break;
-	case Menu:
-		timerFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
-		timerFont->print(s2.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 10);
+	case MenuScreen:
+		mainMenu->displayMenu();
 		break;
 	}
     graphics->spriteEnd();

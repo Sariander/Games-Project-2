@@ -20,6 +20,7 @@
     <ClCompile Include="hobo.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="milkShot.cpp" />
     <ClCompile Include="ship.cpp" />
     <ClCompile Include="sword.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="hero.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="milkShot.h" />
     <ClInclude Include="ship.h" />
     <ClInclude Include="sword.h" />

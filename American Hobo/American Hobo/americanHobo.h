@@ -13,6 +13,7 @@
 #include "hero.h"
 #include "sword.h"
 #include "hobo.h"
+#include "menu.h"
 using std::string;
 
 class AmericanHobo : public Game
@@ -39,6 +40,7 @@ private:
 
 	GameStates gameStates;
 
+	Menu *mainMenu;
 	TextDX *timerFont;
 
 	float timerCount;

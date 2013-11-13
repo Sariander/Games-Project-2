@@ -78,7 +78,8 @@ const UCHAR HERO_ATTACK_KEY = VK_SPACE;
 
 // weapon types
 enum WEAPON {SWORD, TORPEDO, MILK, EYE};
-enum GameStates {Level1, Level2, Level3, Menu};
+enum GameStates {Level1, Level2, Level3, MenuScreen};
+enum menu{ main, sub1, sub2, sub3, sub4, sub5, sub6 };
 
 //=============================================================================
 // Function templates for safely dealing with pointer referenced items.
