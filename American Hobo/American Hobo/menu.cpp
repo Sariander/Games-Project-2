@@ -31,9 +31,8 @@ void Menu::initialize(Graphics *g, Input *i)
 	subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
 	subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
 	subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
-	subMenu6.push_back("Price"); subMenu6.push_back("100"); subMenu6.push_back("200");
-	highlightColor = graphicsNS::RED; 
-	normalColor = graphicsNS::WHITE; 
+	highlightColor = graphicsNS::RED;
+	normalColor = graphicsNS::WHITE;
 	menuAnchor = D3DXVECTOR2(50,50);
 	input = i;
 	verticalOffset = 45;
@@ -61,7 +60,6 @@ void Menu::initialize(Graphics *g, Input *i)
 	sub3DepressedLastFrame = false;
 	sub4DepressedLastFrame = false;
 	sub5DepressedLastFrame = false;
-	sub6DepressedLastFrame = false;
 	done = false;
 	currentMoney = 1000;
 }
@@ -135,11 +133,6 @@ void Menu::update()
 		purchaseThis(2, 500);
 		changeToMenuWithTitle(subMenu5.size() - 1, sub1);
 		break;
-	case sub6:
-		pointerCheckerWrappingWithTitle(linePtr, subMenu6);
-		confirmChecker(sub6DepressedLastFrame);
-		changeToMenuWithTitle(subMenu6.size() - 1, sub1);
-		break;
 	}
 }
 
@@ -169,10 +162,6 @@ void Menu::displayMenu()
 	if (menuName == sub5)
 	{
 		buildMenuWithTitle(subMenu5, 2, sub5);
-	}
-	if (menuName == sub6)
-	{
-		buildMenuWithTitle(subMenu6, 2, sub6);
 	}
 	purchaseResponse();
 }
