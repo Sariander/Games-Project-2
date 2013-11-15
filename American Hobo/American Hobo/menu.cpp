@@ -19,18 +19,19 @@ Menu::~Menu()
 void Menu::initialize(Graphics *g, Input *i)
 {
 	mainMenu.push_back("Main Menu"); mainMenu.push_back("Weapons"); mainMenu.push_back("Armor");
-	mainMenu.push_back("Stats"); mainMenu.push_back("Done");
+	mainMenu.push_back("Stats"); mainMenu.push_back("Recovery"); mainMenu.push_back("Done");
 	subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
 	subMenu1.push_back("Shields"); subMenu1.push_back("Back");
-	subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800"); 
+	subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800");
 	subMenu2.push_back("Very Long Armor 2 - 1200"); subMenu2.push_back("Back");
-	subMenu3.push_back("Stats"); subMenu3.push_back("Stat Up 1 - 300");
-	subMenu3.push_back("Stat Up 2 - 300"); subMenu3.push_back("Stat Up 3 - 300");
+	subMenu3.push_back("Stats"); subMenu3.push_back("Health Up - 300");
+	subMenu3.push_back("Strength Up - 300"); subMenu3.push_back("Stat Up 3 - 300");
 	subMenu3.push_back("Stat Up 4 - 300"); subMenu3.push_back("Back");
 	subMenu4.push_back("Swords"); subMenu4.push_back("Very Long Sword 1 - 100");
 	subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
 	subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
 	subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
+	subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
 	highlightColor = graphicsNS::RED;
 	normalColor = graphicsNS::WHITE;
 	menuAnchor = D3DXVECTOR2(50,50);
@@ -60,6 +61,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	sub3DepressedLastFrame = false;
 	sub4DepressedLastFrame = false;
 	sub5DepressedLastFrame = false;
+	sub6DepressedLastFrame = false;
 	done = false;
 	currentMoney = 1000;
 }
@@ -94,6 +96,7 @@ void Menu::update()
 		changeToMenuWithTitle(1, sub1);
 		changeToMenuWithTitle(2, sub2);
 		changeToMenuWithTitle(3, sub3);
+		changeToMenuWithTitle(4, sub6);
 		exitMainMenu();
 		break;
 	case sub1:
@@ -133,6 +136,13 @@ void Menu::update()
 		purchaseThis(2, 500);
 		changeToMenuWithTitle(subMenu5.size() - 1, sub1);
 		break;
+	case sub6:
+		pointerCheckerWrappingWithTitle(linePtr, subMenu6);
+		confirmChecker(sub6DepressedLastFrame);
+		purchaseHealth(1, 300, 25);
+		purchaseHealth(2, 400, 50);
+		changeToMenuWithTitle(subMenu6.size() - 1, main);
+		break;
 	}
 }
 
@@ -147,7 +157,7 @@ void Menu::displayMenu()
 	{
 		buildMenuWithTitle(subMenu1, 1, sub1);
 	}
-	if (menuName == sub2 || menuName == sub6)
+	if (menuName == sub2)
 	{
 		buildMenuWithTitle(subMenu2, 1, sub2);
 	}
@@ -162,6 +172,10 @@ void Menu::displayMenu()
 	if (menuName == sub5)
 	{
 		buildMenuWithTitle(subMenu5, 2, sub5);
+	}
+	if (menuName == sub6)
+	{
+		buildMenuWithTitle(subMenu6, 1, sub6);
 	}
 	purchaseResponse();
 }
@@ -269,6 +283,21 @@ void Menu::purchaseThis(int desiredInput, int price)
 		ownage = purchased;
 		currentMoney -= price;
 		//Give item
+	}
+	else if (selectedItem == desiredInput && price > currentMoney)
+	{
+		ownage = cannotpurchase;
+	}
+}
+
+void Menu::purchaseHealth(int desiredInput, int price, int health)
+{
+	if (selectedItem == desiredInput && price <= currentMoney)
+	{
+		ownage = purchased;
+		currentMoney -= price;
+		//Give health
+		//Check health against max, set to max if over
 	}
 	else if (selectedItem == desiredInput && price > currentMoney)
 	{

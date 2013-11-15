@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="armor.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="cybovine.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -20,8 +21,10 @@
     <ClCompile Include="hobo.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="item.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="milkShot.cpp" />
+    <ClCompile Include="shield.cpp" />
     <ClCompile Include="ship.cpp" />
     <ClCompile Include="sword.cpp" />
     <ClCompile Include="textDX.cpp" />
@@ -29,9 +32,11 @@
     <ClCompile Include="torpedo.cpp" />
     <ClCompile Include="turret.cpp" />
     <ClCompile Include="americanHobo.cpp" />
+    <ClCompile Include="weapon.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="armor.h" />
     <ClInclude Include="audio.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="cybovine.h" />
@@ -43,8 +48,10 @@
     <ClInclude Include="hero.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="item.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="milkShot.h" />
+    <ClInclude Include="shield.h" />
     <ClInclude Include="ship.h" />
     <ClInclude Include="sword.h" />
     <ClInclude Include="textDX.h" />
@@ -52,6 +59,7 @@
     <ClInclude Include="torpedo.h" />
     <ClInclude Include="turret.h" />
     <ClInclude Include="americanHobo.h" />
+    <ClInclude Include="weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

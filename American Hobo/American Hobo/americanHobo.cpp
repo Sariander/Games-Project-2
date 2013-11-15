@@ -225,6 +225,7 @@ void AmericanHobo::releaseAll()
 	streetsTexture.onLostDevice();
 	stadiumTexture.onLostDevice();
 	colosseumTexture.onLostDevice();
+	mainMenu->releaseAll();
     Game::releaseAll();
     return;
 }
@@ -238,6 +239,7 @@ void AmericanHobo::resetAll()
 	streetsTexture.onResetDevice();
 	stadiumTexture.onResetDevice();
 	colosseumTexture.onResetDevice();
+	mainMenu->resetAll();
     Game::resetAll();
     return;
 }
