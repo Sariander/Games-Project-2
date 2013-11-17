@@ -17,8 +17,8 @@
 const char CLASS_NAME[] = "American Hobo";
 const char GAME_TITLE[] = "American Hobo: The Resistance";
 const bool FULLSCREEN = false;              // windowed or fullscreen
-const UINT GAME_WIDTH =  600;               // width of game in pixels
-const UINT GAME_HEIGHT = 600;               // height of game in pixels
+const UINT GAME_WIDTH =  640;               // width of game in pixels
+const UINT GAME_HEIGHT = 480;               // height of game in pixels
  
 // game
 const double PI = 3.14159265;

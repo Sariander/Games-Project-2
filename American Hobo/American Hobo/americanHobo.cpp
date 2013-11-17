@@ -54,30 +54,24 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Colosseum"));
 
 	//Initialize Hero Texture
-	if (!heroTexture.initialize(graphics, HERO_IMAGE))
+	if (!heroTexture.initialize(graphics, HERO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hero texture!"));
 
 	//Initialize Hero
-	if (!hero.initialize(this, 0, 0, 0, &heroTexture))
+	if (!hero.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &heroTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hero"));
 	hero.setCollisionType(entityNS::BOX);
 	hero.setEdge(COLLISION_BOX_HERO);
 	hero.setX(GAME_WIDTH / 2);
 	hero.setY(GAME_HEIGHT / 2);
+	hero.setFrameDelay(heroNS::ANIMATION_DELAY);
+	hero.setFrames(heroNS::STAND_RIGHT, heroNS::STAND_RIGHT);
+	hero.setCurrentFrame(heroNS::STAND_RIGHT);
+
 
 	//Initialize Sword Texture
 	if (!swordTexture.initialize(graphics, SWORD_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Sword texture!"));
-
-	//Initialize Sword
-	/*if (!sword.initialize(this, 0, 0, 0, &swordTexture))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
-
-	sword.setCollisionType(entityNS::BOX);
-	sword.setEdge(COLLISION_BOX_SWORD);
-	sword.setX(GAME_WIDTH / 2 + 60);
-	sword.setY(GAME_HEIGHT / 2);
-	*/
 
 	if (!hero.sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));

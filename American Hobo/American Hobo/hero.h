@@ -15,7 +15,16 @@ namespace heroNS
 	const int   Y = GAME_HEIGHT / 2 - HEIGHT / 2;
 	const float ROTATION_RATE = (float)PI; // radians per second
 	const float SPEED = 100;                // 100 pixels per second
-	const int   TEXTURE_COLS = 0;           // texture has 8 columns
+	const int   TEXTURE_COLS = 3;           // texture has 8 columns
+
+	const int STAND_RIGHT = 0;
+	const int STAND_LEFT = 3;
+	const int START_LEFT = 4;
+	const int END_LEFT = 5;
+	const int START_RIGHT = 1;
+	const int END_RIGHT = 2;
+	const float ANIMATION_DELAY = 0.2f;
+
 }
 
 // inherits from Entity class
