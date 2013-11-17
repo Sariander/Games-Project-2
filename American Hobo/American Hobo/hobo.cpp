@@ -5,15 +5,13 @@
 //=============================================================================
 Hobo::Hobo() : Entity()
 {
-
+	dir = RIGHT;
 }
 
 void Hobo::update(float frameTime)
 {
 	if (!visible)
 		return;
-
-	
 
 	if (input->isKeyDown(HERO_LEFT_KEY))
 	{
@@ -56,7 +54,7 @@ void Hobo::update(float frameTime)
 
 void Hobo::attack()
 {
-	sword.swing(this);
+	sword.swing(this, dir);
 }
 
 void Hobo::damage(WEAPON weapon)

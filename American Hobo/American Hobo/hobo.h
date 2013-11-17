@@ -29,6 +29,7 @@ public:
 	Hobo();
 
 	Sword sword;
+	DIRECTION dir;
 
 	void update(float frameTime);
 	void attack();

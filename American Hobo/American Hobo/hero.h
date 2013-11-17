@@ -15,7 +15,6 @@ namespace heroNS
 	const int   Y = GAME_HEIGHT / 2 - HEIGHT / 2;
 	const float ROTATION_RATE = (float)PI; // radians per second
 	const float SPEED = 100;                // 100 pixels per second
-	enum DIRECTION { NONE, LEFT, RIGHT };     // rotation direction
 	const int   TEXTURE_COLS = 0;           // texture has 8 columns
 }
 
@@ -23,12 +22,14 @@ namespace heroNS
 class Hero : public Entity
 {
 private:
+	
 
 public:
 	// constructor
 	Hero();
 
 	Sword sword;
+	DIRECTION dir;
 
 	void update(float frameTime);
 	void attack();

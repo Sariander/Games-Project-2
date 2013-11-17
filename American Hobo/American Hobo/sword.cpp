@@ -15,33 +15,32 @@ Sword::Sword() : Entity()
 	startFrame = swordNS::START_FRAME;       // first frame of ship animation
 	endFrame = swordNS::END_FRAME;         // last frame of ship animation
 	currentFrame = startFrame;
-	visible = true; //change to false later
+	visible = false; 
+	swingTimer = 0;
 }
 
 //=============================================================================
 // update
 // typically called once per frame
 //=============================================================================
-void Sword::update(float frameTime)
+void Sword::update(Entity *hero, float frameTime)
 {
-	if (!visible)
+	if(!visible)
 		return;
-	if (input->isKeyDown(HERO_LEFT_KEY))
-	{
-		velocity.x = -swordNS::SPEED;
+	
+	if(swingTimer == 0) {
+		swingTimer = swordNS::SWING_TIME;
 	}
-	if (input->isKeyDown(HERO_RIGHT_KEY))
-	{
-		velocity.x = swordNS::SPEED;
+
+	if((swingTimer -= frameTime) <= 0) {
+		visible = false;
+		active = false;
+		swingTimer = 0;
 	}
-	if (input->isKeyDown(HERO_UP_KEY))
-	{
-		velocity.y = -swordNS::SPEED;
-	}
-	if (input->isKeyDown(HERO_DOWN_KEY))
-	{
-		velocity.y = swordNS::SPEED;
-	}
+	 
+	velocity.x = hero->getVelocity().x;
+	velocity.x = hero->getVelocity().y;
+
 	spriteData.x += velocity.x * frameTime;
 	spriteData.y += velocity.y * frameTime;
 	velocity = D3DXVECTOR2(0, 0);
@@ -51,12 +50,23 @@ void Sword::update(float frameTime)
 // swing
 // Handle sword swinging
 //=============================================================================
-void Sword::swing(Entity *hero)
+void Sword::swing(Entity *hero, DIRECTION dir)
 {
-	setX(hero->getCenterX() - spriteData.width / 2);
-	setY(hero->getCenterY() - spriteData.height / 2);
-	visible = true;                         // make sword visible
-	active = true;                          // enable collisions
-	//Check collision
-	//Set back to inactive and invisible
+	if(dir == RIGHT) {
+		setX(hero->getCenterX() - spriteData.width / 2 + 40);
+		setY(hero->getCenterY() - spriteData.height / 2);
+	} else if(dir == LEFT) {
+		setX(hero->getCenterX() - spriteData.width / 2 - 40);
+		setY(hero->getCenterY() - spriteData.height / 2);
+	} else if(dir == UP) {
+		setX(hero->getCenterX() - spriteData.width / 2);
+		setY(hero->getCenterY() - spriteData.height / 2 - 40);
+	} else if(dir == DOWN) {
+		setX(hero->getCenterX() - spriteData.width / 2);
+		setY(hero->getCenterY() - spriteData.height / 2 + 40);
+	}
+
+	
+	visible = true;
+	active = true;
 }

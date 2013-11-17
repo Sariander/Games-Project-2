@@ -5,7 +5,7 @@
 //=============================================================================
 Hero::Hero() : Entity()
 {
-
+	dir = RIGHT;
 }
 
 void Hero::update(float frameTime)
@@ -13,22 +13,52 @@ void Hero::update(float frameTime)
 	if (!visible)
 		return;
 
-	if (input->isKeyDown(HERO_LEFT_KEY))
+	if (input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY))//Single Direction Movement
 	{
 		velocity.x = -heroNS::SPEED;
+		dir = LEFT;
 	}
-	if (input->isKeyDown(HERO_RIGHT_KEY))
+	if (input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY))
 	{
 		velocity.x = heroNS::SPEED;
+		dir = RIGHT;
 	}
-	if (input->isKeyDown(HERO_UP_KEY))
+	if (input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY))
 	{
 		velocity.y = -heroNS::SPEED;
+		dir = UP;
 	}
-	if (input->isKeyDown(HERO_DOWN_KEY))
+	if (input->isKeyDown(HERO_DOWN_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY))
 	{
 		velocity.y = heroNS::SPEED;
+		dir = DOWN;
 	}
+
+	if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_UP_KEY)) {
+		velocity.x = -.707*heroNS::SPEED;
+		velocity.y = -.707*heroNS::SPEED;
+		dir = LEFT;
+	}
+
+	if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_DOWN_KEY)) {
+		velocity.x = -.707*heroNS::SPEED;
+		velocity.y = .707*heroNS::SPEED;
+		dir = LEFT;
+	}
+
+	if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_UP_KEY)) {
+		velocity.x = .707*heroNS::SPEED;
+		velocity.y = -.707*heroNS::SPEED;
+		dir = RIGHT;
+	}
+
+	if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_DOWN_KEY)) {
+		velocity.x = .707*heroNS::SPEED;
+		velocity.y = .707*heroNS::SPEED;
+		dir = RIGHT;
+	}
+
+
 	if (input->isKeyDown(HERO_ATTACK_KEY))
 	{
 		attack();
@@ -54,11 +84,13 @@ void Hero::update(float frameTime)
 	spriteData.x += velocity.x * frameTime;
 	spriteData.y += velocity.y * frameTime;	
 	velocity = D3DXVECTOR2(0, 0);
+
+	sword.update(this, frameTime);
 }
 
 void Hero::attack()
 {
-	sword.swing(this);
+	sword.swing(this,dir);
 }
 
 void Hero::damage(WEAPON weapon)

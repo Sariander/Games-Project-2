@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Items">
       <UniqueIdentifier>{ca8af830-e2da-4ed6-b607-24d425bc6e0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{25245fed-fdf1-45d6-b55e-553d6c6f5c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{9dffb51f-0c6e-4815-9349-288cc5608ef0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmain.cpp">
@@ -27,31 +33,7 @@
     <ClCompile Include="torpedo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="textureManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="textDX.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="audio.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="turret.cpp">
@@ -90,68 +72,32 @@
     <ClCompile Include="armor.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
+    <ClCompile Include="audio.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="textDX.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="textureManager.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="torpedo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="textureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="textDX.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gameError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="audio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="turret.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cybovine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="milkShot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="americanHobo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hero.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sword.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hobo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="weapon.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
@@ -163,6 +109,66 @@
     </ClInclude>
     <ClInclude Include="armor.h">
       <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="americanHobo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cybovine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hero.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hobo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="milkShot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ship.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sword.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="torpedo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="turret.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="gameError.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="input.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="textDX.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="textureManager.h">
+      <Filter>Header Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

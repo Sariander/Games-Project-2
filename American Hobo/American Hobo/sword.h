@@ -7,25 +7,29 @@
 
 namespace swordNS
 {
-	const int   WIDTH = 10;             // image width
-	const int   HEIGHT = 60;           // image height
+	const int   WIDTH = 20;             // image width
+	const int   HEIGHT = 20;           // image height
 	const float FIRE_DELAY = 1.5f;      // 4 seconds between torpedo firing
-	const int   TEXTURE_COLS = 0;       // texture has 8 columns
+	const int   TEXTURE_COLS = 4;       // texture has 8 columns
 	const int   START_FRAME = 0;       // starts at frame 40
 	const int   END_FRAME = 0;         // animation frames 40,41,42,43
 	const float ANIMATION_DELAY = 0.1f; // time between frames
 	const int	SPEED = 100;
+	const float SWING_TIME = .5f;
+
 }
 
 class Sword : public Entity           // inherits from Entity class
 {
 private:
+	float swingTimer;
+
 
 public:
 	// constructor
 	Sword();
 
-	void update(float frameTime);
-	void swing(Entity *hero);                // fire torpedo from ship
+	void update(Entity *hero, float frameTime);
+	void swing(Entity *hero, DIRECTION dir);                // fire torpedo from ship
 };
 #endif

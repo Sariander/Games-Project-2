@@ -32,7 +32,7 @@ private:
 	Cybovine cybovine;
 	//
 	Image streets, stadium, colosseum;
-	Sword sword;
+	//Sword sword;
 	Hero hero;
 	Hobo hobo;
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
