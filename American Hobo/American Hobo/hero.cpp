@@ -71,7 +71,17 @@ void Hero::update(float frameTime)
 		velocity.y = .707*heroNS::SPEED;
 		dir = RIGHT;
 	}
-
+	
+	if(!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {
+		if(dir == RIGHT || dir == UP) {
+			setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
+			setCurrentFrame(heroNS::STAND_RIGHT);
+		} else if(dir == LEFT || dir == DOWN) {
+			setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
+			setCurrentFrame(heroNS::STAND_LEFT);
+		}
+	}
+	
 
 	if (input->isKeyDown(HERO_ATTACK_KEY))
 	{
