@@ -14,6 +14,7 @@
 #include "sword.h"
 #include "hobo.h"
 #include "menu.h"
+#include "brawler.h"
 using std::string;
 
 class AmericanHobo : public Game
@@ -36,9 +37,10 @@ private:
 	//Sword sword;
 	Hero hero;
 	Hobo hobo;
+	Brawler brawler;
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
 	TextureManager titleTexture, controlsTexture;
-	TextureManager heroTexture, swordTexture, hoboTexture;
+	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture;
 
 	GameStates gameStates;
 

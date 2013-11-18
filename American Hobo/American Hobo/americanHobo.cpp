@@ -113,6 +113,21 @@ void AmericanHobo::initialize(HWND hwnd)
 	hobo.setActive(true);
 	hobo.setVisible(true);
 
+	//Initialize Brawler Texture
+	if (!brawlerTexture.initialize(graphics, BRAWLER_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Brawler texture!"));
+
+	//initialize Brawler
+	if (!brawler.initialize(this, 0, 0, 0, &brawlerTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
+	brawler.setCollisionType(entityNS::BOX);
+	brawler.setEdge(COLLISION_BOX_HOBO);
+	brawler.setPosition(VECTOR2(brawlerNS::X, brawlerNS::Y));
+	brawler.setX(brawler.getPositionX());
+	brawler.setY(brawler.getPositionY());
+	brawler.setActive(true);
+	brawler.setVisible(true);
+
 	//Initialize Fonts
 	timerFont = new TextDX();
 
@@ -199,16 +214,19 @@ void AmericanHobo::update()
 		hero.update(frameTime);
 		//sword.update(frameTime);
 		hobo.update(frameTime);
+		brawler.update(frameTime);
 		break;
 	case Level2:
 		hero.update(frameTime);
 		//sword.update(frameTime);
 		hobo.update(frameTime);
+		brawler.update(frameTime);
 		break;
 	case Level3:
 		hero.update(frameTime);
 		//sword.update(frameTime);
 		hobo.update(frameTime);
+		brawler.update(frameTime);
 		break;
 	case MenuScreen:
 		mainMenu->update();
@@ -223,6 +241,7 @@ void AmericanHobo::update()
 void AmericanHobo::ai()
 {
 	hobo.ai(frameTime, hero);
+	brawler.ai(frameTime, hero);
 }
 
 //=============================================================================
@@ -258,6 +277,7 @@ void AmericanHobo::render()
 		hero.draw();
 		hero.sword.draw();
 		hobo.draw();
+		brawler.draw();
 		break;
 	case Level2:
 		stadium.draw();
@@ -265,6 +285,7 @@ void AmericanHobo::render()
 		hero.draw();
 		hero.sword.draw();
 		hobo.draw();
+		brawler.draw();
 		break;
 	case Level3:
 		colosseum.draw();
@@ -272,6 +293,7 @@ void AmericanHobo::render()
 		hero.draw();
 		hero.sword.draw();
 		hobo.draw();
+		brawler.draw();
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
