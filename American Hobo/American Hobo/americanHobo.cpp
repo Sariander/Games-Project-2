@@ -268,7 +268,6 @@ void AmericanHobo::gameStateUpdate()
 	{
 		gameStates = MenuScreen;
 		currentLevel = 2;
-		audio->stopCue(SOUNDTRACK);
 	}
 	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
