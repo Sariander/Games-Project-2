@@ -11,6 +11,7 @@
 #include "hobo.h"
 #include "menu.h"
 #include "brawler.h"
+
 using std::string;
 
 

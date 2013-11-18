@@ -56,7 +56,11 @@ const char WAVE_BANK[]  = "audio\\Win\\Wave Bank.xwb";
 // SOUND_BANK must be location of .xsb file.
 const char SOUND_BANK[] = "audio\\Win\\Sound Bank.xsb";
 
-// audio cues
+const char SWORD_SOUND[] = "swordSwing";
+const char SOUNDTRACK[] = "soundTrack";
+const char DEATH_SOUND[] = "hoboDeath";
+
+
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used

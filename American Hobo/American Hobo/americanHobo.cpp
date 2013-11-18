@@ -167,6 +167,8 @@ void AmericanHobo::initialize(HWND hwnd)
 	
 	killCount = 0;
 	gameStates = Title;
+
+	audio->playCue(SOUNDTRACK);
     return;
 }
 
