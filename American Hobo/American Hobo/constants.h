@@ -58,10 +58,8 @@ const char SOUND_BANK[] = "audio\\Win\\Sound Bank.xsb";
 
 const char SWORD_SWING[] = "swordImpact";
 const char SWORD_SLASH[] = "swordSlash";
-const char SOUNDTRACK[] = "soundTrack";
+const char SOUNDTRACK[] = "Soundtrack";
 const char DEATH_SOUND[] = "hoboDeath";
-
-
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used

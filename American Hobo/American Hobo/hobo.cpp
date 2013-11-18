@@ -136,7 +136,7 @@ void Hobo::death()
 	velocity.x = 0;
 	velocity.y = 0;
 	health = 0;
-	
+	audio->playCue(DEATH_SOUND);
 }
 
 void Hobo::heal()
