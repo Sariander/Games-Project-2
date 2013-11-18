@@ -32,6 +32,7 @@ namespace heroNS
 	const float ANIMATION_DELAY = 0.2f;
 
 	const float HIT_DURATION = 0.2f;
+	const float COLOR_WAIT = .2f;
 
 }
 
@@ -41,7 +42,8 @@ class Hero : public Entity
 private:
 	float hitTimer;
 	D3DXVECTOR2 hitVector;
-
+	float colorTimer;
+	COLOR_ARGB filter;
 public:
 	// constructor
 	Hero();
@@ -54,6 +56,7 @@ public:
 	void damage(WEAPON, D3DXVECTOR2);
 	void death();
 	void heal();
+	void draw(float frameTime);
 
 	float getHealth() { return health; }
 };

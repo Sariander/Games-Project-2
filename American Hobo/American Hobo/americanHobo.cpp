@@ -335,7 +335,7 @@ void AmericanHobo::render()
 		break;
 	case Level1:
 		streets.draw();
-		hero.draw();
+		hero.draw(frameTime);
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
 		{
@@ -346,7 +346,7 @@ void AmericanHobo::render()
 		break;
 	case Level2:
 		stadium.draw();
-		hero.draw();
+		hero.draw(frameTime);
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
 		{
@@ -357,7 +357,7 @@ void AmericanHobo::render()
 		break;
 	case Level3:
 		colosseum.draw();
-		hero.draw();
+		hero.draw(frameTime);
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
 		{

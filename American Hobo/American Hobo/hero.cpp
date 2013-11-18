@@ -8,6 +8,24 @@ Hero::Hero() : Entity()
 	dir = RIGHT;
 	hitTimer = 0;
 	hitVector = D3DXVECTOR2(0,0);
+	filter = SETCOLOR_ARGB(0, 0, 0, 0);
+	colorTimer = 0.0f;
+}
+
+void Hero::draw(float frameTime)
+{
+	if (colorTimer > 0)
+	{
+		colorTimer -= frameTime;
+	}
+	if (colorTimer <= 0.0f) {
+		filter = SETCOLOR_ARGB(0, 0, 0, 0);
+		Image::draw(spriteData, filter);
+	}
+	else {
+		filter = SETCOLOR_ARGB(255, 255, 30, 30);
+		Image::draw(spriteData, filter);
+	}
 }
 
 void Hero::update(float frameTime)
@@ -154,7 +172,7 @@ void Hero::damage(WEAPON weapon, D3DXVECTOR2 vector)
 		hitTimer = heroNS::HIT_DURATION;
 		hitVector.x = vector.x;
 		hitVector.y = vector.y;
-
+		colorTimer = heroNS::COLOR_WAIT;
 		switch (weapon)
 		{
 		case SWORD:
