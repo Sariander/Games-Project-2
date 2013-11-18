@@ -56,6 +56,7 @@ private:
 	int killCount;
 	int currentLevel;
 	bool returnDebounce;
+	bool fKeyDebounce;
 
 	//
 	TextureManager shipTexture; 

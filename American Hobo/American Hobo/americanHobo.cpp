@@ -34,6 +34,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	brawlersActive = 0;
 	currentLevel = 1;
 	returnDebounce = false;
+	fKeyDebounce = false;
 	//Initialize Streets Texture
 	if (!streetsTexture.initialize(graphics, STREETS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Streets texture!"));
@@ -193,6 +194,48 @@ void AmericanHobo::gameStateUpdate()
 	if(!input->isKeyDown(VK_RETURN))
 		returnDebounce = false;
 
+	if(!input->isKeyDown(0x70) && !input->isKeyDown(0x71) && !input->isKeyDown(0x72))
+		fKeyDebounce = false;
+
+	if(input->isKeyDown(0x70) && !fKeyDebounce)
+	{
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].setActive(false);
+			hobo[i].setVisible(false);
+			brawler[i].setActive(false);
+			brawler[i].setVisible(false);
+		}
+		hero.heal();
+		initializeLevel1();
+		fKeyDebounce = true;
+	}
+	if(input->isKeyDown(0x71) && !fKeyDebounce)
+	{
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].setActive(false);
+			hobo[i].setVisible(false);
+			brawler[i].setActive(false);
+			brawler[i].setVisible(false);
+		}
+		hero.heal();
+		initializeLevel2();
+		fKeyDebounce = true;
+	}
+	if(input->isKeyDown(0x72) && !fKeyDebounce)
+	{
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].setActive(false);
+			hobo[i].setVisible(false);
+			brawler[i].setActive(false);
+			brawler[i].setVisible(false);
+		}
+		hero.heal();
+		initializeLevel3();
+		fKeyDebounce = true;
+	}
 	if (gameStates == Title && input->isKeyDown(VK_RETURN))
 	{
 		gameStates = Controls;
