@@ -383,23 +383,31 @@ void AmericanHobo::collisions()
 				break;
 			case 1:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(-1,0)))
+				{
 					killCount--;
 					setScore(getScore() + 50);
+				}
 				break;
 			case 2:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(1,0)))
+				{
 					killCount--;
 					setScore(getScore() + 50);
+				}
 				break;
 			case 3:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(0,1)))
+				{
 					killCount--;
 					setScore(getScore() + 50);
+				}
 				break;
 			case 4:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(0,-1)))
+				{
 					killCount--;
 					setScore(getScore() + 50);
+				}
 				break;
 			}
 		}
@@ -412,23 +420,31 @@ void AmericanHobo::collisions()
 				break;
 			case 1:
 				if(brawler[i].damage(SWORD, D3DXVECTOR2(-1,0)))
+				{
 					killCount--;
-					setScore(getScore() + 50);
+					setScore(getScore() + 100);
+				}
 				break;
 			case 2:
 				if(brawler[i].damage(SWORD, D3DXVECTOR2(1,0)))
+				{
 					killCount--;
-					setScore(getScore() + 50);
+					setScore(getScore() + 100);
+				}
 				break;
 			case 3:
 				if(brawler[i].damage(SWORD, D3DXVECTOR2(0,1)))
+				{
 					killCount--;
-					setScore(getScore() + 50);
+					setScore(getScore() + 100);
+				}
 				break;
 			case 4:
 				if(brawler[i].damage(SWORD, D3DXVECTOR2(0,-1)))
+				{
 					killCount--;
-					setScore(getScore() + 50);
+					setScore(getScore() + 100);
+				}
 				break;
 			}
 		}
@@ -442,7 +458,7 @@ void AmericanHobo::collisions()
 void AmericanHobo::render()
 {
 	std::stringstream s;
-	s << "Kills remaining: " << killCount;
+	s << "Score: " << score << "         Kills remaining: " << killCount << "              Health: " << hero.getHealth();
     graphics->spriteBegin();
 	switch (gameStates)
 	{
@@ -463,7 +479,7 @@ void AmericanHobo::render()
 			hobo[i].draw(frameTime);
 			brawler[i].draw(frameTime);
 		}
-		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		break;
 	case Level2:
 		stadium.draw();
