@@ -224,10 +224,10 @@ void AmericanHobo::update()
 	switch (gameStates)
 	{
 	case Title:
-
+		audio->playCue(SOUNDTRACK);
 		break;
 	case Controls:
-
+		audio->stopCue(SOUNDTRACK);
 		break;
 	case Level1:
 		hero.update(frameTime);
