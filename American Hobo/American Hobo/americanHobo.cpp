@@ -53,6 +53,22 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!colosseum.initialize(graphics, 0, 0, 0, &colosseumTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Colosseum"));
 
+	//Intialize Title Texture
+	if (!titleTexture.initialize(graphics, TITLE_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Title texture!"));
+
+	//Intialize Title
+	if (!title.initialize(graphics, 0, 0, 0, &titleTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Title"));
+
+	//Intialize Controls Texture
+	if (!controlsTexture.initialize(graphics, CONTROLS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Controls texture!"));
+
+	//Intialize Controls
+	if (!controls.initialize(graphics, 0, 0, 0, &controlsTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
+
 	//Initialize Hero Texture
 	if (!heroTexture.initialize(graphics, HERO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hero texture!"));

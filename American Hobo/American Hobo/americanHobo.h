@@ -32,10 +32,12 @@ private:
 	Cybovine cybovine;
 	//
 	Image streets, stadium, colosseum;
+	Image title, controls;
 	//Sword sword;
 	Hero hero;
 	Hobo hobo;
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
+	TextureManager titleTexture, controlsTexture;
 	TextureManager heroTexture, swordTexture, hoboTexture;
 
 	GameStates gameStates;
