@@ -25,6 +25,8 @@ Hobo::Hobo() : Entity()
 	spriteData.scale = 1;
 	active = true;
 	speed = hoboNS::SPEED;
+
+	hitTimer = 0;
 }
 
 void Hobo::update(float frameTime)
@@ -69,6 +71,8 @@ void Hobo::attack()
 
 void Hobo::damage(WEAPON weapon)
 {
+	hitTimer = hoboNS::HIT_DURATION;
+
 	switch (weapon)
 	{
 	case SWORD:

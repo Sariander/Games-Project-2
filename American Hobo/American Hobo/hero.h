@@ -31,13 +31,15 @@ namespace heroNS
 	const int END_DOWN = 11;
 	const float ANIMATION_DELAY = 0.2f;
 
+	const float HIT_DURATION = 0.2f;
+
 }
 
 // inherits from Entity class
 class Hero : public Entity
 {
 private:
-	
+	float hitTimer;
 
 public:
 	// constructor
