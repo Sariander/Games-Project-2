@@ -25,6 +25,8 @@ Hobo::Hobo() : Entity()
 	spriteData.scale = 1;
 	active = true;
 	speed = hoboNS::SPEED;
+	
+	targetDist = GAME_HEIGHT/2;
 
 	hitTimer = 0;
 	hitVector = D3DXVECTOR2(0,0);
@@ -72,6 +74,7 @@ void Hobo::update(float frameTime)
 	if(sword.swingTimer == 0) //Can only move when not attacking
 		incPosition(foo);
 
+
 	if(getVelocity().x > 0)
 		dir = LEFT;
 	else
@@ -80,6 +83,7 @@ void Hobo::update(float frameTime)
 	Image::setX(getPositionX());
 	Image::setY(getPositionY());
     Entity::update(frameTime);
+	sword.update(this, frameTime);
 
 }
 
@@ -143,13 +147,26 @@ void Hobo::heal()
 
 void Hobo::ai(float frameTime, Entity &target)
 {
-	if(active)
+	if(active) {
 		vectorTrack(target);
+		if(targetDist < 30)
+			attack();
+	}
 }
 
 
 void Hobo::vectorTrack(Entity &target)
 {
+	float tempX = getCenterX() - target.getCenterX();
+	if(tempX < 0)
+		tempX = -tempX;
+	float tempY = getCenterY() - target.getCenterY();
+	if(tempY < 0)
+		tempY = -tempY;
+
+	targetDist = sqrtf(tempY*tempY + tempX*tempX);
+
+
 	VECTOR2 vel = getCenterPoint() - target.getCenterPoint();
 	VECTOR2* temp = D3DXVec2Normalize(&vel, &vel);
 	setVelocity(vel);
@@ -181,6 +198,10 @@ void Hobo::spawn(GameStates level)
 		setY(getPositionY());
 		break;
 	}
+
+	velocity.x = 0;
+	velocity.y = 0;
+
 	setActive(true);
 	setVisible(true);
 

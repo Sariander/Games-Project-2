@@ -6,6 +6,7 @@
 #include "constants.h"
 #include "textDX.h"
 #include "sword.h"
+#include <cmath>
 
 namespace hoboNS
 {
@@ -45,6 +46,7 @@ protected:
 	int directionY;
 
 	int health;
+	float targetDist;
 
 	float speed;
 
