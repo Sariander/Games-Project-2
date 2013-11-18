@@ -44,6 +44,7 @@ protected:
 	float speed;
 
 	float hitTimer;
+	D3DXVECTOR2 hitVector;
 
 public:
 	// constructor
@@ -54,7 +55,7 @@ public:
 
 	void update(float frameTime);
 	void attack();
-	void damage(WEAPON);
+	void damage(WEAPON, D3DXVECTOR2);
 	void death();
 	void heal();
 	void spawn(GameStates level);

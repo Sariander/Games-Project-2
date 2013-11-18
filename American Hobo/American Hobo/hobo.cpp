@@ -27,6 +27,7 @@ Hobo::Hobo() : Entity()
 	speed = hoboNS::SPEED;
 
 	hitTimer = 0;
+	hitVector = D3DXVECTOR2(0,0);
 }
 
 void Hobo::update(float frameTime)
@@ -69,9 +70,10 @@ void Hobo::attack()
 	sword.swing(this, dir);
 }
 
-void Hobo::damage(WEAPON weapon)
+void Hobo::damage(WEAPON weapon, D3DXVECTOR2 vector)
 {
 	hitTimer = hoboNS::HIT_DURATION;
+	hitVector = vector;
 
 	switch (weapon)
 	{

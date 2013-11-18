@@ -30,10 +30,10 @@ const float FULL_HEALTH = 100;
 const float SHIP_ANGULAR_SPEED = .05f;			////////////////////////////////[added]
 
 // RECT Definitions
-const RECT COLLISION_BOX_HERO = { -30, -30, 30, 30 };
+const RECT COLLISION_BOX_HERO = { -14, -19, 14, 19 };
 const RECT COLLISION_BOX_SWORD = { -16, -16, 16, 16 };
-const RECT COLLISION_BOX_HOBO = { -30, -30, 30, 30 };
-const RECT COLLISION_BOX_BRAWLER = { -30, -30, 30, 30 };
+const RECT COLLISION_BOX_HOBO = { -14, -19, 14, 19 };
+const RECT COLLISION_BOX_BRAWLER = { -14, -19, 14, 19 };
 
 // graphic images
 const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";

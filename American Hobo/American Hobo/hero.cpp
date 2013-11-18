@@ -7,21 +7,26 @@ Hero::Hero() : Entity()
 {
 	dir = RIGHT;
 	hitTimer = 0;
+	hitVector = D3DXVECTOR2(0,0);
 }
 
 void Hero::update(float frameTime)
 {
 	if (!visible)
 		return;
-	
-	if(hitTimer == heroNS::HIT_DURATION) {
-		setVelocity(D3DXVECTOR2(-3*getVelocity().x,-3*getVelocity().y));
-	}
 
 	if(hitTimer != 0) {
 		hitTimer -= frameTime;
+		velocity.x = -200.0*hitVector.x;
+		velocity.y = -200.0*hitVector.y;
+
+		char buff[100];
+		sprintf(buff, "%f\n%f\n",velocity.x,velocity.y);
+		OutputDebugString(buff);
+
 		if(hitTimer < 0) {
 			hitTimer = 0;
+			hitVector = D3DXVECTOR2(0,0);
 		}
 	}
 
@@ -143,18 +148,22 @@ void Hero::attack()
 	sword.swing(this,dir);
 }
 
-void Hero::damage(WEAPON weapon)
+void Hero::damage(WEAPON weapon, D3DXVECTOR2 vector)
 {
-	hitTimer = heroNS::HIT_DURATION;
+	if(hitTimer == 0) {
+		hitTimer = heroNS::HIT_DURATION;
+		hitVector.x = vector.x;
+		hitVector.y = vector.y;
 
-	switch (weapon)
-	{
-	case SWORD:
+		switch (weapon)
+		{
+		case SWORD:
 		
-		break;
+			break;
+		}
+		if (health <= 0)
+			death();
 	}
-	if (health <= 0)
-		death();
 }
 
 void Hero::death()
