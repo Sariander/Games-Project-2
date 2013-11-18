@@ -102,31 +102,38 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!hoboTexture.initialize(graphics, HOBO_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hobo texture!"));
 
-	//Initialize Hobo
-	if (!hobo.initialize(this, 0, 0, 0, &hoboTexture))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
-	hobo.setCollisionType(entityNS::BOX);
-	hobo.setEdge(COLLISION_BOX_HOBO);
-	hobo.setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
-	hobo.setX(hobo.getPositionX());
-	hobo.setY(hobo.getPositionY());
-	hobo.setActive(true);
-	hobo.setVisible(true);
+
+	for(int i=0; i<10; i++)
+	{
+		//Initialize Hobo
+		if (!hobo[i].initialize(this, 0, 0, 0, &hoboTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
+		hobo[i].setCollisionType(entityNS::BOX);
+		hobo[i].setEdge(COLLISION_BOX_HOBO);
+		hobo[i].setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
+		hobo[i].setX(hobo[i].getPositionX());
+		hobo[i].setY(hobo[i].getPositionY());
+		hobo[i].setActive(false);
+		hobo[i].setVisible(false);
+	}
 
 	//Initialize Brawler Texture
 	if (!brawlerTexture.initialize(graphics, BRAWLER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Brawler texture!"));
 
-	//initialize Brawler
-	if (!brawler.initialize(this, 0, 0, 0, &brawlerTexture))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
-	brawler.setCollisionType(entityNS::BOX);
-	brawler.setEdge(COLLISION_BOX_HOBO);
-	brawler.setPosition(VECTOR2(brawlerNS::X, brawlerNS::Y));
-	brawler.setX(brawler.getPositionX());
-	brawler.setY(brawler.getPositionY());
-	brawler.setActive(true);
-	brawler.setVisible(true);
+	for(int i=0; i<10; i++)
+	{
+		//initialize Brawler
+		if (!brawler[i].initialize(this, 0, 0, 0, &brawlerTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
+		brawler[i].setCollisionType(entityNS::BOX);
+		brawler[i].setEdge(COLLISION_BOX_HOBO);
+		brawler[i].setPosition(VECTOR2(brawlerNS::X, brawlerNS::Y));
+		brawler[i].setX(brawler[i].getPositionX());
+		brawler[i].setY(brawler[i].getPositionY());
+		brawler[i].setActive(false);
+		brawler[i].setVisible(false);
+	}
 
 	//Initialize Fonts
 	timerFont = new TextDX();
@@ -213,20 +220,29 @@ void AmericanHobo::update()
 	case Level1:
 		hero.update(frameTime);
 		//sword.update(frameTime);
-		hobo.update(frameTime);
-		brawler.update(frameTime);
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].update(frameTime);
+			brawler[i].update(frameTime);
+		}
 		break;
 	case Level2:
 		hero.update(frameTime);
 		//sword.update(frameTime);
-		hobo.update(frameTime);
-		brawler.update(frameTime);
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].update(frameTime);
+			brawler[i].update(frameTime);
+		}
 		break;
 	case Level3:
 		hero.update(frameTime);
 		//sword.update(frameTime);
-		hobo.update(frameTime);
-		brawler.update(frameTime);
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].update(frameTime);
+			brawler[i].update(frameTime);
+		}
 		break;
 	case MenuScreen:
 		mainMenu->update();
@@ -240,8 +256,11 @@ void AmericanHobo::update()
 //=============================================================================
 void AmericanHobo::ai()
 {
-	hobo.ai(frameTime, hero);
-	brawler.ai(frameTime, hero);
+	for(int i=0; i<10; i++)
+	{
+		hobo[i].ai(frameTime, hero);
+		brawler[i].ai(frameTime, hero);
+	}
 }
 
 //=============================================================================
@@ -276,24 +295,33 @@ void AmericanHobo::render()
 		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
-		hobo.draw();
-		brawler.draw();
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].draw();
+			brawler[i].draw();
+		}
 		break;
 	case Level2:
 		stadium.draw();
 		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
-		hobo.draw();
-		brawler.draw();
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].draw();
+			brawler[i].draw();
+		}
 		break;
 	case Level3:
 		colosseum.draw();
 		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
-		hobo.draw();
-		brawler.draw();
+		for(int i=0; i<10; i++)
+		{
+			hobo[i].draw();
+			brawler[i].draw();
+		}
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
@@ -311,6 +339,10 @@ void AmericanHobo::releaseAll()
 	streetsTexture.onLostDevice();
 	stadiumTexture.onLostDevice();
 	colosseumTexture.onLostDevice();
+	hoboTexture.onLostDevice();
+	heroTexture.onLostDevice();
+	brawlerTexture.onLostDevice();
+	swordTexture.onLostDevice();
 	mainMenu->releaseAll();
     Game::releaseAll();
     return;
@@ -325,6 +357,10 @@ void AmericanHobo::resetAll()
 	streetsTexture.onResetDevice();
 	stadiumTexture.onResetDevice();
 	colosseumTexture.onResetDevice();
+	hoboTexture.onResetDevice();
+	heroTexture.onResetDevice();
+	brawlerTexture.onResetDevice();
+	swordTexture.onResetDevice();
 	mainMenu->resetAll();
     Game::resetAll();
     return;

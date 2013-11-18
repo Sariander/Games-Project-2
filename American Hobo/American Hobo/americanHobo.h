@@ -36,8 +36,8 @@ private:
 	Image title, controls;
 	//Sword sword;
 	Hero hero;
-	Hobo hobo;
-	Brawler brawler;
+	Hobo hobo[10];
+	Brawler brawler[10];
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
 	TextureManager titleTexture, controlsTexture;
 	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture;
