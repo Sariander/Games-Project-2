@@ -499,7 +499,7 @@ void AmericanHobo::render()
 			hobo[i].draw(frameTime);
 			brawler[i].draw(frameTime);
 		}
-		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		break;
 	case Level3:
 		colosseum.draw();
@@ -510,10 +510,12 @@ void AmericanHobo::render()
 			hobo[i].draw(frameTime);
 			brawler[i].draw(frameTime);
 		}
-		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
+		std::stringstream j;
+		j << "Score: " << score << "       Health: " << hero.getHealth();
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		break;
 	}
