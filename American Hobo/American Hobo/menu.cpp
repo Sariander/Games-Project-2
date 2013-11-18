@@ -66,7 +66,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	sub5DepressedLastFrame = false;
 	sub6DepressedLastFrame = false;
 	done = false;
-	currentMoney = 1000;
+	//currentMoney = 0;
 }
 
 void Menu::update()

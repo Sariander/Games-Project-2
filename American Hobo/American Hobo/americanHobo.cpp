@@ -29,6 +29,7 @@ void AmericanHobo::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
 
+	score = 0;
 	hobosActive = 0;
 	brawlersActive = 0;
 	currentLevel = 1;
@@ -172,6 +173,14 @@ void AmericanHobo::initialize(HWND hwnd)
     return;
 }
 
+void AmericanHobo::setScore(int newScore)
+{
+	score = newScore;
+}
+int AmericanHobo::getScore()
+{
+	return score;
+}
 
 
 //=============================================================================
@@ -375,18 +384,51 @@ void AmericanHobo::collisions()
 			case 1:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(-1,0)))
 					killCount--;
+					setScore(getScore() + 50);
 				break;
 			case 2:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(1,0)))
 					killCount--;
+					setScore(getScore() + 50);
 				break;
 			case 3:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(0,1)))
 					killCount--;
+					setScore(getScore() + 50);
 				break;
 			case 4:
 				if(hobo[i].damage(SWORD, D3DXVECTOR2(0,-1)))
 					killCount--;
+					setScore(getScore() + 50);
+				break;
+			}
+		}
+	}
+
+		for(int i = 0; i < 10; i++) {
+		if(hero.sword.collidesWith(brawler[i],collisionVector)) {
+			switch(hero.dir) {
+			case 0:
+				break;
+			case 1:
+				if(brawler[i].damage(SWORD, D3DXVECTOR2(-1,0)))
+					killCount--;
+					setScore(getScore() + 50);
+				break;
+			case 2:
+				if(brawler[i].damage(SWORD, D3DXVECTOR2(1,0)))
+					killCount--;
+					setScore(getScore() + 50);
+				break;
+			case 3:
+				if(brawler[i].damage(SWORD, D3DXVECTOR2(0,1)))
+					killCount--;
+					setScore(getScore() + 50);
+				break;
+			case 4:
+				if(brawler[i].damage(SWORD, D3DXVECTOR2(0,-1)))
+					killCount--;
+					setScore(getScore() + 50);
 				break;
 			}
 		}

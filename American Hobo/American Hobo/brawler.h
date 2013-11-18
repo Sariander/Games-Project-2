@@ -18,6 +18,7 @@ namespace brawlerNS
 	const float SPEED = 50;                // 100 pixels per second
 	enum DIRECTION { NONE, LEFT, RIGHT };     // rotation direction
 	const int   TEXTURE_COLS = 0;           // texture has 8 columns
+	const int HEALTH_MAX = 5;
 }
 
 // inherits from Entity class
@@ -36,6 +37,7 @@ public:
 	//void damage(WEAPON);
 	//void death();
 	//void heal();
+	void spawn(GameStates level);
 
 	//void ai(float frameTime, Entity &target);
 	//void vectorTrack(Entity &target);

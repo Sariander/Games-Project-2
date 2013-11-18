@@ -44,6 +44,8 @@ private:
 	TextDX *timerFont;
 	TextDX* killFont;
 
+	int score;
+
 	float timerCount;
 	float timeInState;
 	float spawnCooldown;
@@ -95,6 +97,8 @@ public:
 	void initializeLevel1();
 	void initializeLevel2();
 	void initializeLevel3();
+	void setScore(int newScore);
+	int getScore();
 };
 
 #endif

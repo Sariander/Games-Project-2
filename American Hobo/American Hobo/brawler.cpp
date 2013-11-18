@@ -22,4 +22,41 @@ Brawler::Brawler() : Hobo()
 	spriteData.scale = 1;
 	active = true;
 	speed = brawlerNS::SPEED;
+	health = brawlerNS::HEALTH_MAX;
+}
+
+void Brawler::spawn(GameStates level)
+{
+	hitTimer = 0.0;
+	setVelocity(VECTOR2(0,0));
+	health = brawlerNS::HEALTH_MAX;
+	setDeltaV(VECTOR2(0,0));
+	int seed = rand()%4;
+	switch(seed)
+	{
+	case 0:
+		setPosition(VECTOR2(-10, GAME_HEIGHT/2));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	case 1:
+		setPosition(VECTOR2(GAME_WIDTH/2,-10));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	case 2:
+		setPosition(VECTOR2(GAME_WIDTH + 10, GAME_HEIGHT/2));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	case 3:
+		setPosition(VECTOR2(GAME_WIDTH/2, GAME_HEIGHT + 10));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	}
+
+	setActive(true);
+	setVisible(true);
+
 }
