@@ -27,7 +27,6 @@ protected:
     bool target;  
 	int directionX;
 	int directionY;
-	VECTOR2 velocity;
 	float speed;
 
 public:
@@ -42,6 +41,7 @@ public:
 	void damage(WEAPON);
 	void death();
 	void heal();
+
 	void ai(float frameTime, Entity &target);
 	void vectorTrack(Entity &target);
 

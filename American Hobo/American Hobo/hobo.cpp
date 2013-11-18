@@ -6,6 +6,25 @@
 Hobo::Hobo() : Entity()
 {
 	dir = RIGHT;
+	spriteData.width = hoboNS::WIDTH;           
+    spriteData.height = hoboNS::HEIGHT;
+    spriteData.x = hoboNS::X;                   // location on screen
+    spriteData.y = hoboNS::Y;
+    spriteData.rect.bottom = hoboNS::HEIGHT/2;    // rectangle to select parts of an image
+    spriteData.rect.right = hoboNS::WIDTH;
+    
+	velocity = D3DXVECTOR2(0,0);
+    startFrame = 0;              // first frame of ship animation
+    endFrame     = 0;              // last frame of ship animation
+    currentFrame = startFrame;
+    radius = hoboNS::WIDTH/2.0;                 // collision radius
+    collision = false;
+    collisionType =entityNS::BOX;// entityNS::CIRCLE;
+    target = false;
+	edge.bottom = -hoboNS::HEIGHT/2;
+	spriteData.scale = 1;
+	active = true;
+	speed = 50;
 }
 
 void Hobo::update(float frameTime)
@@ -55,7 +74,8 @@ void Hobo::heal()
 
 void Hobo::ai(float frameTime, Entity &target)
 {
-	vectorTrack(target);
+	if(active)
+		vectorTrack(target);
 }
 
 

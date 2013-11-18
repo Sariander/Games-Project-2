@@ -91,8 +91,11 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 	hobo.setCollisionType(entityNS::BOX);
 	hobo.setEdge(COLLISION_BOX_HOBO);
-	hobo.setX(GAME_WIDTH / 3);
-	hobo.setY(GAME_HEIGHT / 3);
+	hobo.setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
+	hobo.setX(hobo.getPositionX());
+	hobo.setY(hobo.getPositionY());
+	hobo.setActive(true);
+	hobo.setVisible(true);
 
 	//Initialize Fonts
 	timerFont = new TextDX();
