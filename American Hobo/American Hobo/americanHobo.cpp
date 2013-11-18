@@ -207,13 +207,14 @@ void AmericanHobo::gameStateUpdate()
 	{
 		gameStates = MenuScreen;
 		currentLevel = 2;
+		audio->stopCue(SOUNDTRACK);
 	}
 	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN))
 	{
 		if(mainMenu->getSelectedItem() == 1)
 			initializeLevel2();
 		else
-			mainMenu->purchaseHealth(0, 100, 25);
+			mainMenu->purchaseHealth(0, 100, 1);
 		//else
 		//restore health
 	}
@@ -224,10 +225,10 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN))
 	{
-		if(mainMenu->getSelectedItem() == 1)
+		if(mainMenu->getSelectedItem() == 2)
 			initializeLevel3();
 		else
-			mainMenu->purchaseHealth(0, 100, 25);
+			mainMenu->purchaseHealth(0, 100, 1);
 	}
 	if (gameStates == Level3 && killCount == 0)
 	{
@@ -511,6 +512,7 @@ void AmericanHobo::render()
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
+		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		break;
 	}
     graphics->spriteEnd();

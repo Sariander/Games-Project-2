@@ -34,7 +34,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	//subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
 	//subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
 	//subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
-	subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
+	//subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
 	highlightColor = graphicsNS::RED;
 	normalColor = graphicsNS::WHITE;
 	menuAnchor = D3DXVECTOR2(50,50);
@@ -301,14 +301,14 @@ void Menu::purchaseThis(int desiredInput, int price)
 
 void Menu::purchaseHealth(int desiredInput, int price, int health)
 {
-	if (selectedItem == desiredInput && price <= currentMoney)
+	if (price <= currentMoney)
 	{
 		ownage = purchased;
 		currentMoney -= price;
 		hero.health += health;
-		if (hero.health > 100)
+		if (hero.health > 10)
 		{
-			hero.health = 100;
+			hero.health = 10;
 		}
 		//Give health
 		//Check health against max, set to max if over
