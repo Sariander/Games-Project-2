@@ -106,3 +106,15 @@ void Hobo::vectorTrack(Entity &target)
 	VECTOR2* temp = D3DXVec2Normalize(&vel, &vel);
 	setVelocity(vel);
 }
+
+void Hobo::spawn(GameStates level)
+{
+	int seed = rand()%4;
+	setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
+	setX(getPositionX());
+	setY(getPositionY());
+
+	setActive(true);
+	setVisible(true);
+
+}
