@@ -33,6 +33,7 @@ const float SHIP_ANGULAR_SPEED = .05f;			////////////////////////////////[added]
 const RECT COLLISION_BOX_HERO = { -30, -30, 30, 30 };
 const RECT COLLISION_BOX_SWORD = { -16, -16, 16, 16 };
 const RECT COLLISION_BOX_HOBO = { -30, -30, 30, 30 };
+const RECT COLLISION_BOX_BRAWLER = { -30, -30, 30, 30 };
 
 // graphic images
 const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";
@@ -42,6 +43,7 @@ const char TITLE_IMAGE[] = "pictures\\Title Screen.png";
 const char CONTROLS_IMAGE[] = "pictures\\Control Screen.png";
 const char HOBO_IMAGE[] = "pictures\\Hobo Minion.png";
 const char HERO_IMAGE[] = "pictures\\Hero.png";
+const char BRAWLER_IMAGE[] = "pictures\\brawler.png";
 const char SWORD_IMAGE[] = "pictures\\Sword.png";
 const char SWORD_CELS_IMAGE[] = "pictures\\Sword Cel Sheet.png";
 const char HERO_CELS_IMAGE[] = "pictures\\Hero Cel Sheet.png";
