@@ -10,6 +10,7 @@ Hero::Hero() : Entity()
 	hitVector = D3DXVECTOR2(0,0);
 	filter = SETCOLOR_ARGB(0, 0, 0, 0);
 	colorTimer = 0.0f;
+	health = 100;
 }
 
 void Hero::draw(float frameTime)

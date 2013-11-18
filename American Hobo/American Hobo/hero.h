@@ -57,7 +57,7 @@ public:
 	void death();
 	void heal();
 	void draw(float frameTime);
-
+	float health;
 	float getHealth() { return health; }
 };
 #endif
