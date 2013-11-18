@@ -99,6 +99,12 @@ class Entity : public Image
         return &center;
     }
 
+	virtual const VECTOR2 getCenterPoint()   
+    {
+        center = VECTOR2(getCenterX(),getCenterY());
+        return center;
+    }
+
     // Return radius of collision circle.
     virtual float getRadius() const     {return radius;}
 

@@ -82,3 +82,16 @@ void Hobo::heal()
 	visible = true;
 	health = FULL_HEALTH;
 }
+
+void Hobo::ai(float frameTime, Entity &target)
+{
+	vectorTrack(target);
+}
+
+
+void Hobo::vectorTrack(Entity &target)
+{
+	VECTOR2 vel = getCenterPoint() - target.getCenterPoint();
+	VECTOR2* temp = D3DXVec2Normalize(&vel, &vel);
+	setVelocity(vel);
+}

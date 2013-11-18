@@ -36,6 +36,8 @@ public:
 	void damage(WEAPON);
 	void death();
 	void heal();
+	void ai(float frameTime, Entity &target);
+	void vectorTrack(Entity &target);
 
 	float getHealth() { return health; }
 };
