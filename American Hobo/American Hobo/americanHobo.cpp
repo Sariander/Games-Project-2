@@ -211,10 +211,11 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN))
 	{
-		if(mainMenu->getSelectedItem() == 1)
+		if(mainMenu->getSelectedItem() == 2)
 			initializeLevel2();
 		else
-			mainMenu->purchaseHealth(0, 100, 1);
+			mainMenu->purchaseHealth(0, 200, 1);
+			setScore(mainMenu->getCurrentMoney());
 		//else
 		//restore health
 	}
@@ -228,7 +229,8 @@ void AmericanHobo::gameStateUpdate()
 		if(mainMenu->getSelectedItem() == 2)
 			initializeLevel3();
 		else
-			mainMenu->purchaseHealth(0, 100, 1);
+			mainMenu->purchaseHealth(0, 200, 1);
+			setScore(mainMenu->getCurrentMoney());
 	}
 	if (gameStates == Level3 && killCount == 0)
 	{

@@ -68,7 +68,7 @@ public:
 	void update();
 	void releaseAll();
 	void resetAll();
-	int getSelectedItem() {return selectedItem;}
+	int getSelectedItem() {return linePtr;}
 	void displayMenu();
 	void pointerCheckerWrappingWithTitle(int &pointer, vector<string> menuVector);
 	void pointerCheckerWrappingWithoutTitle(int &pointer, vector<string> menuVector);
@@ -84,6 +84,7 @@ public:
 	void purchaseHealth(int desiresInput, int price, int health);
 	void purchaseResponse();
 	void setCurrentMoney(int score);
+	int getCurrentMoney() {return currentMoney;}
 	void moneyDebugger();
 
 	Hero hero;

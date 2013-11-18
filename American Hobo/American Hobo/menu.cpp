@@ -301,7 +301,7 @@ void Menu::purchaseThis(int desiredInput, int price)
 
 void Menu::purchaseHealth(int desiredInput, int price, int health)
 {
-	if (price <= currentMoney)
+	if (price <= currentMoney && hero.health < 10)
 	{
 		ownage = purchased;
 		currentMoney -= price;
