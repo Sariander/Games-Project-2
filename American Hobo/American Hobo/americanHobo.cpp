@@ -165,7 +165,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	spawnCooldown = 2;
 	spawnCount = 0;
 	killCount = 1;
-	gameStates = Title;
+	gameStates = MenuScreen;
     return;
 }
 

@@ -9,9 +9,9 @@ class Weapon : public Item
 {
 private:
 	int damage;
-	int strScale;
+	//int strScale;
 public:
-	Weapon(int dmg, int str);
+	Weapon(int dmg);
 };
 
 #endif
