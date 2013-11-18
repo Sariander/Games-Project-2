@@ -247,20 +247,37 @@ void AmericanHobo::update()
 
 		break;
 	case Level1:
+	case Level2:
+	case Level3:
 		hero.update(frameTime);
 		//sword.update(frameTime);
-		//spawn hobos
-		if (spawnCooldown < 0 && hoboSpawnCount > 0)
+		//spawn hobos and brawlers
+		if (spawnCooldown < 0 && (hoboSpawnCount > 0 || brawlerSpawnCount > 0))
 		{
-			for(int i = 0; i<HOBO_NUMBER; i++)
+			if(hoboSpawnCount > 0)
 			{
-				if(!hobo[i].getActive())
+				for(int i = 0; i<HOBO_NUMBER; i++)
 				{
-					hobo[i].spawn(gameStates);
-					hoboSpawnCount--;
-					break;
+					if(!hobo[i].getActive())
+					{
+						hobo[i].spawn(gameStates);
+						hoboSpawnCount--;
+						break;
+					}
 				}
-			}			
+			}
+			if(brawlerSpawnCount > 0)
+			{
+				for(int i = 0; i<BRAWLER_NUMBER; i++)
+				{
+					if(!brawler[i].getActive())
+					{
+						brawler[i].spawn(gameStates);
+						brawlerSpawnCount--;
+						break;
+					}
+				}
+			}
 			spawnCooldown = 2;
 		}
 
@@ -270,24 +287,7 @@ void AmericanHobo::update()
 			brawler[i].update(frameTime);
 		}
 		break;
-	case Level2:
-		hero.update(frameTime);
-		//sword.update(frameTime);
-		for(int i=0; i<10; i++)
-		{
-			hobo[i].update(frameTime);
-			brawler[i].update(frameTime);
-		}
-		break;
-	case Level3:
-		hero.update(frameTime);
-		//sword.update(frameTime);
-		for(int i=0; i<10; i++)
-		{
-			hobo[i].update(frameTime);
-			brawler[i].update(frameTime);
-		}
-		break;
+
 	case MenuScreen:
 		mainMenu->update();
 		break;
