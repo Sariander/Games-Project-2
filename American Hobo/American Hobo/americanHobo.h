@@ -29,7 +29,7 @@ private:
 	Image winButton;
 
 	Image streets, stadium, colosseum;
-	Image title, controls;
+	Image title, controls, gameOver;
 	//Sword sword;
 	Hero hero;
 	Hobo hobo[10];
@@ -37,6 +37,7 @@ private:
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
 	TextureManager titleTexture, controlsTexture;
 	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture;
+	TextureManager gameOverTexture;
 
 	GameStates gameStates;
 

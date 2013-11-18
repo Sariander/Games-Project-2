@@ -75,6 +75,14 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!controls.initialize(graphics, 0, 0, 0, &controlsTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
 
+	//Initialize Game Over Texture
+	if (!gameOverTexture.initialize(graphics, STREETS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Game Over texture!"));
+
+	//Initialize Game Over
+	if (!gameOver.initialize(graphics, 0, 0, 0, &gameOverTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Game Over"));
+
 	//Initialize Hero Texture
 	if (!heroTexture.initialize(graphics, HERO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hero texture!"));
@@ -300,6 +308,7 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if (hero.getHealth() <= 0)
 	{
+		gameStates = GameOver;
 		hero.heal();
 		for (int i = 0; i<10; i++)
 		{
@@ -313,17 +322,23 @@ void AmericanHobo::gameStateUpdate()
 		}
 		score = 0;
 		mainMenu->setCurrentMoney(0);
-		if (currentLevel == 1)
+	}
+	if (gameStates == GameOver)
+	{
+		if (input->isKeyDown(VK_RETURN))
 		{
-			initializeLevel1();
-		}
-		if (currentLevel == 2)
-		{
-			initializeLevel2();
-		}
-		if (currentLevel == 3)
-		{
-			initializeLevel3();
+			if (currentLevel == 1)
+			{
+				initializeLevel1();
+			}
+			if (currentLevel == 2)
+			{
+				initializeLevel2();
+			}
+			if (currentLevel == 3)
+			{
+				initializeLevel3();
+			}
 		}
 	}
 	
@@ -538,6 +553,9 @@ void AmericanHobo::render()
     graphics->spriteBegin();
 	switch (gameStates)
 	{
+	case GameOver:
+		gameOver.draw();
+		break;
 	case Title:
 		title.draw();
 		timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
