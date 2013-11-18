@@ -13,43 +13,13 @@ void Hobo::update(float frameTime)
 	if (!visible)
 		return;
 
-	if (input->isKeyDown(HERO_LEFT_KEY))
-	{
-		velocity.x = -hoboNS::SPEED;
-	}
-	if (input->isKeyDown(HERO_RIGHT_KEY))
-	{
-		velocity.x = hoboNS::SPEED;
-	}
-	if (input->isKeyDown(HERO_UP_KEY))
-	{
-		velocity.y = -hoboNS::SPEED;
-	}
-	if (input->isKeyDown(HERO_DOWN_KEY))
-	{
-		velocity.y = hoboNS::SPEED;
-	}
+	VECTOR2 foo = -velocity*frameTime*speed;
 
-	if (spriteData.x < 0)
-	{
-		setX(0);
-	}
-	if (spriteData.x > GAME_WIDTH - hoboNS::WIDTH)
-	{
-		setX(GAME_WIDTH - hoboNS::WIDTH);
-	}
-	if (spriteData.y < 0)
-	{
-		setY(0);
-	}
-	if (spriteData.y > GAME_HEIGHT - hoboNS::HEIGHT)
-	{
-		setY(GAME_HEIGHT - hoboNS::HEIGHT);
-	}
+	incPosition(foo);
+	Image::setX(getPositionX());
+	Image::setY(getPositionY());
+    Entity::update(frameTime);
 
-	spriteData.x += velocity.x * frameTime;
-	spriteData.y += velocity.y * frameTime;
-	velocity = D3DXVECTOR2(0, 0);
 }
 
 void Hobo::attack()

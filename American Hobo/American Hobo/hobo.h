@@ -22,7 +22,13 @@ namespace hoboNS
 // inherits from Entity class
 class Hobo : public Entity
 {
-private:
+protected:
+	bool collision;                 
+    bool target;  
+	int directionX;
+	int directionY;
+	VECTOR2 velocity;
+	float speed;
 
 public:
 	// constructor
