@@ -239,7 +239,6 @@ void AmericanHobo::gameStateUpdate()
 		mainMenu->done = false;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
-
 	}
 	
 }
