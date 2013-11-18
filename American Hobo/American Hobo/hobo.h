@@ -31,6 +31,8 @@ namespace hoboNS
 	const int LEFT_ATTACK_START = 6;
 	const int LEFT_ATTACK_END = 7;
 
+	const float COLOR_WAIT = .2f;
+
 }
 
 // inherits from Entity class
@@ -42,6 +44,9 @@ protected:
 	int directionX;
 	int directionY;
 	float speed;
+
+	float colorTimer;
+	COLOR_ARGB filter;
 
 	float hitTimer;
 	D3DXVECTOR2 hitVector;
@@ -59,6 +64,9 @@ public:
 	void death();
 	void heal();
 	void spawn(GameStates level);
+
+	void draw(float frameTime);
+
 
 	void ai(float frameTime, Entity &target);
 	void vectorTrack(Entity &target);

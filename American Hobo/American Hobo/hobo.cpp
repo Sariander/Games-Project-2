@@ -35,18 +35,34 @@ void Hobo::update(float frameTime)
 	if (!visible)
 		return;
 
-	if(sword.swingTimer == 0 && dir == LEFT) { //Sets animations based on direction facing
-		setFrames(hoboNS::LEFT_WALK_START, hoboNS::LEFT_WALK_END);
-		//setCurrentFrame(hoboNS::LEFT_WALK_START);
-	} else if(sword.swingTimer == 0 && dir == RIGHT) {
-		setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
-		//setCurrentFrame(hoboNS::RIGHT_WALK_START);
-	} else if(sword.swingTimer != 0 && dir == LEFT) {
-		setFrames(hoboNS::LEFT_ATTACK_START, hoboNS::LEFT_ATTACK_END);
-		//setCurrentFrame(hoboNS::LEFT_ATTACK_START);
-	} else if(sword.swingTimer != 0 && dir == RIGHT) {
-		setFrames(hoboNS::RIGHT_ATTACK_START, hoboNS::RIGHT_ATTACK_END);
-		//setCurrentFrame(hoboNS::RIGHT_ATTACK_START);
+
+	if(hitTimer != 0) {
+		hitTimer -= frameTime;
+		
+		velocity.x = -20.0*hitVector.x;
+		velocity.y = -20.0*hitVector.y;
+
+		if(hitTimer < 0) {
+			hitTimer = 0;
+			hitVector = D3DXVECTOR2(0,0);
+		}
+	}
+
+
+	if(hitTimer == 0) {
+		if(sword.swingTimer == 0 && dir == LEFT) { //Sets animations based on direction facing
+			setFrames(hoboNS::LEFT_WALK_START, hoboNS::LEFT_WALK_END);
+			//setCurrentFrame(hoboNS::LEFT_WALK_START);
+		} else if(sword.swingTimer == 0 && dir == RIGHT) {
+			setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
+			//setCurrentFrame(hoboNS::RIGHT_WALK_START);
+		} else if(sword.swingTimer != 0 && dir == LEFT) {
+			setFrames(hoboNS::LEFT_ATTACK_START, hoboNS::LEFT_ATTACK_END);
+			//setCurrentFrame(hoboNS::LEFT_ATTACK_START);
+		} else if(sword.swingTimer != 0 && dir == RIGHT) {
+			setFrames(hoboNS::RIGHT_ATTACK_START, hoboNS::RIGHT_ATTACK_END);
+			//setCurrentFrame(hoboNS::RIGHT_ATTACK_START);
+		}
 	}
 
 	VECTOR2 foo = -velocity*frameTime*speed;
@@ -65,6 +81,23 @@ void Hobo::update(float frameTime)
 
 }
 
+void Hobo::draw(float frameTime)
+{
+	if (colorTimer > 0)
+	{
+		colorTimer -= frameTime;
+	}
+	if (colorTimer <= 0.0f) {
+		filter = SETCOLOR_ARGB(0, 0, 0, 0);
+		Image::draw(spriteData, filter);
+	}
+	else {
+		filter = SETCOLOR_ARGB(255, 255, 30, 30);
+		Image::draw(spriteData, filter);
+	}
+}
+
+
 void Hobo::attack()
 {
 	sword.swing(this, dir);
@@ -72,18 +105,20 @@ void Hobo::attack()
 
 bool Hobo::damage(WEAPON weapon, D3DXVECTOR2 vector)
 {
-	hitTimer = hoboNS::HIT_DURATION;
-	hitVector = vector;
+	if(hitTimer == 0) {
+		hitTimer = hoboNS::HIT_DURATION;
+		hitVector = vector;
+		colorTimer = hoboNS::COLOR_WAIT;
+		switch (weapon)
+		{
+		case SWORD:
 
-	switch (weapon)
-	{
-	case SWORD:
-
-		break;
-	}
-	if (health <= 0) {
-		death();
-		return true;
+			break;
+		}
+		if (health <= 0) {
+			death();
+			return true;
+		}
 	}
 	return false;
 }

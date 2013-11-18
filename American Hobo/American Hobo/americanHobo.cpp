@@ -328,8 +328,28 @@ void AmericanHobo::collisions()
 
 	for(int i = 0; i < 10; i++) {
 		if(hero.sword.collidesWith(hobo[i],collisionVector)) {
-			if(hobo[i].damage(SWORD, hero.getVelocity()))
-				killCount--;
+			switch(hero.dir) {
+			case 0:
+				break;
+			case 1:
+				if(hobo[i].damage(SWORD, D3DXVECTOR2(-1,0)))
+					killCount--;
+				break;
+			case 2:
+				if(hobo[i].damage(SWORD, D3DXVECTOR2(1,0)))
+					killCount--;
+				break;
+			case 3:
+				if(hobo[i].damage(SWORD, D3DXVECTOR2(0,1)))
+					killCount--;
+				break;
+			case 4:
+				if(hobo[i].damage(SWORD, D3DXVECTOR2(0,-1)))
+					killCount--;
+				break;
+			}
+
+			
 		}
 	}
 }
@@ -359,8 +379,8 @@ void AmericanHobo::render()
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
 		{
-			hobo[i].draw();
-			brawler[i].draw();
+			hobo[i].draw(frameTime);
+			brawler[i].draw(frameTime);
 		}
 		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		break;
@@ -370,8 +390,8 @@ void AmericanHobo::render()
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
 		{
-			hobo[i].draw();
-			brawler[i].draw();
+			hobo[i].draw(frameTime);
+			brawler[i].draw(frameTime);
 		}
 		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		break;
@@ -381,8 +401,8 @@ void AmericanHobo::render()
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
 		{
-			hobo[i].draw();
-			brawler[i].draw();
+			hobo[i].draw(frameTime);
+			brawler[i].draw(frameTime);
 		}
 		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		break;

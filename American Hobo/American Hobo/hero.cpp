@@ -39,10 +39,6 @@ void Hero::update(float frameTime)
 		velocity.x = -200.0*hitVector.x;
 		velocity.y = -200.0*hitVector.y;
 
-		char buff[100];
-		sprintf(buff, "%f\n%f\n",velocity.x,velocity.y);
-		OutputDebugString(buff);
-
 		if(hitTimer < 0) {
 			hitTimer = 0;
 			hitVector = D3DXVECTOR2(0,0);
