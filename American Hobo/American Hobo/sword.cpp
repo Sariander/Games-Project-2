@@ -80,7 +80,7 @@ void Sword::swing(Entity *hero, DIRECTION dir)
 		setFrames(swordNS::SWING_LEFT, swordNS::SWING_LEFT);
 		setCurrentFrame(swordNS::SWING_LEFT);
 	}
-	audio->playCue(DEATH_SOUND);
+	//audio->playCue(SWORD_SWING);
 	
 	visible = true;
 	active = true;

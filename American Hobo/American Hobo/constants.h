@@ -56,7 +56,7 @@ const char WAVE_BANK[]  = "audio\\Win\\Wave Bank.xwb";
 // SOUND_BANK must be location of .xsb file.
 const char SOUND_BANK[] = "audio\\Win\\Sound Bank.xsb";
 
-const char SWORD_SWING[] = "swordSwing";
+const char SWORD_SWING[] = "swordImpact";
 const char SWORD_SLASH[] = "swordSlash";
 const char SOUNDTRACK[] = "soundTrack";
 const char DEATH_SOUND[] = "hoboDeath";
