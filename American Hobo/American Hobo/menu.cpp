@@ -18,19 +18,20 @@ Menu::~Menu()
 
 void Menu::initialize(Graphics *g, Input *i)
 {
-	mainMenu.push_back("Main Menu"); mainMenu.push_back("Weapons"); mainMenu.push_back("Armor");
+	mainMenu.push_back("Main Menu"); 
+	//mainMenu.push_back("Weapons"); mainMenu.push_back("Armor");
 	//mainMenu.push_back("Stats"); 
 	mainMenu.push_back("Recovery"); mainMenu.push_back("Done");
-	subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
+	//subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
 	//subMenu1.push_back("Shields"); 
-	subMenu1.push_back("Back");
-	subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800");
-	subMenu2.push_back("Very Long Armor 2 - 1200"); subMenu2.push_back("Back");
+	//subMenu1.push_back("Back");
+	//subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800");
+	//subMenu2.push_back("Very Long Armor 2 - 1200"); subMenu2.push_back("Back");
 	//subMenu3.push_back("Stats"); subMenu3.push_back("Health Up - 300");
 	//subMenu3.push_back("Strength Up - 300"); subMenu3.push_back("Stat Up 3 - 300");
 	//subMenu3.push_back("Stat Up 4 - 300"); subMenu3.push_back("Back");
-	subMenu4.push_back("Swords"); subMenu4.push_back("Very Long Sword 1 - 100");
-	subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
+	//subMenu4.push_back("Swords"); subMenu4.push_back("Very Long Sword 1 - 100");
+	//subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
 	//subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
 	//subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
 	subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
@@ -95,10 +96,10 @@ void Menu::update()
 	case main:
 		pointerCheckerWrappingWithTitle(linePtr, mainMenu);
 		confirmChecker(mainDepressedLastFrame);
-		changeToMenuWithTitle(1, sub1);
-		changeToMenuWithTitle(2, sub2);
+		//changeToMenuWithTitle(1, sub1);
+		//changeToMenuWithTitle(2, sub2);
 		//changeToMenuWithTitle(3, sub3);
-		changeToMenuWithTitle(3, sub6);
+		changeToMenuWithTitle(1, sub6);
 		exitMainMenu();
 		break;
 	case sub1:
