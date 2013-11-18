@@ -35,7 +35,7 @@ void Hero::update(float frameTime)
 	}
 	if (input->isKeyDown(HERO_DOWN_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !sword.getVisible())
 	{
-		setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
+		setFrames(heroNS::START_DOWN, heroNS::END_DOWN);
 		velocity.y = heroNS::SPEED;
 		dir = DOWN;
 	}
@@ -96,8 +96,8 @@ void Hero::update(float frameTime)
 			setCurrentFrame(heroNS::STAND_LEFT);
 		}
 		else if (dir == DOWN) {
-			setFrames(heroNS::STAND_LEFT, heroNS::STAND_LEFT);
-			setCurrentFrame(heroNS::STAND_LEFT);
+			setFrames(heroNS::STAND_DOWN, heroNS::STAND_DOWN);
+			setCurrentFrame(heroNS::STAND_DOWN);
 		}
 	}
 	
