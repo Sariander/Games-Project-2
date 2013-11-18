@@ -215,8 +215,12 @@ void AmericanHobo::gameStateUpdate()
 		if(mainMenu->getSelectedItem() == 2)
 			initializeLevel2();
 		else
-			mainMenu->purchaseHealth(0, 200, 1);
-			setScore(mainMenu->getCurrentMoney());
+			if(hero.health < 10 && mainMenu->getCurrentMoney() > 200)
+			{
+				hero.health++;
+				mainMenu->setCurrentMoney(mainMenu->getCurrentMoney() - 200);
+				setScore(mainMenu->getCurrentMoney());
+			}
 		//else
 		//restore health
 	}
@@ -230,8 +234,12 @@ void AmericanHobo::gameStateUpdate()
 		if(mainMenu->getSelectedItem() == 2)
 			initializeLevel3();
 		else
-			mainMenu->purchaseHealth(0, 200, 1);
-			setScore(mainMenu->getCurrentMoney());
+			if(hero.health < 10 && mainMenu->getCurrentMoney() > 200)
+			{
+				hero.health++;
+				mainMenu->setCurrentMoney(mainMenu->getCurrentMoney() - 200);
+				setScore(mainMenu->getCurrentMoney());
+			}
 	}
 	if (gameStates == Level3 && killCount == 0)
 	{
