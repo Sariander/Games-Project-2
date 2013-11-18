@@ -299,13 +299,17 @@ void AmericanHobo::collisions()
 	VECTOR2 collisionVector;
 
 	for(int i = 0; i < 10; i++) {
+		if(hobo[i].collidesWith(hero,collisionVector)) {
+			hero.damage(SWORD);
+		}
+	}
+
+	for(int i = 0; i < 10; i++) {
 		if(hobo[i].sword.collidesWith(hero,collisionVector)) {
 			hero.damage(SWORD);
-			
-
 		}
-
 	}
+
 
 
 }

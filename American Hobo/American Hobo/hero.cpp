@@ -13,6 +13,17 @@ void Hero::update(float frameTime)
 {
 	if (!visible)
 		return;
+	
+	if(hitTimer == heroNS::HIT_DURATION) {
+		setVelocity(D3DXVECTOR2(-3*getVelocity().x,-3*getVelocity().y));
+	}
+
+	if(hitTimer != 0) {
+		hitTimer -= frameTime;
+		if(hitTimer < 0) {
+			hitTimer = 0;
+		}
+	}
 
 	if(hitTimer == 0) {
 		if (input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible())//Single Direction Movement
@@ -42,70 +53,64 @@ void Hero::update(float frameTime)
 
 		if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_UP_KEY) && !sword.getVisible()) {
 			setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
-
 			velocity.x = -.707*heroNS::SPEED;
 			velocity.y = -.707*heroNS::SPEED;
 			dir = LEFT;
 		}
-
 		if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible()) {
 			setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
-
 			velocity.x = -.707*heroNS::SPEED;
 			velocity.y = .707*heroNS::SPEED;
 			dir = LEFT;
 		}
-
 		if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_UP_KEY) && !sword.getVisible()) {
 			setFrames(heroNS::START_RIGHT, heroNS::END_RIGHT);
-
 			velocity.x = .707*heroNS::SPEED;
 			velocity.y = -.707*heroNS::SPEED;
 			dir = RIGHT;
 		}
-
 		if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible()) {
 			setFrames(heroNS::START_RIGHT, heroNS::END_RIGHT);
-
 			velocity.x = .707*heroNS::SPEED;
 			velocity.y = .707*heroNS::SPEED;
 			dir = RIGHT;
 		}
-	}
-
-	if(sword.getVisible()) {
-		if(dir == RIGHT || dir == UP) {
-			setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
-			setCurrentFrame(heroNS::STAND_RIGHT);
-		} else if(dir == LEFT || dir == DOWN) {
-			setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
-			setCurrentFrame(heroNS::STAND_LEFT);
-		}
-	}
-	
-	if(!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {
-		if(dir == RIGHT) {
-			setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
-			setCurrentFrame(heroNS::STAND_RIGHT);
-		} 
-		else if (dir == UP){
-			setFrames(heroNS::STAND_UP, heroNS::STAND_UP);
-			setCurrentFrame(heroNS::STAND_UP);
-		}
-		else if(dir == LEFT) {
-			setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
-			setCurrentFrame(heroNS::STAND_LEFT);
-		}
-		else if (dir == DOWN) {
-			setFrames(heroNS::STAND_DOWN, heroNS::STAND_DOWN);
-			setCurrentFrame(heroNS::STAND_DOWN);
-		}
-	}
 	
 
-	if (input->isKeyDown(HERO_ATTACK_KEY))
-	{
-		attack();
+		if(sword.getVisible()) {
+			if(dir == RIGHT || dir == UP) {
+				setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
+				setCurrentFrame(heroNS::STAND_RIGHT);
+			} else if(dir == LEFT || dir == DOWN) {
+				setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
+				setCurrentFrame(heroNS::STAND_LEFT);
+			}
+		}
+	
+
+		if(!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {
+			if(dir == RIGHT) {
+				setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
+				setCurrentFrame(heroNS::STAND_RIGHT);
+			} 
+			else if (dir == UP){
+				setFrames(heroNS::STAND_UP, heroNS::STAND_UP);
+				setCurrentFrame(heroNS::STAND_UP);
+			}
+			else if(dir == LEFT) {
+				setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
+				setCurrentFrame(heroNS::STAND_LEFT);
+			}
+			else if (dir == DOWN) {
+				setFrames(heroNS::STAND_DOWN, heroNS::STAND_DOWN);
+				setCurrentFrame(heroNS::STAND_DOWN);
+			}
+		}
+
+		if (input->isKeyDown(HERO_ATTACK_KEY))
+		{
+			attack();
+		}
 	}
 
 	if (spriteData.x < 0)
