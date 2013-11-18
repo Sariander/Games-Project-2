@@ -34,22 +34,27 @@ void Hobo::update(float frameTime)
 
 	if(sword.swingTimer == 0 && dir == LEFT) { //Sets animations based on direction facing
 		setFrames(hoboNS::LEFT_WALK_START, hoboNS::LEFT_WALK_END);
-		setCurrentFrame(hoboNS::LEFT_WALK_START);
+		//setCurrentFrame(hoboNS::LEFT_WALK_START);
 	} else if(sword.swingTimer == 0 && dir == RIGHT) {
 		setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
-		setCurrentFrame(hoboNS::RIGHT_WALK_START);
+		//setCurrentFrame(hoboNS::RIGHT_WALK_START);
 	} else if(sword.swingTimer != 0 && dir == LEFT) {
 		setFrames(hoboNS::LEFT_ATTACK_START, hoboNS::LEFT_ATTACK_END);
-		setCurrentFrame(hoboNS::LEFT_ATTACK_START);
+		//setCurrentFrame(hoboNS::LEFT_ATTACK_START);
 	} else if(sword.swingTimer != 0 && dir == RIGHT) {
 		setFrames(hoboNS::RIGHT_ATTACK_START, hoboNS::RIGHT_ATTACK_END);
-		setCurrentFrame(hoboNS::RIGHT_ATTACK_START);
+		//setCurrentFrame(hoboNS::RIGHT_ATTACK_START);
 	}
 
 	VECTOR2 foo = -velocity*frameTime*speed;
 	
 	if(sword.swingTimer == 0) //Can only move when not attacking
 		incPosition(foo);
+
+	if(getVelocity().x > 0)
+		dir = LEFT;
+	else
+		dir = RIGHT;
 
 	Image::setX(getPositionX());
 	Image::setY(getPositionY());
