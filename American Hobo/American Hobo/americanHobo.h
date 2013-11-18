@@ -58,6 +58,7 @@ private:
 	int hobosActive;
 	int brawlersActive;
 	int killCount;
+	int currentLevel;
 	//
 	TextureManager shipTexture; 
 	TextureManager shotTexture, shipShotTexture;
@@ -97,6 +98,9 @@ public:
     void render();      // "
     void releaseAll();
     void resetAll();
+	void initializeLevel1();
+	void initializeLevel2();
+	void initializeLevel3();
 };
 
 #endif

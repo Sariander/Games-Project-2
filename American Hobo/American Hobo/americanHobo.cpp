@@ -31,6 +31,7 @@ void AmericanHobo::initialize(HWND hwnd)
 
 	hobosActive = 0;
 	brawlersActive = 0;
+	currentLevel = 1;
 	//Initialize Streets Texture
 	if (!streetsTexture.initialize(graphics, STREETS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Streets texture!"));
@@ -179,48 +180,31 @@ void AmericanHobo::gameStateUpdate()
 	timerCount -= frameTime;
 	if (gameStates == Title && input->isKeyDown(VK_RETURN))
 	{
-		timerCount = 0;
-	}
-	if (gameStates == Title && timerCount < 0)
-	{
 		gameStates = Controls;
-		timerCount = 7;
 	}
 	if (gameStates == Controls && input->isKeyDown(VK_RETURN))
 	{
-		timerCount = 0;
+		initializeLevel1();
 	}
-	if (gameStates == Controls && timerCount < 0)
+	if (gameStates == Level1 && killCount == 0)
 	{
-		gameStates = Level1;
-		killCount = LEVEL_1_KILLCOUNT;
-		hoboSpawnCount = LEVEL_1_HOBOS;
-		brawlerSpawnCount = LEVEL_1_BRAWLERS;
-		timerCount = 5;
-		hero.setX(GAME_WIDTH / 2);
-		hero.setY(GAME_HEIGHT / 2);
+		gameStates = MenuScreen;
+		currentLevel = 2;
 	}
-	if (gameStates == Level1 && killCount < 0)
+	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN))
 	{
-		gameStates = Level2;
-		killCount = LEVEL_2_KILLCOUNT;
-		hoboSpawnCount = LEVEL_2_HOBOS;
-		brawlerSpawnCount = LEVEL_2_BRAWLERS;
-		timerCount = 5;
-		hero.setX(GAME_WIDTH / 2);
-		hero.setY(GAME_HEIGHT / 2);
+		initializeLevel2();
 	}
-	if (gameStates == Level2 && timerCount < 0)
+	if (gameStates == Level2 && killCount == 0)
 	{
-		gameStates = Level3;
-		killCount = LEVEL_3_KILLCOUNT;
-		hoboSpawnCount = LEVEL_3_HOBOS;
-		brawlerSpawnCount = LEVEL_3_BRAWLERS;
-		timerCount = 5;
-		hero.setX(GAME_WIDTH / 2);
-		hero.setY(GAME_HEIGHT / 2);
+		gameStates = MenuScreen;
+		currentLevel = 3;
 	}
-	if (gameStates == Level3 && timerCount < 0)
+	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN))
+	{
+		initializeLevel3();
+	}
+	if (gameStates == Level3 && killCount == 0)
 	{
 		gameStates = MenuScreen;
 	}
@@ -228,10 +212,37 @@ void AmericanHobo::gameStateUpdate()
 	{
 		gameStates = Level1;
 		mainMenu->done = false;
-		timerCount = 5;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 	}
+}
+
+void AmericanHobo::initializeLevel1()
+{
+		gameStates = Level1;
+		killCount = LEVEL_1_KILLCOUNT;
+		hoboSpawnCount = LEVEL_1_HOBOS;
+		brawlerSpawnCount = LEVEL_1_BRAWLERS;
+		hero.setX(GAME_WIDTH / 2);
+		hero.setY(GAME_HEIGHT / 2);
+}
+void AmericanHobo::initializeLevel2()
+{
+		gameStates = Level2;
+		killCount = LEVEL_2_KILLCOUNT;
+		hoboSpawnCount = LEVEL_2_HOBOS;
+		brawlerSpawnCount = LEVEL_2_BRAWLERS;
+		hero.setX(GAME_WIDTH / 2);
+		hero.setY(GAME_HEIGHT / 2);
+}
+void AmericanHobo::initializeLevel3()
+{
+		gameStates = Level3;
+		killCount = LEVEL_3_KILLCOUNT;
+		hoboSpawnCount = LEVEL_3_HOBOS;
+		brawlerSpawnCount = LEVEL_3_BRAWLERS;
+		hero.setX(GAME_WIDTH / 2);
+		hero.setY(GAME_HEIGHT / 2);
 }
 
 void AmericanHobo::update()
