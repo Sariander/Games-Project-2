@@ -258,6 +258,16 @@ void AmericanHobo::gameStateUpdate()
 	if (hero.getHealth() <= 0)
 	{
 		hero.heal();
+		for (int i = 0; i<10; i++)
+		{
+			hobo[i].setActive(false);
+			hobo[i].setVisible(false);
+		}
+		for (int i = 0; i<10; i++)
+		{
+			brawler[i].setActive(false);
+			brawler[i].setVisible(false);
+		}
 		score = 0;
 		mainMenu->setCurrentMoney(0);
 		if (currentLevel == 1)
