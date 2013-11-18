@@ -114,10 +114,29 @@ void Hobo::vectorTrack(Entity &target)
 void Hobo::spawn(GameStates level)
 {
 	int seed = rand()%4;
-	setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
-	setX(getPositionX());
-	setY(getPositionY());
-
+	switch(seed)
+	{
+	case 0:
+		setPosition(VECTOR2(-10, GAME_HEIGHT/2));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	case 1:
+		setPosition(VECTOR2(GAME_WIDTH/2,-10));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	case 2:
+		setPosition(VECTOR2(GAME_WIDTH + 10, GAME_HEIGHT/2));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	case 3:
+		setPosition(VECTOR2(GAME_WIDTH/2, GAME_HEIGHT + 10));
+		setX(getPositionX());
+		setY(getPositionY());
+		break;
+	}
 	setActive(true);
 	setVisible(true);
 

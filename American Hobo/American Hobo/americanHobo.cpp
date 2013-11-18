@@ -242,8 +242,9 @@ void AmericanHobo::update()
 		//sword.update(frameTime);
 		if (spawnCooldown < 0 && spawnCount < 10)
 		{
-			hobo[spawnCount].setActive(true);
-			hobo[spawnCount].setVisible(true);
+			//hobo[spawnCount].setActive(true);
+			//hobo[spawnCount].setVisible(true);
+			hobo[spawnCount].spawn(gameStates);
 			spawnCount++;
 			spawnCooldown = 2;
 		}
@@ -330,7 +331,6 @@ void AmericanHobo::render()
 		break;
 	case Level1:
 		streets.draw();
-		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
@@ -338,10 +338,10 @@ void AmericanHobo::render()
 			hobo[i].draw();
 			brawler[i].draw();
 		}
+		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		break;
 	case Level2:
 		stadium.draw();
-		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
@@ -349,10 +349,10 @@ void AmericanHobo::render()
 			hobo[i].draw();
 			brawler[i].draw();
 		}
+		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		break;
 	case Level3:
 		colosseum.draw();
-		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
@@ -360,6 +360,7 @@ void AmericanHobo::render()
 			hobo[i].draw();
 			brawler[i].draw();
 		}
+		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
