@@ -326,8 +326,12 @@ void AmericanHobo::collisions()
 		}
 	}
 
-
-
+	for(int i = 0; i < 10; i++) {
+		if(hero.sword.collidesWith(hobo[i],collisionVector)) {
+			if(hobo[i].damage(SWORD, hero.getVelocity()))
+				killCount--;
+		}
+	}
 }
 
 

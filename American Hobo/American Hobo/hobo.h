@@ -55,7 +55,7 @@ public:
 
 	void update(float frameTime);
 	void attack();
-	void damage(WEAPON, D3DXVECTOR2);
+	bool damage(WEAPON, D3DXVECTOR2);
 	void death();
 	void heal();
 	void spawn(GameStates level);

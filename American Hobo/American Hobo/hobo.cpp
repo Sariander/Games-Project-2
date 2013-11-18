@@ -70,7 +70,7 @@ void Hobo::attack()
 	sword.swing(this, dir);
 }
 
-void Hobo::damage(WEAPON weapon, D3DXVECTOR2 vector)
+bool Hobo::damage(WEAPON weapon, D3DXVECTOR2 vector)
 {
 	hitTimer = hoboNS::HIT_DURATION;
 	hitVector = vector;
@@ -81,8 +81,11 @@ void Hobo::damage(WEAPON weapon, D3DXVECTOR2 vector)
 
 		break;
 	}
-	if (health <= 0)
+	if (health <= 0) {
 		death();
+		return true;
+	}
+	return false;
 }
 
 void Hobo::death()
