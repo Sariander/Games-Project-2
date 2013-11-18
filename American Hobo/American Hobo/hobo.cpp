@@ -174,6 +174,10 @@ void Hobo::vectorTrack(Entity &target)
 
 void Hobo::spawn(GameStates level)
 {
+	hitTimer = 0.0;
+	setVelocity(VECTOR2(0,0));
+	health = hoboNS::HEALTH_MAX;
+	setDeltaV(VECTOR2(0,0));
 	int seed = rand()%4;
 	switch(seed)
 	{
@@ -199,8 +203,7 @@ void Hobo::spawn(GameStates level)
 		break;
 	}
 
-	velocity.x = 0;
-	velocity.y = 0;
+
 
 	setActive(true);
 	setVisible(true);
