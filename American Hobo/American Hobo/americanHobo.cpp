@@ -123,9 +123,8 @@ void AmericanHobo::initialize(HWND hwnd)
 	mainMenu = new Menu();
 	mainMenu->initialize(graphics, input);
 
-	timeInState = 0;
-	timerCount = 5;
-	gameStates = Level1;
+	timerCount = 3;
+	gameStates = Title;
     return;
 }
 
@@ -136,17 +135,40 @@ void AmericanHobo::initialize(HWND hwnd)
 //=============================================================================
 void AmericanHobo::gameStateUpdate()
 {
-	/*timeInState += frameTime;
 	timerCount -= frameTime;
+	if (gameStates == Title && input->isKeyDown(VK_RETURN))
+	{
+		timerCount = 0;
+	}
+	if (gameStates == Title && timerCount < 0)
+	{
+		gameStates = Controls;
+		timerCount = 7;
+	}
+	if (gameStates == Controls && input->isKeyDown(VK_RETURN))
+	{
+		timerCount = 0;
+	}
+	if (gameStates == Controls && timerCount < 0)
+	{
+		gameStates = Level1;
+		timerCount = 5;
+		hero.setX(GAME_WIDTH / 2);
+		hero.setY(GAME_HEIGHT / 2);
+	}
 	if (gameStates == Level1 && timerCount < 0)
 	{
 		gameStates = Level2;
 		timerCount = 5;
+		hero.setX(GAME_WIDTH / 2);
+		hero.setY(GAME_HEIGHT / 2);
 	}
 	if (gameStates == Level2 && timerCount < 0)
 	{
 		gameStates = Level3;
 		timerCount = 5;
+		hero.setX(GAME_WIDTH / 2);
+		hero.setY(GAME_HEIGHT / 2);
 	}
 	if (gameStates == Level3 && timerCount < 0)
 	{
@@ -157,7 +179,9 @@ void AmericanHobo::gameStateUpdate()
 		gameStates = Level1;
 		mainMenu->done = false;
 		timerCount = 5;
-	}*/
+		hero.setX(GAME_WIDTH / 2);
+		hero.setY(GAME_HEIGHT / 2);
+	}
 }
 
 void AmericanHobo::update()
@@ -165,6 +189,12 @@ void AmericanHobo::update()
 	gameStateUpdate();
 	switch (gameStates)
 	{
+	case Title:
+
+		break;
+	case Controls:
+
+		break;
 	case Level1:
 		hero.update(frameTime);
 		//sword.update(frameTime);
@@ -214,6 +244,14 @@ void AmericanHobo::render()
     graphics->spriteBegin();
 	switch (gameStates)
 	{
+	case Title:
+		title.draw();
+		timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
+		break;
+	case Controls:
+		controls.draw();
+		timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
+		break;
 	case Level1:
 		streets.draw();
 		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);

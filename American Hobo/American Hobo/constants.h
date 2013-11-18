@@ -40,7 +40,7 @@ const char STADIUM_IMAGE[] = "pictures\\The Stadium.png";
 const char STREETS_IMAGE[] = "pictures\\The Streets.png";
 const char TITLE_IMAGE[] = "pictures\\Title Screen.png";
 const char CONTROLS_IMAGE[] = "pictures\\Control Screen.png";
-const char HOBO_IMAGE[] = "pictures\\Hobo.png";
+const char HOBO_IMAGE[] = "pictures\\Hobo Minion.png";
 const char HERO_IMAGE[] = "pictures\\Hero.png";
 const char SWORD_IMAGE[] = "pictures\\Sword.png";
 const char SWORD_CELS_IMAGE[] = "pictures\\Sword Cel Sheet.png";
@@ -82,8 +82,8 @@ const UCHAR HERO_ATTACK_KEY = VK_SPACE;
 
 // weapon types
 enum WEAPON {SWORD, TORPEDO, MILK, EYE};
-enum GameStates {Level1, Level2, Level3, MenuScreen};
-enum menu{ main, sub1, sub2, sub3, sub4, sub5, sub6 };
+enum GameStates { Title, Controls, Level1, Level2, Level3, MenuScreen };
+enum menu{main, sub1, sub2, sub3, sub4, sub5, sub6 };
 enum ownership{null, purchased, cannotpurchase};
 enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
 
