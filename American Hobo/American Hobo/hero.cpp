@@ -29,7 +29,7 @@ void Hero::update(float frameTime)
 	}
 	if (input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !sword.getVisible())
 	{
-		setFrames(heroNS::START_RIGHT, heroNS::END_RIGHT);
+		setFrames(heroNS::START_UP, heroNS::END_UP);
 		velocity.y = -heroNS::SPEED;
 		dir = UP;
 	}
@@ -83,11 +83,20 @@ void Hero::update(float frameTime)
 	}
 	
 	if(!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {
-		if(dir == RIGHT || dir == UP) {
+		if(dir == RIGHT) {
 			setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
 			setCurrentFrame(heroNS::STAND_RIGHT);
-		} else if(dir == LEFT || dir == DOWN) {
+		} 
+		else if (dir == UP){
+			setFrames(heroNS::STAND_UP, heroNS::STAND_UP);
+			setCurrentFrame(heroNS::STAND_UP);
+		}
+		else if(dir == LEFT) {
 			setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
+			setCurrentFrame(heroNS::STAND_LEFT);
+		}
+		else if (dir == DOWN) {
+			setFrames(heroNS::STAND_LEFT, heroNS::STAND_LEFT);
 			setCurrentFrame(heroNS::STAND_LEFT);
 		}
 	}

@@ -19,10 +19,16 @@ namespace heroNS
 
 	const int STAND_RIGHT = 0;
 	const int STAND_LEFT = 3;
+	const int STAND_UP = 6;
+	const int STAND_DOWN = 9;
 	const int START_LEFT = 4;
 	const int END_LEFT = 5;
 	const int START_RIGHT = 1;
 	const int END_RIGHT = 2;
+	const int START_UP = 7;
+	const int END_UP = 8;
+	const int START_DOWN = 10;
+	const int END_DOWN = 11;
 	const float ANIMATION_DELAY = 0.2f;
 
 }
