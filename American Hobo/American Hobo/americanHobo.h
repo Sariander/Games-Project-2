@@ -17,7 +17,7 @@
 #include "brawler.h"
 using std::string;
 
-int killCount;
+
 
 class AmericanHobo : public Game
 {
@@ -53,9 +53,11 @@ private:
 	float timerCount;
 	float timeInState;
 	float spawnCooldown;
-	int spawnCount;
+	int hoboSpawnCount;
+	int brawlerSpawnCount;
 	int hobosActive;
 	int brawlersActive;
+	int killCount;
 	//
 	TextureManager shipTexture; 
 	TextureManager shotTexture, shipShotTexture;

@@ -163,8 +163,8 @@ void AmericanHobo::initialize(HWND hwnd)
 
 	timerCount = 3;
 	spawnCooldown = 2;
-	spawnCount = 0;
-	killCount = 1;
+	
+	killCount = 0;
 	gameStates = Title;
     return;
 }
@@ -193,6 +193,9 @@ void AmericanHobo::gameStateUpdate()
 	if (gameStates == Controls && timerCount < 0)
 	{
 		gameStates = Level1;
+		killCount = LEVEL_1_KILLCOUNT;
+		hoboSpawnCount = LEVEL_1_HOBOS;
+		brawlerSpawnCount = LEVEL_1_BRAWLERS;
 		timerCount = 5;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
@@ -200,6 +203,9 @@ void AmericanHobo::gameStateUpdate()
 	if (gameStates == Level1 && killCount < 0)
 	{
 		gameStates = Level2;
+		killCount = LEVEL_2_KILLCOUNT;
+		hoboSpawnCount = LEVEL_2_HOBOS;
+		brawlerSpawnCount = LEVEL_2_BRAWLERS;
 		timerCount = 5;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
@@ -207,6 +213,9 @@ void AmericanHobo::gameStateUpdate()
 	if (gameStates == Level2 && timerCount < 0)
 	{
 		gameStates = Level3;
+		killCount = LEVEL_3_KILLCOUNT;
+		hoboSpawnCount = LEVEL_3_HOBOS;
+		brawlerSpawnCount = LEVEL_3_BRAWLERS;
 		timerCount = 5;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
@@ -240,14 +249,21 @@ void AmericanHobo::update()
 	case Level1:
 		hero.update(frameTime);
 		//sword.update(frameTime);
-		if (spawnCooldown < 0 && spawnCount < 10)
+		//spawn hobos
+		if (spawnCooldown < 0 && hoboSpawnCount > 0)
 		{
-			//hobo[spawnCount].setActive(true);
-			//hobo[spawnCount].setVisible(true);
-			hobo[spawnCount].spawn(gameStates);
-			spawnCount++;
+			for(int i = 0; i<HOBO_NUMBER; i++)
+			{
+				if(!hobo[i].getActive())
+				{
+					hobo[i].spawn(gameStates);
+					hoboSpawnCount--;
+					break;
+				}
+			}			
 			spawnCooldown = 2;
 		}
+
 		for(int i=0; i<10; i++)
 		{
 			hobo[i].update(frameTime);

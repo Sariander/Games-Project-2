@@ -93,12 +93,16 @@ enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
 
 //level config
 const int LEVEL_1_HOBOS = 20;
+const int LEVEL_1_BRAWLERS = 0;
 const int LEVEL_1_KILLCOUNT = 20;
 const int LEVEL_2_HOBOS = 20;
 const int LEVEL_2_BRAWLERS = 10;
 const int LEVEL_2_KILLCOUNT = 30;
+const int LEVEL_3_HOBOS = 0;
 const int LEVEL_3_BRAWLERS = 35;
 const int LEVEL_3_KILLCOUNT = 35;
+const int HOBO_NUMBER = 10;
+const int BRAWLER_NUMBER = 10;
 
 //=============================================================================
 // Function templates for safely dealing with pointer referenced items.
