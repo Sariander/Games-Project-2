@@ -29,7 +29,17 @@ namespace heroNS
 	const int END_UP = 8;
 	const int START_DOWN = 10;
 	const int END_DOWN = 11;
+
 	const float ANIMATION_DELAY = 0.2f;
+
+	const int START_ATTACK_RIGHT = 13;
+	const int END_ATTACK_RIGHT = 12;
+	const int START_ATTACK_LEFT = 15;
+	const int END_ATTACK_LEFT = 14;
+	const int START_ATTACK_UP = 17;
+	const int END_ATTACK_UP = 16;
+	const int START_ATTACK_DOWN = 19;
+	const int END_ATTACK_DOWN = 18;
 
 	const float HIT_DURATION = 0.2f;
 	const float COLOR_WAIT = .2f;

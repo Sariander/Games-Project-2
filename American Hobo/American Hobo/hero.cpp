@@ -98,12 +98,25 @@ void Hero::update(float frameTime)
 	
 
 		if(sword.getVisible()) {
-			if(dir == RIGHT || dir == UP) {
-				setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
-				setCurrentFrame(heroNS::STAND_RIGHT);
-			} else if(dir == LEFT || dir == DOWN) {
-				setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
-				setCurrentFrame(heroNS::STAND_LEFT);
+			if (dir == RIGHT)
+			{
+				setFrames(heroNS::START_ATTACK_RIGHT, heroNS::END_ATTACK_RIGHT);
+				setCurrentFrame(heroNS::START_ATTACK_RIGHT);
+			}
+			else if (dir == UP)
+			{
+				setFrames(heroNS::START_ATTACK_UP, heroNS::END_ATTACK_UP);
+				setCurrentFrame(heroNS::START_ATTACK_UP);
+			}
+			else if(dir == LEFT)
+			{
+				setFrames(heroNS::START_ATTACK_LEFT, heroNS::END_ATTACK_LEFT);
+				setCurrentFrame(heroNS::START_ATTACK_LEFT);
+			}
+			else if (dir == DOWN)
+			{
+				setFrames(heroNS::START_ATTACK_DOWN, heroNS::END_ATTACK_DOWN);
+				setCurrentFrame(heroNS::START_ATTACK_DOWN);
 			}
 		}
 	
