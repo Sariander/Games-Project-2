@@ -32,7 +32,7 @@ public:
 	Sword sword;
 	DIRECTION dir;
 
-	//void update(float frameTime);
+	void update(float frameTime);
 	//void attack();
 	//void damage(WEAPON);
 	//void death();

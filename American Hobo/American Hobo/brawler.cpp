@@ -25,6 +25,60 @@ Brawler::Brawler() : Hobo()
 	health = brawlerNS::HEALTH_MAX;
 }
 
+void Brawler::update(float frameTime) {
+	if (!visible)
+		return;
+
+
+	if(hitTimer != 0) {
+		hitTimer -= frameTime;
+		
+		velocity.x = -10.0*hitVector.x;
+		velocity.y = -10.0*hitVector.y;
+
+		if(hitTimer < 0) {
+			hitTimer = 0;
+			hitVector = D3DXVECTOR2(0,0);
+		}
+	}
+
+
+	if(hitTimer == 0) {
+		if(sword.swingTimer == 0 && dir == LEFT) { //Sets animations based on direction facing
+			setFrames(hoboNS::LEFT_WALK_START, hoboNS::LEFT_WALK_END);
+			//setCurrentFrame(hoboNS::LEFT_WALK_START);
+		} else if(sword.swingTimer == 0 && dir == RIGHT) {
+			setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
+			//setCurrentFrame(hoboNS::RIGHT_WALK_START);
+		} else if(sword.swingTimer != 0 && dir == LEFT) {
+			setFrames(hoboNS::LEFT_ATTACK_START, hoboNS::LEFT_ATTACK_END);
+			//setCurrentFrame(hoboNS::LEFT_ATTACK_START);
+		} else if(sword.swingTimer != 0 && dir == RIGHT) {
+			setFrames(hoboNS::RIGHT_ATTACK_START, hoboNS::RIGHT_ATTACK_END);
+			//setCurrentFrame(hoboNS::RIGHT_ATTACK_START);
+		}
+	}
+
+	VECTOR2 foo = -velocity*frameTime*speed;
+	
+	if(sword.swingTimer == 0) //Can only move when not attacking
+		incPosition(foo);
+
+
+	if(getVelocity().x > 0)
+		dir = LEFT;
+	else
+		dir = RIGHT;
+
+	Image::setX(getPositionX());
+	Image::setY(getPositionY());
+    Entity::update(frameTime);
+	sword.update(this, frameTime);
+
+
+
+}
+
 void Brawler::spawn(GameStates level)
 {
 	hitTimer = 0.0;
