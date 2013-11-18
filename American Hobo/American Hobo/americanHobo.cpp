@@ -112,7 +112,7 @@ void AmericanHobo::initialize(HWND hwnd)
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 		hobo[i].setCollisionType(entityNS::BOX);
 		hobo[i].setEdge(COLLISION_BOX_HOBO);
-		hobo[i].setPosition(VECTOR2(hoboNS::X + i*25, hoboNS::Y + i*25));
+		hobo[i].setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
 		hobo[i].setX(hobo[i].getPositionX());
 		hobo[i].setY(hobo[i].getPositionY());
 
@@ -120,8 +120,8 @@ void AmericanHobo::initialize(HWND hwnd)
 		hobo[i].setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
 		hobo[i].setCurrentFrame(hoboNS::RIGHT_WALK_START);
 
-		hobo[i].setActive(true);
-		hobo[i].setVisible(true);
+		hobo[i].setActive(false);
+		hobo[i].setVisible(false);
 	}
 
 	//Initialize Brawler Texture
@@ -135,7 +135,7 @@ void AmericanHobo::initialize(HWND hwnd)
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
 		brawler[i].setCollisionType(entityNS::BOX);
 		brawler[i].setEdge(COLLISION_BOX_HOBO);
-		brawler[i].setPosition(VECTOR2(brawlerNS::X + i *25, brawlerNS::Y + i*25));
+		brawler[i].setPosition(VECTOR2(brawlerNS::X, brawlerNS::Y));
 		brawler[i].setX(brawler[i].getPositionX());
 		brawler[i].setY(brawler[i].getPositionY());
 
@@ -143,21 +143,28 @@ void AmericanHobo::initialize(HWND hwnd)
 		brawler[i].setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
 		brawler[i].setCurrentFrame(hoboNS::RIGHT_WALK_START);
 
-		brawler[i].setActive(true);
-		brawler[i].setVisible(true);
+		brawler[i].setActive(false);
+		brawler[i].setVisible(false);
 	}
 
 	//Initialize Fonts
 	timerFont = new TextDX();
+	killFont = new TextDX();
 
 	if(timerFont->initialize(graphics, 30, true, false, "Calibri") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing timer font"));
+
+	if (killFont->initialize(graphics, 25, true, false, "Calibri") == false)
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing kill font"));
 
 	//Initialize Menus
 	mainMenu = new Menu();
 	mainMenu->initialize(graphics, input);
 
 	timerCount = 3;
+	spawnCooldown = 2;
+	spawnCount = 0;
+	killCount = 1;
 	gameStates = Title;
     return;
 }
@@ -190,7 +197,7 @@ void AmericanHobo::gameStateUpdate()
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 	}
-	if (gameStates == Level1 && timerCount < 0)
+	if (gameStates == Level1 && killCount < 0)
 	{
 		gameStates = Level2;
 		timerCount = 5;
@@ -221,6 +228,7 @@ void AmericanHobo::gameStateUpdate()
 void AmericanHobo::update()
 {	
 	gameStateUpdate();
+	spawnCooldown -= frameTime;
 	switch (gameStates)
 	{
 	case Title:
@@ -232,7 +240,13 @@ void AmericanHobo::update()
 	case Level1:
 		hero.update(frameTime);
 		//sword.update(frameTime);
-		
+		if (spawnCooldown < 0 && spawnCount < 10)
+		{
+			hobo[spawnCount].setActive(true);
+			hobo[spawnCount].setVisible(true);
+			spawnCount++;
+			spawnCooldown = 2;
+		}
 		for(int i=0; i<10; i++)
 		{
 			hobo[i].update(frameTime);
@@ -291,7 +305,7 @@ void AmericanHobo::collisions()
 void AmericanHobo::render()
 {
 	std::stringstream s;
-	s << ceil(timerCount);
+	s << "Kills remaining: " << killCount;
     graphics->spriteBegin();
 	switch (gameStates)
 	{
@@ -305,7 +319,7 @@ void AmericanHobo::render()
 		break;
 	case Level1:
 		streets.draw();
-		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
@@ -316,7 +330,7 @@ void AmericanHobo::render()
 		break;
 	case Level2:
 		stadium.draw();
-		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
 		for(int i=0; i<10; i++)
@@ -327,7 +341,7 @@ void AmericanHobo::render()
 		break;
 	case Level3:
 		colosseum.draw();
-		timerFont->print(s.str(), GAME_WIDTH / 2 - 15, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 2 - 75, GAME_HEIGHT / 20);
 		hero.draw();
 		hero.sword.draw();
 		for(int i=0; i<10; i++)

@@ -46,10 +46,13 @@ private:
 
 	Menu *mainMenu;
 	TextDX *timerFont;
+	TextDX* killFont;
 
 	float timerCount;
 	float timeInState;
 	float spawnCooldown;
+	int spawnCount;
+	int killCount;
 	int hobosActive;
 	int brawlersActive;
 	//
