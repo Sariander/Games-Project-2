@@ -112,7 +112,7 @@ void AmericanHobo::initialize(HWND hwnd)
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 		hobo[i].setCollisionType(entityNS::BOX);
 		hobo[i].setEdge(COLLISION_BOX_HOBO);
-		hobo[i].setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
+		hobo[i].setPosition(VECTOR2(hoboNS::X + i*25, hoboNS::Y + i*25));
 		hobo[i].setX(hobo[i].getPositionX());
 		hobo[i].setY(hobo[i].getPositionY());
 
@@ -120,8 +120,8 @@ void AmericanHobo::initialize(HWND hwnd)
 		hobo[i].setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
 		hobo[i].setCurrentFrame(hoboNS::RIGHT_WALK_START);
 
-		hobo[i].setActive(false);
-		hobo[i].setVisible(false);
+		hobo[i].setActive(true);
+		hobo[i].setVisible(true);
 	}
 
 	//Initialize Brawler Texture
@@ -135,7 +135,7 @@ void AmericanHobo::initialize(HWND hwnd)
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
 		brawler[i].setCollisionType(entityNS::BOX);
 		brawler[i].setEdge(COLLISION_BOX_HOBO);
-		brawler[i].setPosition(VECTOR2(brawlerNS::X, brawlerNS::Y));
+		brawler[i].setPosition(VECTOR2(brawlerNS::X + i *25, brawlerNS::Y + i*25));
 		brawler[i].setX(brawler[i].getPositionX());
 		brawler[i].setY(brawler[i].getPositionY());
 
@@ -143,8 +143,8 @@ void AmericanHobo::initialize(HWND hwnd)
 		brawler[i].setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
 		brawler[i].setCurrentFrame(hoboNS::RIGHT_WALK_START);
 
-		brawler[i].setActive(false);
-		brawler[i].setVisible(false);
+		brawler[i].setActive(true);
+		brawler[i].setVisible(true);
 	}
 
 	//Initialize Fonts
