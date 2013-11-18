@@ -117,7 +117,7 @@ void AmericanHobo::initialize(HWND hwnd)
 //=============================================================================
 void AmericanHobo::gameStateUpdate()
 {
-	timeInState += frameTime;
+	/*timeInState += frameTime;
 	timerCount -= frameTime;
 	if (gameStates == Level1 && timerCount < 0)
 	{
@@ -138,7 +138,7 @@ void AmericanHobo::gameStateUpdate()
 		gameStates = Level1;
 		mainMenu->done = false;
 		timerCount = 5;
-	}
+	}*/
 }
 
 void AmericanHobo::update()

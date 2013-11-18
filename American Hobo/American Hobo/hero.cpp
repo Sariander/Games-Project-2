@@ -13,34 +13,34 @@ void Hero::update(float frameTime)
 	if (!visible)
 		return;
 
-	if (input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY))//Single Direction Movement
+	if (input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible())//Single Direction Movement
 	{
 		setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
 
 		velocity.x = -heroNS::SPEED;
 		dir = LEFT;
 	}
-	if (input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY))
+	if (input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible())
 	{
 		setFrames(heroNS::START_RIGHT, heroNS::END_RIGHT);
 
 		velocity.x = heroNS::SPEED;
 		dir = RIGHT;
 	}
-	if (input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY))
+	if (input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !sword.getVisible())
 	{
 		setFrames(heroNS::START_RIGHT, heroNS::END_RIGHT);
 		velocity.y = -heroNS::SPEED;
 		dir = UP;
 	}
-	if (input->isKeyDown(HERO_DOWN_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY))
+	if (input->isKeyDown(HERO_DOWN_KEY) && !input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !sword.getVisible())
 	{
 		setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
 		velocity.y = heroNS::SPEED;
 		dir = DOWN;
 	}
 
-	if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_UP_KEY)) {
+	if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_UP_KEY) && !sword.getVisible()) {
 		setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
 
 		velocity.x = -.707*heroNS::SPEED;
@@ -48,7 +48,7 @@ void Hero::update(float frameTime)
 		dir = LEFT;
 	}
 
-	if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_DOWN_KEY)) {
+	if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible()) {
 		setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
 
 		velocity.x = -.707*heroNS::SPEED;
@@ -56,7 +56,7 @@ void Hero::update(float frameTime)
 		dir = LEFT;
 	}
 
-	if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_UP_KEY)) {
+	if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_UP_KEY) && !sword.getVisible()) {
 		setFrames(heroNS::START_RIGHT, heroNS::END_RIGHT);
 
 		velocity.x = .707*heroNS::SPEED;
@@ -64,12 +64,22 @@ void Hero::update(float frameTime)
 		dir = RIGHT;
 	}
 
-	if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_DOWN_KEY)) {
+	if (input->isKeyDown(HERO_RIGHT_KEY) && input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible()) {
 		setFrames(heroNS::START_RIGHT, heroNS::END_RIGHT);
 
 		velocity.x = .707*heroNS::SPEED;
 		velocity.y = .707*heroNS::SPEED;
 		dir = RIGHT;
+	}
+
+	if(sword.getVisible()) {
+		if(dir == RIGHT || dir == UP) {
+			setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
+			setCurrentFrame(heroNS::STAND_RIGHT);
+		} else if(dir == LEFT || dir == DOWN) {
+			setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
+			setCurrentFrame(heroNS::STAND_LEFT);
+		}
 	}
 	
 	if(!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {

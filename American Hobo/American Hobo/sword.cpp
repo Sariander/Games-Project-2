@@ -37,7 +37,8 @@ void Sword::update(Entity *hero, float frameTime)
 		active = false;
 		swingTimer = 0;
 	}
-	 
+
+
 	velocity.x = hero->getVelocity().x;
 	velocity.x = hero->getVelocity().y;
 
@@ -66,6 +67,19 @@ void Sword::swing(Entity *hero, DIRECTION dir)
 		setY(hero->getCenterY() - spriteData.height / 2 + 40);
 	}
 
+	if(dir == UP) {
+		setFrames(swordNS::SWING_UP,swordNS::SWING_UP);
+		setCurrentFrame(swordNS::SWING_UP);
+	} else if(dir == RIGHT) {
+		setFrames(swordNS::SWING_RIGHT, swordNS::SWING_RIGHT);
+		setCurrentFrame(swordNS::SWING_RIGHT);
+	} else if(dir == DOWN) {
+		setFrames(swordNS::SWING_DOWN, swordNS::SWING_DOWN);
+		setCurrentFrame(swordNS::SWING_DOWN);
+	} else if(dir == LEFT) {
+		setFrames(swordNS::SWING_LEFT, swordNS::SWING_LEFT);
+		setCurrentFrame(swordNS::SWING_LEFT);
+	}
 	
 	visible = true;
 	active = true;
