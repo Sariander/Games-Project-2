@@ -200,20 +200,18 @@ void AmericanHobo::gameStateUpdate()
 	if (gameStates == Level1 && killCount < 0)
 	{
 		gameStates = Level2;
-		killCount = 15;
 		timerCount = 5;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 	}
-	if (gameStates == Level2 && killCount < 0)
+	if (gameStates == Level2 && timerCount < 0)
 	{
 		gameStates = Level3;
-		killCount = 15;
 		timerCount = 5;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 	}
-	if (gameStates == Level3 && killCount < 0)
+	if (gameStates == Level3 && timerCount < 0)
 	{
 		gameStates = MenuScreen;
 	}
