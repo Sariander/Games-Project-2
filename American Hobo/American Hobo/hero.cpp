@@ -96,6 +96,24 @@ void Hero::update(float frameTime)
 			dir = RIGHT;
 		}
 	
+		if (!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {
+			if (dir == RIGHT) {
+				setFrames(heroNS::STAND_RIGHT, heroNS::STAND_RIGHT);
+				setCurrentFrame(heroNS::STAND_RIGHT);
+			}
+			else if (dir == UP){
+				setFrames(heroNS::STAND_UP, heroNS::STAND_UP);
+				setCurrentFrame(heroNS::STAND_UP);
+			}
+			else if (dir == LEFT) {
+				setFrames(heroNS::STAND_LEFT, heroNS::STAND_LEFT);
+				setCurrentFrame(heroNS::STAND_LEFT);
+			}
+			else if (dir == DOWN) {
+				setFrames(heroNS::STAND_DOWN, heroNS::STAND_DOWN);
+				setCurrentFrame(heroNS::STAND_DOWN);
+			}
+		}
 
 		if(sword.getVisible()) {
 			if (dir == RIGHT)
@@ -119,26 +137,7 @@ void Hero::update(float frameTime)
 				setCurrentFrame(heroNS::START_ATTACK_DOWN);
 			}
 		}
-	
 
-		if(!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {
-			if(dir == RIGHT) {
-				setFrames(heroNS::STAND_RIGHT,heroNS::STAND_RIGHT);
-				setCurrentFrame(heroNS::STAND_RIGHT);
-			} 
-			else if (dir == UP){
-				setFrames(heroNS::STAND_UP, heroNS::STAND_UP);
-				setCurrentFrame(heroNS::STAND_UP);
-			}
-			else if(dir == LEFT) {
-				setFrames(heroNS::STAND_LEFT,heroNS::STAND_LEFT);
-				setCurrentFrame(heroNS::STAND_LEFT);
-			}
-			else if (dir == DOWN) {
-				setFrames(heroNS::STAND_DOWN, heroNS::STAND_DOWN);
-				setCurrentFrame(heroNS::STAND_DOWN);
-			}
-		}
 
 		if (input->isKeyDown(HERO_ATTACK_KEY))
 		{
