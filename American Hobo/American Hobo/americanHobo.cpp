@@ -201,6 +201,7 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if (gameStates == Controls && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
+		currentLevel = 1;
 		initializeLevel1();
 	}
 	if (gameStates == Level1 && killCount == 0)
@@ -242,6 +243,22 @@ void AmericanHobo::gameStateUpdate()
 		mainMenu->done = false;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
+	}
+	if (hero.getHealth() <= 0)
+	{
+		hero.heal();
+		if (currentLevel == 1)
+		{
+			initializeLevel1();
+		}
+		if (currentLevel == 2)
+		{
+			initializeLevel2();
+		}
+		if (currentLevel == 3)
+		{
+			initializeLevel3();
+		}
 	}
 	
 }
