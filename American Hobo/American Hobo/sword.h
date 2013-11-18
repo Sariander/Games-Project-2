@@ -16,7 +16,7 @@ namespace swordNS
 	const float ANIMATION_DELAY = 0.1f; // time between frames
 	const int	SPEED = 100;
 	const float SWING_TIME = .2f;
-
+	const float SWING_RANGE = 30;
 	const int SWING_UP = 0;
 	const int SWING_RIGHT = 1;
 	const int SWING_DOWN = 2;

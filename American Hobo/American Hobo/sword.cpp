@@ -54,17 +54,17 @@ void Sword::update(Entity *hero, float frameTime)
 void Sword::swing(Entity *hero, DIRECTION dir)
 {
 	if(dir == RIGHT) {
-		setX(hero->getCenterX() - spriteData.width / 2 + 40);
+		setX(hero->getCenterX() - spriteData.width / 2 + swordNS::SWING_RANGE);
 		setY(hero->getCenterY() - spriteData.height / 2);
 	} else if(dir == LEFT) {
-		setX(hero->getCenterX() - spriteData.width / 2 - 40);
+		setX(hero->getCenterX() - spriteData.width / 2 - swordNS::SWING_RANGE);
 		setY(hero->getCenterY() - spriteData.height / 2);
 	} else if(dir == UP) {
 		setX(hero->getCenterX() - spriteData.width / 2);
-		setY(hero->getCenterY() - spriteData.height / 2 - 40);
+		setY(hero->getCenterY() - spriteData.height / 2 - swordNS::SWING_RANGE);
 	} else if(dir == DOWN) {
 		setX(hero->getCenterX() - spriteData.width / 2);
-		setY(hero->getCenterY() - spriteData.height / 2 + 40);
+		setY(hero->getCenterY() - spriteData.height / 2 + swordNS::SWING_RANGE);
 	}
 
 	if(dir == UP) {
