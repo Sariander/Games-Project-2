@@ -17,6 +17,8 @@
 #include "brawler.h"
 using std::string;
 
+int killCount;
+
 class AmericanHobo : public Game
 {
 private:
@@ -52,7 +54,6 @@ private:
 	float timeInState;
 	float spawnCooldown;
 	int spawnCount;
-	int killCount;
 	int hobosActive;
 	int brawlersActive;
 	//
