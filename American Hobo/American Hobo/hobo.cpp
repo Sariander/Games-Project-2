@@ -24,7 +24,7 @@ Hobo::Hobo() : Entity()
 	edge.bottom = -hoboNS::HEIGHT/2;
 	spriteData.scale = 1;
 	active = true;
-	speed = 50;
+	speed = hoboNS::SPEED;
 }
 
 void Hobo::update(float frameTime)

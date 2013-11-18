@@ -26,7 +26,7 @@ class Brawler : public Hobo
 
 public:
 	// constructor
-	//Brawler();
+	Brawler();
 
 	Sword sword;
 	DIRECTION dir;
