@@ -19,8 +19,6 @@ namespace hoboNS
 	const int   TEXTURE_COLS = 2;           // texture has 8 columns
 	const float ANIMATION_DELAY = 0.2f;
 
-	const float HIT_DURATION = 0.2f;
-
 	const int RIGHT_WALK_START = 0;
 	const int RIGHT_WALK_END = 1;
 	const int LEFT_WALK_START = 2;
@@ -32,7 +30,9 @@ namespace hoboNS
 	const int LEFT_ATTACK_END = 7;
 
 	const float COLOR_WAIT = .2f;
+	const float HIT_DURATION = 0.1f;
 
+	const int HEALTH_MAX = 3;
 }
 
 // inherits from Entity class
@@ -43,6 +43,9 @@ protected:
     bool target;  
 	int directionX;
 	int directionY;
+
+	int health;
+
 	float speed;
 
 	float colorTimer;

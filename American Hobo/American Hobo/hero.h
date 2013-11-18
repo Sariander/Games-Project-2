@@ -34,6 +34,8 @@ namespace heroNS
 	const float HIT_DURATION = 0.2f;
 	const float COLOR_WAIT = .2f;
 
+	const int HEALTH_MAX = 10;
+
 }
 
 // inherits from Entity class
@@ -44,12 +46,14 @@ private:
 	D3DXVECTOR2 hitVector;
 	float colorTimer;
 	COLOR_ARGB filter;
+
 public:
 	// constructor
 	Hero();
 
 	Sword sword;
 	DIRECTION dir;
+	int health;
 
 	void update(float frameTime);
 	void attack();
@@ -57,7 +61,7 @@ public:
 	void death();
 	void heal();
 	void draw(float frameTime);
-	float health;
-	float getHealth() { return health; }
+	
+	int getHealth() { return health; }
 };
 #endif

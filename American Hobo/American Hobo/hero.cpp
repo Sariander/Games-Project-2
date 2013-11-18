@@ -10,7 +10,7 @@ Hero::Hero() : Entity()
 	hitVector = D3DXVECTOR2(0,0);
 	filter = SETCOLOR_ARGB(0, 0, 0, 0);
 	colorTimer = 0.0f;
-	health = 100;
+	health = heroNS::HEALTH_MAX;
 }
 
 void Hero::draw(float frameTime)
@@ -173,7 +173,7 @@ void Hero::damage(WEAPON weapon, D3DXVECTOR2 vector)
 		switch (weapon)
 		{
 		case SWORD:
-		
+			health--;
 			break;
 		}
 		if (health <= 0)

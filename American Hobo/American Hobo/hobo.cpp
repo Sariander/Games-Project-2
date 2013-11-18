@@ -28,6 +28,8 @@ Hobo::Hobo() : Entity()
 
 	hitTimer = 0;
 	hitVector = D3DXVECTOR2(0,0);
+
+	health = hoboNS::HEALTH_MAX;
 }
 
 void Hobo::update(float frameTime)
@@ -39,8 +41,8 @@ void Hobo::update(float frameTime)
 	if(hitTimer != 0) {
 		hitTimer -= frameTime;
 		
-		velocity.x = -20.0*hitVector.x;
-		velocity.y = -20.0*hitVector.y;
+		velocity.x = -30.0*hitVector.x;
+		velocity.y = -30.0*hitVector.y;
 
 		if(hitTimer < 0) {
 			hitTimer = 0;
@@ -112,7 +114,7 @@ bool Hobo::damage(WEAPON weapon, D3DXVECTOR2 vector)
 		switch (weapon)
 		{
 		case SWORD:
-
+			health--;
 			break;
 		}
 		if (health <= 0) {
@@ -127,6 +129,8 @@ void Hobo::death()
 {
 	active = false;
 	visible = false;
+	velocity.x = 0;
+	velocity.y = 0;
 	health = 0;
 }
 
