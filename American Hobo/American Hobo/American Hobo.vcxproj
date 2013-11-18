@@ -14,7 +14,6 @@
     <ClCompile Include="armor.cpp" />
     <ClCompile Include="audio.cpp" />
     <ClCompile Include="brawler.cpp" />
-    <ClCompile Include="cybovine.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
@@ -24,14 +23,10 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="menu.cpp" />
-    <ClCompile Include="milkShot.cpp" />
     <ClCompile Include="shield.cpp" />
-    <ClCompile Include="ship.cpp" />
     <ClCompile Include="sword.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
-    <ClCompile Include="torpedo.cpp" />
-    <ClCompile Include="turret.cpp" />
     <ClCompile Include="americanHobo.cpp" />
     <ClCompile Include="weapon.cpp" />
     <ClCompile Include="winmain.cpp" />
@@ -41,7 +36,6 @@
     <ClInclude Include="audio.h" />
     <ClInclude Include="brawler.h" />
     <ClInclude Include="constants.h" />
-    <ClInclude Include="cybovine.h" />
     <ClInclude Include="hobo.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
@@ -52,14 +46,10 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="menu.h" />
-    <ClInclude Include="milkShot.h" />
     <ClInclude Include="shield.h" />
-    <ClInclude Include="ship.h" />
     <ClInclude Include="sword.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
-    <ClInclude Include="torpedo.h" />
-    <ClInclude Include="turret.h" />
     <ClInclude Include="americanHobo.h" />
     <ClInclude Include="weapon.h" />
   </ItemGroup>

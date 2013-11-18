@@ -301,6 +301,7 @@ void AmericanHobo::update()
 
 	case MenuScreen:
 		mainMenu->update();
+
 		break;
 	}
 

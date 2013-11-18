@@ -5,11 +5,7 @@
 #include "game.h"
 #include "textureManager.h"
 #include "image.h"
-#include "torpedo.h"
 #include "entity.h"
-#include "ship.h"
-#include "turret.h"
-#include "cybovine.h"
 #include "hero.h"
 #include "sword.h"
 #include "hobo.h"
@@ -31,9 +27,6 @@ private:
 	Image gameoverButton;
 	Image winButton;
 
-	Ship ship;
-	Cybovine cybovine;
-	//
 	Image streets, stadium, colosseum;
 	Image title, controls;
 	//Sword sword;

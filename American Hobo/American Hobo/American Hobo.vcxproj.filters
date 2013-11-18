@@ -30,21 +30,6 @@
     <ClCompile Include="winmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="torpedo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="turret.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cybovine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="milkShot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="americanHobo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -119,9 +104,6 @@
     <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cybovine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="hero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -131,19 +113,7 @@
     <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="milkShot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sword.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="torpedo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="turret.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="audio.h">
