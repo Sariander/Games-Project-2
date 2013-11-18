@@ -83,6 +83,7 @@ public:
 	void purchaseThis(int desiresInput, int price);
 	void purchaseHealth(int desiresInput, int price, int health);
 	void purchaseResponse();
+	void setCurrentMoney(int score);
 	void moneyDebugger();
 
 	Hero hero;

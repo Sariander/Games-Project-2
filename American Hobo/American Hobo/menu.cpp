@@ -69,8 +69,14 @@ void Menu::initialize(Graphics *g, Input *i)
 	//currentMoney = 0;
 }
 
+void Menu::setCurrentMoney(int score)
+{
+	currentMoney = score;
+}
+
 void Menu::update()
 {
+	
 	if (input->isKeyDown(VK_UP))
 	{
 		upDepressedLastFrame = true;

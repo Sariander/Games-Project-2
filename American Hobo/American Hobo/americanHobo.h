@@ -55,6 +55,8 @@ private:
 	int brawlersActive;
 	int killCount;
 	int currentLevel;
+	bool returnDebounce;
+
 	//
 	TextureManager shipTexture; 
 	TextureManager shotTexture, shipShotTexture;

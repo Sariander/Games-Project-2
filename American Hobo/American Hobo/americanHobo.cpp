@@ -33,6 +33,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	hobosActive = 0;
 	brawlersActive = 0;
 	currentLevel = 1;
+	returnDebounce = false;
 	//Initialize Streets Texture
 	if (!streetsTexture.initialize(graphics, STREETS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Streets texture!"));
@@ -189,11 +190,16 @@ int AmericanHobo::getScore()
 void AmericanHobo::gameStateUpdate()
 {
 	timerCount -= frameTime;
+	if(!input->isKeyDown(VK_RETURN))
+		returnDebounce = false;
+
 	if (gameStates == Title && input->isKeyDown(VK_RETURN))
 	{
 		gameStates = Controls;
+		timerCount = 5;
+		returnDebounce = true;
 	}
-	if (gameStates == Controls && input->isKeyDown(VK_RETURN))
+	if (gameStates == Controls && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
 		initializeLevel1();
 	}
@@ -269,6 +275,7 @@ void AmericanHobo::initializeLevel3()
 void AmericanHobo::update()
 {	
 	gameStateUpdate();
+	mainMenu->setCurrentMoney(score);
 	spawnCooldown -= frameTime;
 	switch (gameStates)
 	{
