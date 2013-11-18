@@ -203,6 +203,7 @@ void AmericanHobo::gameStateUpdate()
 	{
 		currentLevel = 1;
 		initializeLevel1();
+		returnDebounce = true;
 	}
 	if (gameStates == Level1 && killCount == 0)
 	{
@@ -210,7 +211,7 @@ void AmericanHobo::gameStateUpdate()
 		currentLevel = 2;
 		audio->stopCue(SOUNDTRACK);
 	}
-	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN))
+	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
 		if(mainMenu->getSelectedItem() == 2)
 			initializeLevel2();
@@ -221,6 +222,7 @@ void AmericanHobo::gameStateUpdate()
 				mainMenu->setCurrentMoney(mainMenu->getCurrentMoney() - 200);
 				setScore(mainMenu->getCurrentMoney());
 			}
+		returnDebounce = true;
 		//else
 		//restore health
 	}
@@ -229,7 +231,7 @@ void AmericanHobo::gameStateUpdate()
 		gameStates = MenuScreen;
 		currentLevel = 3;
 	}
-	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN))
+	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
 		if(mainMenu->getSelectedItem() == 2)
 			initializeLevel3();
@@ -240,6 +242,7 @@ void AmericanHobo::gameStateUpdate()
 				mainMenu->setCurrentMoney(mainMenu->getCurrentMoney() - 200);
 				setScore(mainMenu->getCurrentMoney());
 			}
+		returnDebounce = true;
 	}
 	if (gameStates == Level3 && killCount == 0)
 	{
