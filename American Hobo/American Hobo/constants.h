@@ -57,10 +57,6 @@ const char WAVE_BANK[]  = "audio\\Win\\Wave Bank.xwb";
 const char SOUND_BANK[] = "audio\\Win\\Sound Bank.xsb";
 
 // audio cues
-const char LASER[] = "laser";
-const char MOO[] = "final cybovine moo1";
-const char MOO2[] = "final cybovine shriek2";
-const char SOUNDTRACK[] = "Soundtrack";
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
