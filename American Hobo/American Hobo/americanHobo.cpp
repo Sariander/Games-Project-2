@@ -255,6 +255,11 @@ void AmericanHobo::gameStateUpdate()
 	if (hero.getHealth() <= 0)
 	{
 		hero.heal();
+		score -= 100;
+		if (score < 0)
+		{
+			score = 0;
+		}
 		if (currentLevel == 1)
 		{
 			initializeLevel1();
