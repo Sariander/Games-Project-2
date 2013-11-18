@@ -49,6 +49,9 @@ private:
 
 	float timerCount;
 	float timeInState;
+	float spawnCooldown;
+	int hobosActive;
+	int brawlersActive;
 	//
 	TextureManager shipTexture; 
 	TextureManager shotTexture, shipShotTexture;

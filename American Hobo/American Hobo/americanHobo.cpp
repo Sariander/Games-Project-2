@@ -29,6 +29,8 @@ void AmericanHobo::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
 
+	hobosActive = 0;
+	brawlersActive = 0;
 	//Initialize Streets Texture
 	if (!streetsTexture.initialize(graphics, STREETS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Streets texture!"));
@@ -220,6 +222,7 @@ void AmericanHobo::update()
 	case Level1:
 		hero.update(frameTime);
 		//sword.update(frameTime);
+		
 		for(int i=0; i<10; i++)
 		{
 			hobo[i].update(frameTime);
