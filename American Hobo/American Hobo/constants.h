@@ -47,6 +47,8 @@ const char BRAWLER_IMAGE[] = "pictures\\brawler.png";
 const char SWORD_IMAGE[] = "pictures\\Sword.png";
 const char SWORD_CELS_IMAGE[] = "pictures\\Sword Cel Sheet.png";
 const char HERO_CELS_IMAGE[] = "pictures\\Hero Cel Sheet.png";
+const char HOBO_CELS_IMAGE[] = "pictures\\Hobo Minion Cel Sheet.png";
+const char BRAWLER_CELS_IMAGE[] = "pictures\\Hobo Brawler Cel Sheet.png";
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.

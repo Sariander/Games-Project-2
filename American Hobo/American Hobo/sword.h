@@ -26,12 +26,11 @@ namespace swordNS
 class Sword : public Entity           // inherits from Entity class
 {
 private:
-	float swingTimer;
-
 
 public:
 	// constructor
 	Sword();
+	float swingTimer;
 
 	void update(Entity *hero, float frameTime);
 	void swing(Entity *hero, DIRECTION dir);                // fire torpedo from ship

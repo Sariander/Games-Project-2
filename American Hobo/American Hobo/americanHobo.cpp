@@ -101,38 +101,48 @@ void AmericanHobo::initialize(HWND hwnd)
 
 
 	//Initialize Hobo Texture
-	if (!hoboTexture.initialize(graphics, HOBO_IMAGE))
+	if (!hoboTexture.initialize(graphics, HOBO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hobo texture!"));
 
 
 	for(int i=0; i<10; i++)
 	{
 		//Initialize Hobo
-		if (!hobo[i].initialize(this, 0, 0, 0, &hoboTexture))
+		if (!hobo[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &hoboTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 		hobo[i].setCollisionType(entityNS::BOX);
 		hobo[i].setEdge(COLLISION_BOX_HOBO);
 		hobo[i].setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
 		hobo[i].setX(hobo[i].getPositionX());
 		hobo[i].setY(hobo[i].getPositionY());
+
+		hobo[i].setFrameDelay(hoboNS::ANIMATION_DELAY);
+		hobo[i].setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
+		hobo[i].setCurrentFrame(hoboNS::RIGHT_WALK_START);
+
 		hobo[i].setActive(false);
 		hobo[i].setVisible(false);
 	}
 
 	//Initialize Brawler Texture
-	if (!brawlerTexture.initialize(graphics, BRAWLER_IMAGE))
+	if (!brawlerTexture.initialize(graphics, BRAWLER_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Brawler texture!"));
 
 	for(int i=0; i<10; i++)
 	{
 		//initialize Brawler
-		if (!brawler[i].initialize(this, 0, 0, 0, &brawlerTexture))
+		if (!brawler[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &brawlerTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
 		brawler[i].setCollisionType(entityNS::BOX);
 		brawler[i].setEdge(COLLISION_BOX_HOBO);
 		brawler[i].setPosition(VECTOR2(brawlerNS::X, brawlerNS::Y));
 		brawler[i].setX(brawler[i].getPositionX());
 		brawler[i].setY(brawler[i].getPositionY());
+
+		brawler[i].setFrameDelay(hoboNS::ANIMATION_DELAY);
+		brawler[i].setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
+		brawler[i].setCurrentFrame(hoboNS::RIGHT_WALK_START);
+
 		brawler[i].setActive(false);
 		brawler[i].setVisible(false);
 	}

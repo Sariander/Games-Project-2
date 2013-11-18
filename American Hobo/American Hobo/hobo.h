@@ -16,7 +16,19 @@ namespace hoboNS
 	const float ROTATION_RATE = (float)PI; // radians per second
 	const float SPEED = 20;                // 100 pixels per second
 	enum DIRECTION { NONE, LEFT, RIGHT };     // rotation direction
-	const int   TEXTURE_COLS = 0;           // texture has 8 columns
+	const int   TEXTURE_COLS = 2;           // texture has 8 columns
+	const float ANIMATION_DELAY = 0.2f;
+
+	const int RIGHT_WALK_START = 0;
+	const int RIGHT_WALK_END = 1;
+	const int LEFT_WALK_START = 2;
+	const int LEFT_WALK_END = 3;
+
+	const int RIGHT_ATTACK_START = 4;
+	const int RIGHT_ATTACK_END = 5;
+	const int LEFT_ATTACK_START = 6;
+	const int LEFT_ATTACK_END = 7;
+
 }
 
 // inherits from Entity class
