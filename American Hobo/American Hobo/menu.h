@@ -13,6 +13,7 @@ class Menu;
 #include <sstream>
 #include <vector>
 #include "input.h"
+#include "hero.h"
 using std::vector;
 using std::string;
 using std::stringstream;
@@ -83,6 +84,8 @@ public:
 	void purchaseHealth(int desiresInput, int price, int health);
 	void purchaseResponse();
 	void moneyDebugger();
+
+	Hero hero;
 };
 #endif
 

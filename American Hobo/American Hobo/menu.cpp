@@ -299,6 +299,11 @@ void Menu::purchaseHealth(int desiredInput, int price, int health)
 	{
 		ownage = purchased;
 		currentMoney -= price;
+		hero.health += health;
+		if (hero.health > 100)
+		{
+			hero.health = 100;
+		}
 		//Give health
 		//Check health against max, set to max if over
 	}
