@@ -29,7 +29,7 @@ private:
 	Image winButton;
 
 	Image streets, stadium, colosseum;
-	Image title, controls, gameOver;
+	Image title, controls, gameOver, win;
 	//Sword sword;
 	Hero hero;
 	Hobo hobo[10];
@@ -37,7 +37,7 @@ private:
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
 	TextureManager titleTexture, controlsTexture;
 	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture;
-	TextureManager gameOverTexture;
+	TextureManager gameOverTexture, winTexture;
 
 	GameStates gameStates;
 
@@ -59,17 +59,6 @@ private:
 	bool returnDebounce;
 	bool fKeyDebounce;
 
-	//
-	TextureManager shipTexture; 
-	TextureManager shotTexture, shipShotTexture;
-	TextureManager earthTexture; 
-	TextureManager baseTexture, eyeTexture;
-	TextureManager turret1Texture, turret2Texture, turret3Texture, turret4Texture;
-	TextureManager turret5Texture, turret6Texture, turret7Texture, turret8Texture;
-	TextureManager milkShotTexture;
-	TextureManager healthTexture, scoreTexture;
-	TextureManager menuScreenTexture, textScreenTexture, playButtonTexture, gameoverButtonTexture, winTexture;
-	TextureManager eyeblastTexture;
 
 	bool menu;
 	bool text;

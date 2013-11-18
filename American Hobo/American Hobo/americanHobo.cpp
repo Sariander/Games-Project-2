@@ -76,12 +76,20 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
 
 	//Initialize Game Over Texture
-	if (!gameOverTexture.initialize(graphics, STREETS_IMAGE))
+	if (!gameOverTexture.initialize(graphics, GAME_OVER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Game Over texture!"));
 
 	//Initialize Game Over
 	if (!gameOver.initialize(graphics, 0, 0, 0, &gameOverTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Game Over"));
+
+	//Initialize Win Texture
+	if (!winTexture.initialize(graphics, WIN_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Win texture!"));
+
+	//Initialize Win
+	if (!win.initialize(graphics, 0, 0, 0, &winTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Win"));
 
 	//Initialize Hero Texture
 	if (!heroTexture.initialize(graphics, HERO_CELS_IMAGE))
@@ -297,7 +305,7 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if (gameStates == Level3 && killCount == 0)
 	{
-		gameStates = MenuScreen;
+		gameStates = Win;
 	}
 	if (gameStates == MenuScreen && mainMenu->done)
 	{
@@ -339,6 +347,13 @@ void AmericanHobo::gameStateUpdate()
 			{
 				initializeLevel3();
 			}
+		}
+	}
+	if (gameStates == Win)
+	{
+		if (input->isKeyDown(VK_RETURN))
+		{
+			initializeLevel1();
 		}
 	}
 	
@@ -553,6 +568,9 @@ void AmericanHobo::render()
     graphics->spriteBegin();
 	switch (gameStates)
 	{
+	case Win:
+		win.draw();
+		break;
 	case GameOver:
 		gameOver.draw();
 		break;

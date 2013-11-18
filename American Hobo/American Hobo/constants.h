@@ -49,6 +49,8 @@ const char SWORD_CELS_IMAGE[] = "pictures\\Sword Cel Sheet.png";
 const char HERO_CELS_IMAGE[] = "pictures\\Hero Cel Sheet.png";
 const char HOBO_CELS_IMAGE[] = "pictures\\Hobo Minion Cel Sheet.png";
 const char BRAWLER_CELS_IMAGE[] = "pictures\\Hobo Brawler Cel Sheet.png";
+const char GAME_OVER_IMAGE[] = "pictures\\GameOver Screen.png";
+const char WIN_IMAGE[] = "pictures\\Win Screen.png";
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.
@@ -89,7 +91,7 @@ const UCHAR HERO_ATTACK_KEY = VK_SPACE;
 
 // weapon types
 enum WEAPON {SWORD, TORPEDO, MILK, EYE};
-enum GameStates { Title, Controls, Level1, Level2, Level3, MenuScreen, GameOver };
+enum GameStates { Title, Controls, Level1, Level2, Level3, MenuScreen, GameOver, Win };
 enum menu{main, sub1, sub2, sub3, sub4, sub5, sub6 };
 enum ownership{null, purchased, cannotpurchase};
 enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
