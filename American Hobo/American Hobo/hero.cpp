@@ -39,8 +39,7 @@ void Hero::update(float frameTime)
 		if(hitTimer != 0)
 			hitTimer = 0;
 		dashTimer -= frameTime;
-		velocity.x = 200.0*dashVector.x;
-		velocity.y = 200.0*dashVector.y;
+		
 
 		if(dashTimer < 0) {
 			dashTimer = 0;
@@ -195,8 +194,10 @@ void Hero::attack()
 }
 
 void Hero::dash() {
-	if(velocity.x != 0 || velocity.y != 0) {
+	if(velocity.x != 0 || velocity.y != 0 && dashTimer == 0) {
 		dashVector = velocity;
+		velocity.x = 200.0*dashVector.x;
+		velocity.y = 200.0*dashVector.y;
 		dashTimer = heroNS::DASH_DURATION;
 		//Change to dash frames
 	}
