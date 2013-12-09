@@ -39,6 +39,8 @@ private:
    vector<string> subMenu4;
    vector<string> subMenu5;
    vector<string> subMenu6;
+   vector<string> titleMenu;
+   vector<string> retryMenu;
    string menuHeading1, menuHeading2;
    D3DXVECTOR2 menuAnchor;
    int verticalOffset;
@@ -56,6 +58,7 @@ private:
    bool sub4DepressedLastFrame;
    bool sub5DepressedLastFrame;
    bool sub6DepressedLastFrame;
+   bool titleMenuDepressedLastFrame;
    menu menuName;
    ownership ownage;
 

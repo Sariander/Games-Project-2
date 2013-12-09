@@ -394,7 +394,7 @@ void AmericanHobo::update()
 	switch (gameStates)
 	{
 	case Title:
-
+		mainMenu->update();
 		break;
 	case Controls:
 
@@ -576,6 +576,7 @@ void AmericanHobo::render()
 	case Title:
 		title.draw();
 		timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
+		mainMenu->displayMenu();
 		break;
 	case Controls:
 		controls.draw();

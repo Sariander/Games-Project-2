@@ -22,19 +22,19 @@ void Menu::initialize(Graphics *g, Input *i)
 	//mainMenu.push_back("Weapons"); mainMenu.push_back("Armor");
 	//mainMenu.push_back("Stats"); 
 	mainMenu.push_back("Recovery"); mainMenu.push_back("Done");
-	//subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
-	//subMenu1.push_back("Shields"); 
-	//subMenu1.push_back("Back");
-	//subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800");
-	//subMenu2.push_back("Very Long Armor 2 - 1200"); subMenu2.push_back("Back");
-	//subMenu3.push_back("Stats"); subMenu3.push_back("Health Up - 300");
-	//subMenu3.push_back("Strength Up - 300"); subMenu3.push_back("Stat Up 3 - 300");
-	//subMenu3.push_back("Stat Up 4 - 300"); subMenu3.push_back("Back");
-	//subMenu4.push_back("Swords"); subMenu4.push_back("Very Long Sword 1 - 100");
-	//subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
-	//subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
-	//subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
-	//subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
+	subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
+	subMenu1.push_back("Shields"); 
+	subMenu1.push_back("Back");
+	subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800");
+	subMenu2.push_back("Very Long Armor 2 - 1200"); subMenu2.push_back("Back");
+	subMenu3.push_back("Stats"); subMenu3.push_back("Health Up - 300");
+	subMenu3.push_back("Strength Up - 300"); subMenu3.push_back("Stat Up 3 - 300");
+	subMenu3.push_back("Stat Up 4 - 300"); subMenu3.push_back("Back");
+	subMenu4.push_back("Swords"); subMenu4.push_back("Very Long Sword 1 - 100");
+	subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
+	subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
+	subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
+	subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
 	highlightColor = graphicsNS::RED;
 	normalColor = graphicsNS::WHITE;
 	menuAnchor = D3DXVECTOR2(50,50);
@@ -65,6 +65,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	sub4DepressedLastFrame = false;
 	sub5DepressedLastFrame = false;
 	sub6DepressedLastFrame = false;
+	titleMenuDepressedLastFrame = false;
 	done = false;
 	//currentMoney = 0;
 }
@@ -151,6 +152,9 @@ void Menu::update()
 		purchaseHealth(1, 300, 25);
 		purchaseHealth(2, 400, 50);
 		changeToMenuWithTitle(subMenu6.size() - 1, main);
+	case title:
+		pointerCheckerWrappingWithoutTitle(linePtr, titleMenu);
+		confirmChecker(titleMenuDepressedLastFrame);
 		break;
 	}
 }
@@ -158,10 +162,18 @@ void Menu::update()
 void Menu::displayMenu()
 {
 	moneyDebugger();
-	stringstream s;
-	s << "Current Money: " << currentMoney;
-	menuItemFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 60);
-	buildMenuWithTitle(mainMenu, 0, main); 
+	if (menuName == title)
+	{
+		buildMenuWithoutTitle(titleMenu, 1, title);
+	}
+	else if (menuName == retry)
+	{
+		buildMenuWithoutTitle(retryMenu, 1, retry);
+	}
+	else
+	{
+		buildMenuWithTitle(mainMenu, 0, main);
+	}
 	if (menuName == sub1 || menuName == sub4 || menuName == sub5)
 	{
 		buildMenuWithTitle(subMenu1, 1, sub1);

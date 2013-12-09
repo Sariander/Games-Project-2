@@ -92,7 +92,7 @@ const UCHAR HERO_ATTACK_KEY = VK_SPACE;
 // weapon types
 enum WEAPON {SWORD, TORPEDO, MILK, EYE};
 enum GameStates { Title, Controls, Level1, Level2, Level3, MenuScreen, GameOver, Win };
-enum menu{main, sub1, sub2, sub3, sub4, sub5, sub6 };
+enum menu{ main, sub1, sub2, sub3, sub4, sub5, sub6, title, retry };
 enum ownership{null, purchased, cannotpurchase};
 enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
 
