@@ -12,6 +12,7 @@ Hero::Hero() : Entity()
 	colorTimer = 0.0f;
 	health = heroNS::HEALTH_MAX;
 	dashTimer = 0;
+	returnDebounce = false;
 }
 
 void Hero::draw(float frameTime)
@@ -32,6 +33,9 @@ void Hero::draw(float frameTime)
 
 void Hero::update(float frameTime)
 {
+	if (!input->isKeyDown(HERO_DASH_KEY))
+		returnDebounce = false;
+
 	if (!visible)
 		return;
 
@@ -158,8 +162,9 @@ void Hero::update(float frameTime)
 			attack();
 		}
 
-		if(input->isKeyDown(HERO_DASH_KEY)) {
+		if (input->isKeyDown(HERO_DASH_KEY) && !returnDebounce) {
 			dash();
+			returnDebounce = true;
 		}
 	}
 

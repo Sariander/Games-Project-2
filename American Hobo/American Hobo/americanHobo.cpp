@@ -393,7 +393,7 @@ void AmericanHobo::gameStateUpdate()
 		}
 	}
 	//Cycle back to level 1 currently, change to send back to title menu screen
-	if (gameStates == Win)
+	if (gameStates == Win && !returnDebounce)
 	{
 		if (input->isKeyDown(VK_RETURN))
 		{
@@ -401,7 +401,6 @@ void AmericanHobo::gameStateUpdate()
 			mainMenu->setMenuName(title);
 		}
 	}
-	
 }
 
 void AmericanHobo::initializeLevel1()

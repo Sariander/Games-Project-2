@@ -62,6 +62,8 @@ private:
 	float dashTimer;
 	D3DXVECTOR2 dashVector;
 
+	bool returnDebounce;
+
 public:
 	// constructor
 	Hero();
