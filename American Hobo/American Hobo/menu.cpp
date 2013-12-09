@@ -42,7 +42,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	input = i;
 	verticalOffset = 45;
 	horizontalOffset = 160;
-	linePtr = 1;
+	linePtr = 0;
 	selectedItem = -1;
 	graphics = g;
 	menuItemFont = new TextDX();
