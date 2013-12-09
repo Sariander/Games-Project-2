@@ -252,16 +252,30 @@ void AmericanHobo::gameStateUpdate()
 		initializeLevel3();
 		fKeyDebounce = true;
 	}
-	if (gameStates == Title && input->isKeyDown(VK_RETURN))
+	if (gameStates == Title && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
-		gameStates = Controls;
-		timerCount = 5;
-		returnDebounce = true;
+		if (mainMenu->getSelectedItem() == 0)
+		{
+			gameStates = Level1;
+			currentLevel = 1;
+			initializeLevel1();
+			mainMenu->setMenuName(main);
+			returnDebounce = true;
+		}
+		else if (mainMenu->getSelectedItem() == 1)
+		{
+			gameStates = Controls;
+			returnDebounce = true;
+		}
+		else if (mainMenu->getSelectedItem() == 2)
+		{
+			PostQuitMessage(1);
+		}
+		
 	}
 	if (gameStates == Controls && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
-		currentLevel = 1;
-		initializeLevel1();
+		gameStates = Title;
 		returnDebounce = true;
 	}
 	if (gameStates == Level1 && killCount == 0)

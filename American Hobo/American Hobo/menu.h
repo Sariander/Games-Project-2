@@ -89,6 +89,7 @@ public:
 	void setCurrentMoney(int score);
 	int getCurrentMoney() {return currentMoney;}
 	void moneyDebugger();
+	void setMenuName(menu menuGiven){ menuName = menuGiven; }
 
 	Hero hero;
 };
