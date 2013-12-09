@@ -29,7 +29,7 @@ private:
 	Image winButton;
 
 	Image streets, stadium, colosseum;
-	Image title, controls, gameOver, win;
+	Image titleScreen, controls, gameOver, win;
 	//Sword sword;
 	Hero hero;
 	Hobo hobo[10];

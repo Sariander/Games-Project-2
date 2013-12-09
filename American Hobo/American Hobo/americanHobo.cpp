@@ -64,7 +64,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Title texture!"));
 
 	//Intialize Title
-	if (!title.initialize(graphics, 0, 0, 0, &titleTexture))
+	if (!titleScreen.initialize(graphics, 0, 0, 0, &titleTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Title"));
 
 	//Intialize Controls Texture
@@ -286,21 +286,27 @@ void AmericanHobo::gameStateUpdate()
 		mainMenu->setMenuName(main);
 		currentLevel = 2;
 	}
-	//Hardcoded menuscreen that should be replaced
+	//Hardcoded menu after level 1
 	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
-		if(mainMenu->getSelectedItem() == 2)
-			initializeLevel2();
-		else
-			if(hero.health < 10 && mainMenu->getCurrentMoney() > 200)
+		if (mainMenu->getSelectedItem() == 1)
+		{
+			if (hero.health < 10 && mainMenu->getCurrentMoney() >= 200)
 			{
 				hero.health++;
 				mainMenu->setCurrentMoney(mainMenu->getCurrentMoney() - 200);
 				setScore(mainMenu->getCurrentMoney());
 			}
+		}
+		if (mainMenu->getSelectedItem() == 2)
+		{
+			//Give projectile ammo
+		}
+		if (mainMenu->getSelectedItem() == 3)
+		{
+			initializeLevel2();
+		}
 		returnDebounce = true;
-		//else
-		//restore health
 	}
 	//Go to menu after level 2
 	if (gameStates == Level2 && killCount == 0)
@@ -309,17 +315,26 @@ void AmericanHobo::gameStateUpdate()
 		mainMenu->setMenuName(main);
 		currentLevel = 3;
 	}
+	//Hardcoded menu after level 2
 	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
-		if(mainMenu->getSelectedItem() == 2)
-			initializeLevel3();
-		else
-			if(hero.health < 10 && mainMenu->getCurrentMoney() > 200)
+		if (mainMenu->getSelectedItem() == 1)
+		{
+			if (hero.health < 10 && mainMenu->getCurrentMoney() >= 200)
 			{
 				hero.health++;
 				mainMenu->setCurrentMoney(mainMenu->getCurrentMoney() - 200);
 				setScore(mainMenu->getCurrentMoney());
 			}
+		}
+		if (mainMenu->getSelectedItem() == 2)
+		{
+			//Give projectile ammo
+		}
+		if (mainMenu->getSelectedItem() == 3)
+		{
+			initializeLevel3();
+		}
 		returnDebounce = true;
 	}
 	//Win afetr level 3
@@ -382,7 +397,8 @@ void AmericanHobo::gameStateUpdate()
 	{
 		if (input->isKeyDown(VK_RETURN))
 		{
-			initializeLevel1();
+			gameStates = Title;
+			mainMenu->setMenuName(title);
 		}
 	}
 	
@@ -606,7 +622,7 @@ void AmericanHobo::render()
 		mainMenu->displayMenu();
 		break;
 	case Title:
-		title.draw();
+		titleScreen.draw();
 		timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
 		mainMenu->displayMenu();
 		break;
