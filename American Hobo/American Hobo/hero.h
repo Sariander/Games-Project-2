@@ -42,6 +42,7 @@ namespace heroNS
 	const int END_ATTACK_DOWN = 18;
 
 	const float HIT_DURATION = 0.2f;
+	const float DASH_DURATION = 0.2f;
 	const float COLOR_WAIT = .2f;
 
 	const int HEALTH_MAX = 10;
@@ -54,8 +55,12 @@ class Hero : public Entity
 private:
 	float hitTimer;
 	D3DXVECTOR2 hitVector;
+
 	float colorTimer;
 	COLOR_ARGB filter;
+
+	float dashTimer;
+	D3DXVECTOR2 dashVector;
 
 public:
 	// constructor
@@ -67,6 +72,7 @@ public:
 
 	void update(float frameTime);
 	void attack();
+	void dash();
 	void damage(WEAPON, D3DXVECTOR2);
 	void death();
 	void heal();

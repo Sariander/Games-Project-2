@@ -11,6 +11,7 @@ Hero::Hero() : Entity()
 	filter = SETCOLOR_ARGB(0, 0, 0, 0);
 	colorTimer = 0.0f;
 	health = heroNS::HEALTH_MAX;
+	dashTimer = 0;
 }
 
 void Hero::draw(float frameTime)
@@ -34,6 +35,18 @@ void Hero::update(float frameTime)
 	if (!visible)
 		return;
 
+	if(dashTimer != 0) {
+		if(hitTimer != 0)
+			hitTimer = 0;
+		dashTimer -= frameTime;
+		velocity.x = 200.0*dashVector.x;
+		velocity.y = 200.0*dashVector.y;
+
+		if(dashTimer < 0) {
+			dashTimer = 0;
+		}
+	}
+
 	if(hitTimer != 0) {
 		hitTimer -= frameTime;
 		velocity.x = -200.0*hitVector.x;
@@ -45,8 +58,9 @@ void Hero::update(float frameTime)
 		}
 	}
 
-	if(hitTimer == 0) {
-		if (input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible())//Single Direction Movement
+	if(hitTimer == 0 && dashTimer == 0) {
+		//Single Direction Movement
+		if (input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY) && !sword.getVisible())
 		{
 			setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
 			velocity.x = -heroNS::SPEED;
@@ -70,7 +84,7 @@ void Hero::update(float frameTime)
 			velocity.y = heroNS::SPEED;
 			dir = DOWN;
 		}
-
+		//Diagonal Movement
 		if (input->isKeyDown(HERO_LEFT_KEY) && input->isKeyDown(HERO_UP_KEY) && !sword.getVisible()) {
 			setFrames(heroNS::START_LEFT, heroNS::END_LEFT);
 			velocity.x = -.707*heroNS::SPEED;
@@ -95,7 +109,7 @@ void Hero::update(float frameTime)
 			velocity.y = .707*heroNS::SPEED;
 			dir = RIGHT;
 		}
-	
+		//Movement frame setting
 		if (!input->isKeyDown(HERO_RIGHT_KEY) && !input->isKeyDown(HERO_LEFT_KEY) && !input->isKeyDown(HERO_UP_KEY) && !input->isKeyDown(HERO_DOWN_KEY)) {
 			if (dir == RIGHT) {
 				setFrames(heroNS::STAND_RIGHT, heroNS::STAND_RIGHT);
@@ -114,7 +128,7 @@ void Hero::update(float frameTime)
 				setCurrentFrame(heroNS::STAND_DOWN);
 			}
 		}
-
+		//More frame setting for sword swings
 		if(sword.getVisible()) {
 			if (dir == RIGHT)
 			{
@@ -139,9 +153,14 @@ void Hero::update(float frameTime)
 		}
 
 
+
 		if (input->isKeyDown(HERO_ATTACK_KEY))
 		{
 			attack();
+		}
+
+		if(input->isKeyDown(HERO_DASH_KEY)) {
+			dash();
 		}
 	}
 
@@ -175,9 +194,17 @@ void Hero::attack()
 	sword.swing(this,dir);
 }
 
+void Hero::dash() {
+	if(velocity.x != 0 || velocity.y != 0) {
+		dashVector = velocity;
+		dashTimer = heroNS::DASH_DURATION;
+		//Change to dash frames
+	}
+}
+
 void Hero::damage(WEAPON weapon, D3DXVECTOR2 vector)
 {
-	if(hitTimer == 0) {
+	if(hitTimer == 0 && dashTimer == 0) {
 		hitTimer = heroNS::HIT_DURATION;
 		hitVector.x = vector.x;
 		hitVector.y = vector.y;
