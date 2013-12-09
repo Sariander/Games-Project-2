@@ -272,7 +272,6 @@ void AmericanHobo::gameStateUpdate()
 		{
 			PostQuitMessage(1);
 		}
-		
 	}
 	//Leave controls screen
 	if (gameStates == Controls && input->isKeyDown(VK_RETURN) && !returnDebounce)
@@ -284,6 +283,7 @@ void AmericanHobo::gameStateUpdate()
 	if (gameStates == Level1 && killCount == 0)
 	{
 		gameStates = MenuScreen;
+		mainMenu->setMenuName(main);
 		currentLevel = 2;
 	}
 	//Hardcoded menuscreen that should be replaced
@@ -306,6 +306,7 @@ void AmericanHobo::gameStateUpdate()
 	if (gameStates == Level2 && killCount == 0)
 	{
 		gameStates = MenuScreen;
+		mainMenu->setMenuName(main);
 		currentLevel = 3;
 	}
 	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN) && !returnDebounce)
@@ -338,6 +339,7 @@ void AmericanHobo::gameStateUpdate()
 	if (hero.getHealth() <= 0)
 	{
 		gameStates = GameOver;
+		mainMenu->setMenuName(retry);
 		hero.heal();
 		for (int i = 0; i<10; i++)
 		{
@@ -352,10 +354,10 @@ void AmericanHobo::gameStateUpdate()
 		score = 0;
 		mainMenu->setCurrentMoney(0);
 	}
-	//Retry code, flush this out
-	if (gameStates == GameOver)
+	//Retry code
+	if (gameStates == GameOver && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
-		if (input->isKeyDown(VK_RETURN))
+		if (mainMenu->getSelectedItem() == 0)
 		{
 			if (currentLevel == 1)
 			{
@@ -369,6 +371,10 @@ void AmericanHobo::gameStateUpdate()
 			{
 				initializeLevel3();
 			}
+		}
+		else if (mainMenu->getSelectedItem() == 1)
+		{
+			PostQuitMessage(1);
 		}
 	}
 	//Cycle back to level 1 currently, change to send back to title menu screen
@@ -418,6 +424,7 @@ void AmericanHobo::update()
 	switch (gameStates)
 	{
 	case Title:
+	case GameOver:
 		mainMenu->update();
 		break;
 	case Controls:
@@ -596,6 +603,7 @@ void AmericanHobo::render()
 		break;
 	case GameOver:
 		gameOver.draw();
+		mainMenu->displayMenu();
 		break;
 	case Title:
 		title.draw();

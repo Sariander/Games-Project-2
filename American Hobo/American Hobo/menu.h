@@ -59,6 +59,7 @@ private:
    bool sub5DepressedLastFrame;
    bool sub6DepressedLastFrame;
    bool titleMenuDepressedLastFrame;
+   bool retryMenuDepressedLastFrame;
    menu menuName;
    ownership ownage;
 

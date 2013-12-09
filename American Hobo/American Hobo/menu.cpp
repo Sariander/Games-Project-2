@@ -36,6 +36,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
 	subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
 	titleMenu.push_back("Play"); titleMenu.push_back("Controls"); titleMenu.push_back("Exit");
+	retryMenu.push_back("Retry"); retryMenu.push_back("Exit");
 	highlightColor = graphicsNS::RED;
 	normalColor = graphicsNS::WHITE;
 	menuAnchor = D3DXVECTOR2(50,50);
@@ -156,6 +157,9 @@ void Menu::update()
 	case title:
 		pointerCheckerWrappingWithoutTitle(linePtr, titleMenu);
 		confirmChecker(titleMenuDepressedLastFrame);
+	case retry:
+		pointerCheckerWrappingWithoutTitle(linePtr, retryMenu);
+		confirmChecker(retryMenuDepressedLastFrame);
 		break;
 	}
 }
@@ -170,7 +174,9 @@ void Menu::displayMenu()
 	}
 	else if (menuName == retry)
 	{
-		buildMenuWithoutTitle(retryMenu, 1, retry);
+		menuAnchor = D3DXVECTOR2(300, 325);
+		buildMenuWithoutTitle(retryMenu, 0, retry);
+		menuAnchor = D3DXVECTOR2(50, 50);
 	}
 	else
 	{
