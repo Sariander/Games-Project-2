@@ -252,6 +252,7 @@ void AmericanHobo::gameStateUpdate()
 		initializeLevel3();
 		fKeyDebounce = true;
 	}
+	//Hard coded title menu interface
 	if (gameStates == Title && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
 		if (mainMenu->getSelectedItem() == 0)
@@ -273,16 +274,19 @@ void AmericanHobo::gameStateUpdate()
 		}
 		
 	}
+	//Leave controls screen
 	if (gameStates == Controls && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
 		gameStates = Title;
 		returnDebounce = true;
 	}
+	//Go to menu after level 1
 	if (gameStates == Level1 && killCount == 0)
 	{
 		gameStates = MenuScreen;
 		currentLevel = 2;
 	}
+	//Hardcoded menuscreen that should be replaced
 	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
 		if(mainMenu->getSelectedItem() == 2)
@@ -298,6 +302,7 @@ void AmericanHobo::gameStateUpdate()
 		//else
 		//restore health
 	}
+	//Go to menu after level 2
 	if (gameStates == Level2 && killCount == 0)
 	{
 		gameStates = MenuScreen;
@@ -316,10 +321,12 @@ void AmericanHobo::gameStateUpdate()
 			}
 		returnDebounce = true;
 	}
+	//Win afetr level 3
 	if (gameStates == Level3 && killCount == 0)
 	{
 		gameStates = Win;
 	}
+	//Deprecated currently by hard coded menu
 	if (gameStates == MenuScreen && mainMenu->done)
 	{
 		gameStates = Level1;
@@ -327,6 +334,7 @@ void AmericanHobo::gameStateUpdate()
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 	}
+	//Death response
 	if (hero.getHealth() <= 0)
 	{
 		gameStates = GameOver;
@@ -344,6 +352,7 @@ void AmericanHobo::gameStateUpdate()
 		score = 0;
 		mainMenu->setCurrentMoney(0);
 	}
+	//Retry code, flush this out
 	if (gameStates == GameOver)
 	{
 		if (input->isKeyDown(VK_RETURN))
@@ -362,6 +371,7 @@ void AmericanHobo::gameStateUpdate()
 			}
 		}
 	}
+	//Cycle back to level 1 currently, change to send back to title menu screen
 	if (gameStates == Win)
 	{
 		if (input->isKeyDown(VK_RETURN))

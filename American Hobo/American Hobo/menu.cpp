@@ -156,9 +156,6 @@ void Menu::update()
 	case title:
 		pointerCheckerWrappingWithoutTitle(linePtr, titleMenu);
 		confirmChecker(titleMenuDepressedLastFrame);
-
-
-
 		break;
 	}
 }
