@@ -528,6 +528,19 @@ void AmericanHobo::collisions()
 	}
 
 	for(int i = 0; i < 10; i++) {
+		if(hobo[i].sword.collidesWith(hero,collisionVector)) {
+			hero.damage(SWORD, hobo[i].getVelocity());
+		}
+	}
+
+	for(int i = 0; i < 10; i++) {
+		if(brawler[i].sword.collidesWith(hero,collisionVector)) {
+			hero.damage(SWORD, brawler[i].getVelocity());
+
+		}
+	}
+
+	for(int i = 0; i < 10; i++) {
 		if(hero.sword.collidesWith(hobo[i],collisionVector)) {
 			switch(hero.dir) {
 			case 0:

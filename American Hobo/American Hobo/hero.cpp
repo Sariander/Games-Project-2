@@ -13,6 +13,7 @@ Hero::Hero() : Entity()
 	health = heroNS::HEALTH_MAX;
 	dashTimer = 0;
 	returnDebounce = false;
+	attackDebounce = false;
 }
 
 void Hero::draw(float frameTime)
@@ -35,6 +36,8 @@ void Hero::update(float frameTime)
 {
 	if (!input->isKeyDown(HERO_DASH_KEY))
 		returnDebounce = false;
+	if (!input->isKeyDown(HERO_ATTACK_KEY))
+		attackDebounce = false;
 
 	if (!visible)
 		return;
@@ -157,9 +160,10 @@ void Hero::update(float frameTime)
 			}
 		}
 
-		if (input->isKeyDown(HERO_ATTACK_KEY))
+		if (input->isKeyDown(HERO_ATTACK_KEY) && !attackDebounce)
 		{
 			attack();
+			attackDebounce = true;
 		}
 
 		if (input->isKeyDown(HERO_DASH_KEY) && !returnDebounce) {
@@ -195,7 +199,7 @@ void Hero::update(float frameTime)
 
 void Hero::attack()
 {
-	sword.swing(this,dir);
+	sword.swing(this,dir); 
 }
 
 void Hero::dash() {

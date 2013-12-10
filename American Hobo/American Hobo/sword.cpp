@@ -27,10 +27,10 @@ void Sword::update(Entity *hero, float frameTime)
 {
 	if(!visible)
 		return;
-	
+	/*
 	if(swingTimer == 0) {
 		swingTimer = swordNS::SWING_TIME;
-	}
+	}*/
 
 	if((swingTimer -= frameTime) <= 0) {
 		visible = false;
@@ -53,6 +53,10 @@ void Sword::update(Entity *hero, float frameTime)
 //=============================================================================
 void Sword::swing(Entity *hero, DIRECTION dir)
 {
+	swingTimer = swordNS::SWING_TIME;
+	visible = true;
+	active = true;
+
 	if(dir == RIGHT) {
 		setX(hero->getCenterX() - spriteData.width / 2 + swordNS::SWING_RANGE);
 		setY(hero->getCenterY() - spriteData.height / 2);

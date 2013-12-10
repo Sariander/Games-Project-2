@@ -66,6 +66,7 @@ private:
 	D3DXVECTOR2 dashVector;
 
 	bool returnDebounce;
+	bool attackDebounce;
 
 public:
 	// constructor
