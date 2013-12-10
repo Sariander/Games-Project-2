@@ -43,10 +43,12 @@ void Hero::update(float frameTime)
 		if(hitTimer != 0)
 			hitTimer = 0;
 		dashTimer -= frameTime;
-		
+		velocity.x = 4.0*dashVector.x;
+		velocity.y = 4.0*dashVector.y;
 
 		if(dashTimer < 0) {
 			dashTimer = 0;
+			dashVector = D3DXVECTOR2(0,0);
 		}
 	}
 
@@ -155,8 +157,6 @@ void Hero::update(float frameTime)
 			}
 		}
 
-
-
 		if (input->isKeyDown(HERO_ATTACK_KEY))
 		{
 			attack();
@@ -200,11 +200,12 @@ void Hero::attack()
 
 void Hero::dash() {
 	if(velocity.x != 0 || velocity.y != 0 && dashTimer == 0) {
-		dashVector = velocity;
-		velocity.x = 200.0*dashVector.x;
-		velocity.y = 200.0*dashVector.y;
 		dashTimer = heroNS::DASH_DURATION;
-		//Change to dash frames
+		dashVector.x = velocity.x;
+		dashVector.y = velocity.y;
+		
+		setFrames(heroNS::START_ROLL, heroNS::END_ROLL);
+		setCurrentFrame(heroNS::START_ROLL);
 	}
 }
 

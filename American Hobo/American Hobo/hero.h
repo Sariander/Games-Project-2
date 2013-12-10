@@ -41,6 +41,9 @@ namespace heroNS
 	const int START_ATTACK_DOWN = 19;
 	const int END_ATTACK_DOWN = 18;
 
+	const int START_ROLL = 20;
+	const int END_ROLL = 23;
+
 	const float HIT_DURATION = 0.2f;
 	const float DASH_DURATION = 0.2f;
 	const float COLOR_WAIT = .2f;
