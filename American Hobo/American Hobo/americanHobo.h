@@ -42,7 +42,7 @@ private:
 	TextureManager titleTexture, controlsTexture;
 	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture, throwerTexture;
 	TextureManager gameOverTexture, winTexture;
-
+	TextureManager bottleTexture;
 	TextureManager heartTexture;
 
 	GameStates gameStates;

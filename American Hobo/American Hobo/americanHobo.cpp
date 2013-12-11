@@ -210,6 +210,19 @@ void AmericanHobo::initialize(HWND hwnd)
 		thrower[i].setVisible(false);
 	}
 
+	//Initialize bottle Texture
+	if (!bottleTexture.initialize(graphics, MOLOTOV_CELS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing molotov texture!"));
+
+	for(int i=0; i<THROWER_NUMBER; i++)
+	{
+		if (!thrower[i].bottle.initialize(this, bottleNS::WIDTH, bottleNS::HEIGHT, bottleNS::TEXTURE_COLS, &bottleTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
+		thrower[i].bottle.setCollisionType(entityNS::BOX);
+		thrower[i].bottle.setActive(false);
+		thrower[i].bottle.setVisible(false);
+	}
+
 	//Initialize Fonts
 	timerFont = new TextDX();
 	killFont = new TextDX();
