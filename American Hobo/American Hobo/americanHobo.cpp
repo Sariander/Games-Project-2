@@ -141,7 +141,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hobo texture!"));
 
 
-	for(int i=0; i<10; i++)
+	for(int i=0; i<HOBO_NUMBER; i++)
 	{
 		//Initialize Hobo
 		if (!hobo[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &hoboTexture))
@@ -167,7 +167,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!brawlerTexture.initialize(graphics, BRAWLER_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Brawler texture!"));
 
-	for(int i=0; i<10; i++)
+	for(int i=0; i<BRAWLER_NUMBER; i++)
 	{
 		//initialize Brawler
 		if (!brawler[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &brawlerTexture))
@@ -191,7 +191,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing thrower texture!"));
 
 
-	for(int i=0; i<5; i++)
+	for(int i=0; i<THROWER_NUMBER; i++)
 	{
 		//Initialize Thrower
 		if (!thrower[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &throwerTexture))
@@ -259,12 +259,19 @@ void AmericanHobo::gameStateUpdate()
 
 	if(input->isKeyDown(0x70) && !fKeyDebounce)
 	{
-		for(int i=0; i<10; i++)
+		for (int i = 0; i < HOBO_NUMBER; i++)
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
+		}
+		for (int i = 0; i < BRAWLER_NUMBER; i++)
+		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+
+		}
+		for (int i = 0; i < THROWER_NUMBER; i++)
+		{
 			thrower[i].setActive(false);
 			thrower[i].setVisible(false);
 		}
@@ -274,12 +281,19 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if(input->isKeyDown(0x71) && !fKeyDebounce)
 	{
-		for(int i=0; i<10; i++)
+		for (int i = 0; i < HOBO_NUMBER; i++)
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
+		}
+		for (int i = 0; i < BRAWLER_NUMBER; i++)
+		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+
+		}
+		for (int i = 0; i < THROWER_NUMBER; i++)
+		{
 			thrower[i].setActive(false);
 			thrower[i].setVisible(false);
 		}
@@ -289,12 +303,19 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if(input->isKeyDown(0x72) && !fKeyDebounce)
 	{
-		for(int i=0; i<10; i++)
+		for (int i = 0; i < HOBO_NUMBER; i++)
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
+		}
+		for (int i = 0; i < BRAWLER_NUMBER; i++)
+		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+
+		}
+		for (int i = 0; i < THROWER_NUMBER; i++)
+		{
 			thrower[i].setActive(false);
 			thrower[i].setVisible(false);
 		}
@@ -407,19 +428,19 @@ void AmericanHobo::gameStateUpdate()
 		gameStates = GameOver;
 		mainMenu->setMenuName(retry);
 		hero.heal();
-		for (int i = 0; i<10; i++)
+		for (int i = 0; i<HOBO_NUMBER; i++)
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
 			hobo[i].setHealth(hoboNS::HEALTH_MAX);
 		}
-		for (int i = 0; i<10; i++)
+		for (int i = 0; i<BRAWLER_NUMBER; i++)
 		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
 			brawler[i].setHealth(brawlerNS::HEALTH_MAX);
 		}
-		for (int i = 0; i<10; i++)
+		for (int i = 0; i<THROWER_NUMBER; i++)
 		{
 			thrower[i].setActive(false);
 			thrower[i].setVisible(false);
@@ -625,13 +646,13 @@ void AmericanHobo::collisions()
 {
 	VECTOR2 collisionVector;
 
-	for(int i = 0; i < 10; i++) {
+	for(int i = 0; i < HOBO_NUMBER; i++) {
 		if(hobo[i].collidesWith(hero,collisionVector)) {
 			hero.damage(SWORD, hobo[i].getVelocity());
 		}
 	}
 
-	for(int i = 0; i < 10; i++) {
+	for(int i = 0; i < BRAWLER_NUMBER; i++) {
 		if(brawler[i].collidesWith(hero,collisionVector)) {
 			hero.damage(SWORD, brawler[i].getVelocity());
 
@@ -645,20 +666,27 @@ void AmericanHobo::collisions()
 		}
 	}
 
-	for(int i = 0; i < 10; i++) {
+	for(int i = 0; i < HOBO_NUMBER; i++) {
 		if(hobo[i].sword.collidesWith(hero,collisionVector)) {
 			hero.damage(SWORD, hobo[i].getVelocity());
 		}
 	}
 
-	for(int i = 0; i < 10; i++) {
+	for(int i = 0; i < BRAWLER_NUMBER; i++) {
 		if(brawler[i].sword.collidesWith(hero,collisionVector)) {
 			hero.damage(SWORD, brawler[i].getVelocity());
 
 		}
 	}
 
-	for(int i = 0; i < 10; i++) {
+	for (int i = 0; i < THROWER_NUMBER; i++) {
+		if (thrower[i].bottle.collidesWith(hero, collisionVector)) {
+			hero.damage(SWORD, brawler[i].getVelocity());
+
+		}
+	}
+
+	for(int i = 0; i < HOBO_NUMBER; i++) {
 		if(hero.sword.collidesWith(hobo[i],collisionVector)) {
 			switch(hero.dir) {
 			case 0:
@@ -695,7 +723,7 @@ void AmericanHobo::collisions()
 		}
 	}
 
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < BRAWLER_NUMBER; i++) {
 		if(hero.sword.collidesWith(brawler[i],collisionVector)) {
 			switch(hero.dir) {
 			case 0:
