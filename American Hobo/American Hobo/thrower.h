@@ -38,6 +38,7 @@ public:
 	//void damage(WEAPON);
 	//void death();
 	//void heal();
+	void draw(float frameTime);
 	void spawn(GameStates level);
 	void vectorTrack(Entity &target);
 	void ai(float frameTime, Entity &target);

@@ -155,3 +155,20 @@ void Thrower::vectorTrack(Entity &target)
 	
 	setVelocity(vel);
 }
+
+void Thrower::draw(float frameTime)
+{
+	if (colorTimer > 0)
+	{
+		colorTimer -= frameTime;
+	}
+	if (colorTimer <= 0.0f) {
+		filter = SETCOLOR_ARGB(0, 0, 0, 0);
+		Image::draw(spriteData, filter);
+	}
+	else {
+		filter = SETCOLOR_ARGB(255, 255, 30, 30);
+		Image::draw(spriteData, filter);
+	}
+	bottle.draw(frameTime);
+}
