@@ -53,6 +53,7 @@ const char GAME_OVER_IMAGE[] = "pictures\\GameOver Screen.png";
 const char WIN_IMAGE[] = "pictures\\Win Screen.png";
 const char HEART_IMAGE[] = "pictures\\heartsheet.png";
 const char THROWER_CELS_IMAGE[] = "pictures\\thrower cel sheet.png";
+const char MOLOTOV_CELS_IMAGE[] = "pictures\\Molotov Cel Sheet.png";
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.
