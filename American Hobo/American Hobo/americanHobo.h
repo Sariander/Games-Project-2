@@ -27,6 +27,7 @@ private:
 	Image playButton;
 	Image gameoverButton;
 	Image winButton;
+	Image hearts[5];
 
 	Image streets, stadium, colosseum;
 	Image titleScreen, controls, gameOver, win;
@@ -38,6 +39,8 @@ private:
 	TextureManager titleTexture, controlsTexture;
 	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture;
 	TextureManager gameOverTexture, winTexture;
+
+	TextureManager heartTexture;
 
 	GameStates gameStates;
 
@@ -58,6 +61,8 @@ private:
 	int currentLevel;
 	bool returnDebounce;
 	bool fKeyDebounce;
+
+	int oldPlayerHealth;
 
 
 	bool menu;

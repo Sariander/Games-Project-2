@@ -18,6 +18,7 @@
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
+    <ClCompile Include="heart.cpp" />
     <ClCompile Include="hero.cpp" />
     <ClCompile Include="hobo.cpp" />
     <ClCompile Include="image.cpp" />
@@ -39,6 +40,7 @@
     <ClInclude Include="bottle.h" />
     <ClInclude Include="brawler.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="heart.h" />
     <ClInclude Include="hobo.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />

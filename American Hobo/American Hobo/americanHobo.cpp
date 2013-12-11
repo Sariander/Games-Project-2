@@ -31,6 +31,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	score = 0;
 	hobosActive = 0;
 	brawlersActive = 0;
+	oldPlayerHealth = heroNS::HEALTH_MAX;
 	currentLevel = 1;
 	returnDebounce = false;
 	fKeyDebounce = false;
@@ -93,6 +94,17 @@ void AmericanHobo::initialize(HWND hwnd)
 	//Initialize Hero Texture
 	if (!heroTexture.initialize(graphics, HERO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hero texture!"));
+
+	//Initialize Heart Texture
+	if (!heartTexture.initialize(graphics, HEART_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing heart texture!"));
+
+	for(int i = 0; i<5; i++)
+	{
+		//Initialize Hearts
+		if (!hearts[i].initialize(graphics, 0, 0, 0, &heartTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hearts"));
+	}
 
 	//Initialize Hero
 	if (!hero.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &heroTexture))

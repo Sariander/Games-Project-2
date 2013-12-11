@@ -90,6 +90,9 @@
     <ClCompile Include="thrower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="heart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="weapon.h">
@@ -156,6 +159,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="thrower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="heart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -51,6 +51,7 @@ const char HOBO_CELS_IMAGE[] = "pictures\\Hobo Minion Cel Sheet.png";
 const char BRAWLER_CELS_IMAGE[] = "pictures\\Hobo Brawler Cel Sheet.png";
 const char GAME_OVER_IMAGE[] = "pictures\\GameOver Screen.png";
 const char WIN_IMAGE[] = "pictures\\Win Screen.png";
+const char HEART_IMAGE[] = "pictures\\heartsheet.png";
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.
