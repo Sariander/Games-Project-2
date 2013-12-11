@@ -99,11 +99,15 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!heartTexture.initialize(graphics, HEART_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing heart texture!"));
 
+	int heartPos = 0;
 	for(int i = 0; i<5; i++)
 	{
 		//Initialize Hearts
-		if (!hearts[i].initialize(graphics, 0, 0, 0, &heartTexture))
+		if (!hearts[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 3, &heartTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hearts"));
+		hearts[i].setY(0);
+		hearts[i].setX(heartPos);
+		heartPos += heartNS::WIDTH;
 	}
 
 	//Initialize Hero
@@ -511,10 +515,15 @@ void AmericanHobo::update()
 			hobo[i].update(frameTime);
 			brawler[i].update(frameTime);
 		}
+
+		
+		updateHearts();
+		
 		break;
 
 	case MenuScreen:
 		mainMenu->update();
+		updateHearts();
 
 		break;
 	case ScoreScreen:
@@ -683,6 +692,10 @@ void AmericanHobo::render()
 			brawler[i].draw(frameTime);
 		}
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		for(int i=0; i<5; i++)
+		{
+			hearts[i].draw();
+		}
 		break;
 	case Level2:
 		stadium.draw();
@@ -694,6 +707,10 @@ void AmericanHobo::render()
 			brawler[i].draw(frameTime);
 		}
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		for(int i=0; i<5; i++)
+		{
+			hearts[i].draw();
+		}
 		break;
 	case Level3:
 		colosseum.draw();
@@ -705,14 +722,24 @@ void AmericanHobo::render()
 			brawler[i].draw(frameTime);
 		}
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		for(int i=0; i<5; i++)
+		{
+			hearts[i].draw();
+		}
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
 		std::stringstream j;
 		j << "Score: " << score << "       Health: " << hero.getHealth();
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		for(int i=0; i<5; i++)
+		{
+			hearts[i].draw();
+		}
 		break;
 	}
+
+
     graphics->spriteEnd();
 }
 
@@ -750,4 +777,85 @@ void AmericanHobo::resetAll()
 	mainMenu->resetAll();
     Game::resetAll();
     return;
+}
+
+void AmericanHobo::updateHearts()
+{
+	if(oldPlayerHealth != hero.getHealth())
+	{
+			oldPlayerHealth = hero.getHealth();
+			switch(oldPlayerHealth)
+			{
+			case 1:
+				hearts[0].setCurrentFrame(1);
+				hearts[1].setCurrentFrame(2);
+				hearts[2].setCurrentFrame(2);
+				hearts[3].setCurrentFrame(2);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 2:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(2);
+				hearts[2].setCurrentFrame(2);
+				hearts[3].setCurrentFrame(2);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 3:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(1);
+				hearts[2].setCurrentFrame(2);
+				hearts[3].setCurrentFrame(2);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 4:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(0);
+				hearts[2].setCurrentFrame(2);
+				hearts[3].setCurrentFrame(2);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 5:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(0);
+				hearts[2].setCurrentFrame(1);
+				hearts[3].setCurrentFrame(2);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 6:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(0);
+				hearts[2].setCurrentFrame(0);
+				hearts[3].setCurrentFrame(2);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 7:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(0);
+				hearts[2].setCurrentFrame(0);
+				hearts[3].setCurrentFrame(1);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 8:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(0);
+				hearts[2].setCurrentFrame(0);
+				hearts[3].setCurrentFrame(0);
+				hearts[4].setCurrentFrame(2);
+				break;
+			case 9:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(0);
+				hearts[2].setCurrentFrame(0);
+				hearts[3].setCurrentFrame(0);
+				hearts[4].setCurrentFrame(1);
+				break;
+			case 10:
+				hearts[0].setCurrentFrame(0);
+				hearts[1].setCurrentFrame(0);
+				hearts[2].setCurrentFrame(0);
+				hearts[3].setCurrentFrame(0);
+				hearts[4].setCurrentFrame(0);
+				break;
+			}
+	}
 }

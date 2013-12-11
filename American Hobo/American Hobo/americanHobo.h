@@ -11,6 +11,7 @@
 #include "hobo.h"
 #include "menu.h"
 #include "brawler.h"
+#include "heart.h"
 
 using std::string;
 
@@ -96,6 +97,7 @@ public:
 	void initializeLevel2();
 	void initializeLevel3();
 	void setScore(int newScore);
+	void updateHearts();
 	int getScore();
 };
 
