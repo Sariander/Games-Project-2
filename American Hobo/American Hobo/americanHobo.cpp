@@ -35,6 +35,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	currentLevel = 1;
 	returnDebounce = false;
 	fKeyDebounce = false;
+	scorePushed = false;
 	//Initialize Streets Texture
 	if (!streetsTexture.initialize(graphics, STREETS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Streets texture!"));
@@ -310,6 +311,7 @@ void AmericanHobo::gameStateUpdate()
 			currentLevel = 1;
 			initializeLevel1();
 			mainMenu->setMenuName(main);
+			score = 0;
 			returnDebounce = true;
 		}
 		else if (mainMenu->getSelectedItem() == 1)
@@ -452,7 +454,6 @@ void AmericanHobo::gameStateUpdate()
 	//Cycle back to level 1 currently, change to send back to title menu screen
 	if (gameStates == Win && !returnDebounce)
 	{
-		bool scorePushed = false;
 		if (!scorePushed)
 		{
 			string s;

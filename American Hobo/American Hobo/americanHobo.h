@@ -79,7 +79,7 @@ private:
 	float textTimer;
 	float textWait;
 
-	
+	bool scorePushed;
 
 public:
     // Constructor
