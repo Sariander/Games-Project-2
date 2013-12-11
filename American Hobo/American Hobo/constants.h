@@ -103,15 +103,15 @@ enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
 const int LEVEL_1_HOBOS = 10;
 const int LEVEL_1_BRAWLERS = 0;
 const int LEVEL_1_KILLCOUNT = 15;
-const int LEVEL_1_THROWERS = 5;
+const int LEVEL_1_THROWERS = 0;
 const int LEVEL_2_HOBOS = 5;
 const int LEVEL_2_BRAWLERS = 10;
 const int LEVEL_2_KILLCOUNT = 20;
-const int LEVEL_2_THROWERS = 5;
+const int LEVEL_2_THROWERS = 0;
 const int LEVEL_3_HOBOS = 0;
 const int LEVEL_3_BRAWLERS = 20;
 const int LEVEL_3_KILLCOUNT = 25;
-const int LEVEL_3_THROWERS = 5;
+const int LEVEL_3_THROWERS = 0;
 
 const int HOBO_NUMBER = 10;
 const int BRAWLER_NUMBER = 10;
