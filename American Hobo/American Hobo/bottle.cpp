@@ -17,6 +17,10 @@ Bottle::Bottle() : Entity()
 	currentFrame = startFrame;
 	visible = false; 
 	throwTimer = 0;
+	flameTimer = 0;
+	attackVector = D3DXVECTOR2(0.0,0.0);
+	radVector = D3DXVECTOR2(0.0,0.0);
+	posVector = D3DXVECTOR2(0.0,0.0);
 }
 
 //=============================================================================
@@ -25,41 +29,65 @@ Bottle::Bottle() : Entity()
 //=============================================================================
 void Bottle::update(Entity *hero, float frameTime)
 {
-	if(!visible)
+	if(!visible) {
+		velocity.x = hero->getVelocity().x;
+		velocity.x = hero->getVelocity().y;
+
+		spriteData.x += velocity.x * frameTime;
+		spriteData.y += velocity.y * frameTime;
+
+		velocity = D3DXVECTOR2(0, 0);
 		return;
+	}
 	
-	if(throwTimer == 0) {
-		throwTimer = bottleNS::SWING_TIME;
+	
+
+	if(attackVector == D3DXVECTOR2(0.0, 0.0) && flameTimer == 0) {
+		D3DXVECTOR2 radiusVec;
+		velocity = normalize(attackVector)*bottleNS::AIR_SPEED;
 	}
-
-	if((throwTimer -= frameTime) <= 0) {
-		visible = false;
-		active = false;
-		throwTimer = 0;
-	}
-
-
-	velocity.x = hero->getVelocity().x;
-	velocity.x = hero->getVelocity().y;
 
 	spriteData.x += velocity.x * frameTime;
 	spriteData.y += velocity.y * frameTime;
-	velocity = D3DXVECTOR2(0, 0);
+	
+
+	radVector = getPosition() - posVector;
+
+	if(radius(radVector) < bottleNS::AIR_RADIUS) {
+		flameTimer = bottleNS::FLAME_TIME;
+		velocity = D3DXVECTOR2(0.0,0.0);
+	}
+
+	if((flameTimer -= frameTime) <= 0 && attackVector == D3DXVECTOR2(0.0, 0.0)) {
+		visible = false;
+		active = false;
+		flameTimer = 0;
+	}
+
+	Entity::update(frameTime);
 }
 
 //=============================================================================
 // swing
 // Handle sword swinging
 //=============================================================================
-void Bottle::toss(Entity *hero, D3DXVECTOR2 vec)
+void Bottle::toss(Entity *hero)
 {
-
 	setFrames(bottleNS::START_THROW_FRAME,bottleNS::END_THROW_FRAME);
 	setCurrentFrame(bottleNS::START_THROW_FRAME);
 
-
-
-	
+	posVector = hero->getPosition();
+	attackVector = hero->getPosition() - D3DXVECTOR2(spriteData.x,spriteData.y);
+	radVector = attackVector;
 	visible = true;
 	active = true;
+}
+
+float Bottle::radius(D3DXVECTOR2 vec) {
+	return sqrtf(vec.x*vec.x + vec.y*vec.y);
+
+}
+
+D3DXVECTOR2 Bottle::normalize(D3DXVECTOR2 vec) {
+	return vec/radius(vec);
 }

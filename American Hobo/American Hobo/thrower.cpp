@@ -73,10 +73,8 @@ void Thrower::update(float frameTime) {
 	Image::setX(getPositionX());
 	Image::setY(getPositionY());
     Entity::update(frameTime);
+	bottle.update(this, frameTime);
 	sword.update(this, frameTime);
-
-
-
 }
 
 void Thrower::spawn(GameStates level)
@@ -113,4 +111,18 @@ void Thrower::spawn(GameStates level)
 	setActive(true);
 	setVisible(true);
 
+}
+
+void Thrower::attack(Entity* hero) {
+	bottle.toss(hero);
+}
+
+
+void Thrower::ai(float frameTime, Entity &target)
+{
+	if(active) {
+		vectorTrack(target);
+		if(targetDist < 600)
+			attack(&target);
+	}
 }

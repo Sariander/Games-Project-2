@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="armor.cpp" />
     <ClCompile Include="audio.cpp" />
+    <ClCompile Include="bottle.cpp" />
     <ClCompile Include="brawler.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
@@ -28,12 +29,14 @@
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="americanHobo.cpp" />
+    <ClCompile Include="thrower.cpp" />
     <ClCompile Include="weapon.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="armor.h" />
     <ClInclude Include="audio.h" />
+    <ClInclude Include="bottle.h" />
     <ClInclude Include="brawler.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="hobo.h" />
@@ -51,6 +54,7 @@
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
     <ClInclude Include="americanHobo.h" />
+    <ClInclude Include="thrower.h" />
     <ClInclude Include="weapon.h" />
   </ItemGroup>
   <ItemGroup>

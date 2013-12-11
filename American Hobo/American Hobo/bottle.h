@@ -19,22 +19,36 @@ namespace bottleNS
 
 	const float ANIMATION_DELAY = 0.1f;
 	const int	SPEED = 100;
+	
+	//const float AIR_TIME = .2f;
+	const float AIR_RADIUS = 300.0f;
+	const float AIR_RANGE = 30.0f;
+	const float FLAME_TIME = 0.8f;
 
-	const float SWING_TIME = .2f;
-	const float SWING_RANGE = 30;
+	const float AIR_SPEED = 10.0f;
 
 }
 
 class Bottle : public Entity 
 {
 private:
+	D3DXVECTOR2 attackVector;
+	D3DXVECTOR2 posVector;
+	D3DXVECTOR2 radVector;
+
+	float radius(D3DXVECTOR2 vec);
+	D3DXVECTOR2 normalize(D3DXVECTOR2 vec);
 
 public:
 	// constructor
 	Bottle();
-	float throwTimer;
+
+	//float throwTimer;
+	float flameTimer;
 
 	void update(Entity *hero, float frameTime);
-	void toss(Entity *hero, D3DXVECTOR2 vec);
+	void toss(Entity *hero);
+
+
 };
 #endif

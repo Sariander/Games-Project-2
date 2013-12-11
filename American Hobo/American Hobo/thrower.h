@@ -34,13 +34,13 @@ public:
 	DIRECTION dir;
 
 	void update(float frameTime);
-	//void attack();
+	void attack(Entity* hero);
 	//void damage(WEAPON);
 	//void death();
 	//void heal();
 	void spawn(GameStates level);
 
-	//void ai(float frameTime, Entity &target);
+	void ai(float frameTime, Entity &target);
 	//void vectorTrack(Entity &target);
 
 	//float getHealth() { return health; }

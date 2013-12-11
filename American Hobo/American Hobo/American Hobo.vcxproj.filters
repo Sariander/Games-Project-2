@@ -84,6 +84,12 @@
     <ClCompile Include="brawler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bottle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="thrower.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="weapon.h">
@@ -144,6 +150,12 @@
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="brawler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bottle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="thrower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

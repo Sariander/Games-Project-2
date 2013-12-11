@@ -204,8 +204,6 @@ void Hobo::spawn(GameStates level)
 		break;
 	}
 
-
-
 	setActive(true);
 	setVisible(true);
 
