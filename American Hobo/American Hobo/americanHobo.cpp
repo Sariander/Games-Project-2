@@ -409,11 +409,19 @@ void AmericanHobo::gameStateUpdate()
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
+			hobo[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		for (int i = 0; i<10; i++)
 		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+			brawler[i].setHealth(brawlerNS::HEALTH_MAX);
+		}
+		for (int i = 0; i<10; i++)
+		{
+			thrower[i].setActive(false);
+			thrower[i].setVisible(false);
+			thrower[i].setHealth(throwerNS::HEALTH_MAX);
 		}
 		score = 0;
 		mainMenu->setCurrentMoney(0);
@@ -444,17 +452,22 @@ void AmericanHobo::gameStateUpdate()
 	//Cycle back to level 1 currently, change to send back to title menu screen
 	if (gameStates == Win && !returnDebounce)
 	{
-		string s;
-		stringstream temp;
-		temp << score;
-		s = temp.str();
-		mainMenu->scoreScreen.push_back(s);
+		bool scorePushed = false;
+		if (!scorePushed)
+		{
+			string s;
+			stringstream temp;
+			temp << score;
+			s = temp.str();
+			scorePushed = true;
+			mainMenu->scoreScreen.push_back(s);
+		}
 		if (input->isKeyDown(VK_RETURN))
 		{
 			gameStates = ScoreScreen;
 			mainMenu->setMenuName(scores);
+			returnDebounce = true;
 		}
-		returnDebounce = true;
 	}
 	if (gameStates == ScoreScreen && !returnDebounce)
 	{
@@ -462,8 +475,8 @@ void AmericanHobo::gameStateUpdate()
 		{
 			gameStates = Title;
 			mainMenu->setMenuName(title);
+			returnDebounce = true;
 		}
-		returnDebounce = true;
 	}
 }
 
@@ -782,6 +795,9 @@ void AmericanHobo::render()
 	case Controls:
 		controls.draw();
 		timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
+		break;
+	case ScoreScreen:
+		mainMenu->displayMenu();
 		break;
 	case Level1:
 		streets.draw();
