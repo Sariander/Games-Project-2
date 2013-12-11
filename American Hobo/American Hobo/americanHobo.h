@@ -12,6 +12,7 @@
 #include "menu.h"
 #include "brawler.h"
 #include "heart.h"
+#include "thrower.h"
 
 using std::string;
 
@@ -36,9 +37,10 @@ private:
 	Hero hero;
 	Hobo hobo[10];
 	Brawler brawler[10];
+	Thrower thrower[5];
 	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
 	TextureManager titleTexture, controlsTexture;
-	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture;
+	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture, throwerTexture;
 	TextureManager gameOverTexture, winTexture;
 
 	TextureManager heartTexture;
@@ -56,8 +58,10 @@ private:
 	float spawnCooldown;
 	int hoboSpawnCount;
 	int brawlerSpawnCount;
+	int throwerSpawnCount;
 	int hobosActive;
 	int brawlersActive;
+	int throwersActive;
 	int killCount;
 	int currentLevel;
 	bool returnDebounce;

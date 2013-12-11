@@ -41,7 +41,7 @@ const char STADIUM_IMAGE[] = "pictures\\The Stadium.png";
 const char STREETS_IMAGE[] = "pictures\\The Streets.png";
 const char TITLE_IMAGE[] = "pictures\\Title Screen.png";
 const char CONTROLS_IMAGE[] = "pictures\\Control Screen.png";
-const char HOBO_IMAGE[] = "pictures\\Hobo Minion.png";
+const char HOBO_IMAGE[] = "pictures\\Hobo Minion.png"; 
 const char HERO_IMAGE[] = "pictures\\Hero.png";
 const char BRAWLER_IMAGE[] = "pictures\\brawler.png";
 const char SWORD_IMAGE[] = "pictures\\Sword.png";
@@ -52,6 +52,7 @@ const char BRAWLER_CELS_IMAGE[] = "pictures\\Hobo Brawler Cel Sheet.png";
 const char GAME_OVER_IMAGE[] = "pictures\\GameOver Screen.png";
 const char WIN_IMAGE[] = "pictures\\Win Screen.png";
 const char HEART_IMAGE[] = "pictures\\heartsheet.png";
+const char THROWER_CELS_IMAGE[] = "pictures\\thrower cel sheet.png";
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.
@@ -99,17 +100,22 @@ enum ownership{null, purchased, cannotpurchase};
 enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
 
 //level config
-const int LEVEL_1_HOBOS = 20;
+const int LEVEL_1_HOBOS = 10;
 const int LEVEL_1_BRAWLERS = 0;
 const int LEVEL_1_KILLCOUNT = 20;
-const int LEVEL_2_HOBOS = 20;
-const int LEVEL_2_BRAWLERS = 10;
+const int LEVEL_1_THROWERS = 10;
+const int LEVEL_2_HOBOS = 17;
+const int LEVEL_2_BRAWLERS = 8;
 const int LEVEL_2_KILLCOUNT = 30;
+const int LEVEL_2_THROWERS = 5;
 const int LEVEL_3_HOBOS = 0;
-const int LEVEL_3_BRAWLERS = 35;
+const int LEVEL_3_BRAWLERS = 29;
 const int LEVEL_3_KILLCOUNT = 35;
+const int LEVEL_3_THROWERS = 6;
+
 const int HOBO_NUMBER = 10;
 const int BRAWLER_NUMBER = 10;
+const int THROWER_NUMBER = 5;
 
 //=============================================================================
 // Function templates for safely dealing with pointer referenced items.

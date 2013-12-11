@@ -159,6 +159,9 @@ void AmericanHobo::initialize(HWND hwnd)
 		hobo[i].setVisible(false);
 	}
 
+
+
+
 	//Initialize Brawler Texture
 	if (!brawlerTexture.initialize(graphics, BRAWLER_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Brawler texture!"));
@@ -182,6 +185,30 @@ void AmericanHobo::initialize(HWND hwnd)
 		brawler[i].setVisible(false);
 	}
 
+	//thrower texture
+	if (!throwerTexture.initialize(graphics, THROWER_CELS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing thrower texture!"));
+
+
+	for(int i=0; i<5; i++)
+	{
+		//Initialize Thrower
+		if (!thrower[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &throwerTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
+		thrower[i].setCollisionType(entityNS::BOX);
+		thrower[i].setEdge(COLLISION_BOX_HOBO);
+		thrower[i].setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
+		thrower[i].setX(hobo[i].getPositionX());
+		thrower[i].setY(hobo[i].getPositionY());
+
+		thrower[i].setFrameDelay(hoboNS::ANIMATION_DELAY);
+		thrower[i].setFrames(hoboNS::RIGHT_WALK_START, hoboNS::RIGHT_WALK_END);
+		thrower[i].setCurrentFrame(hoboNS::RIGHT_WALK_START);
+
+		thrower[i].setActive(false);
+		thrower[i].setVisible(false);
+	}
+
 	//Initialize Fonts
 	timerFont = new TextDX();
 	killFont = new TextDX();
@@ -201,6 +228,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	
 	killCount = 0;
 	gameStates = Title;
+	
 
 	audio->playCue(SOUNDTRACK);
     return;
@@ -236,6 +264,8 @@ void AmericanHobo::gameStateUpdate()
 			hobo[i].setVisible(false);
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+			thrower[i].setActive(false);
+			thrower[i].setVisible(false);
 		}
 		hero.heal();
 		initializeLevel1();
@@ -249,6 +279,8 @@ void AmericanHobo::gameStateUpdate()
 			hobo[i].setVisible(false);
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+			thrower[i].setActive(false);
+			thrower[i].setVisible(false);
 		}
 		hero.heal();
 		initializeLevel2();
@@ -262,6 +294,8 @@ void AmericanHobo::gameStateUpdate()
 			hobo[i].setVisible(false);
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+			thrower[i].setActive(false);
+			thrower[i].setVisible(false);
 		}
 		hero.heal();
 		initializeLevel3();
@@ -439,6 +473,7 @@ void AmericanHobo::initializeLevel1()
 		killCount = LEVEL_1_KILLCOUNT;
 		hoboSpawnCount = LEVEL_1_HOBOS;
 		brawlerSpawnCount = LEVEL_1_BRAWLERS;
+		throwerSpawnCount = LEVEL_1_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 }
@@ -448,6 +483,7 @@ void AmericanHobo::initializeLevel2()
 		killCount = LEVEL_2_KILLCOUNT;
 		hoboSpawnCount = LEVEL_2_HOBOS;
 		brawlerSpawnCount = LEVEL_2_BRAWLERS;
+		throwerSpawnCount = LEVEL_2_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 }
@@ -457,6 +493,7 @@ void AmericanHobo::initializeLevel3()
 		killCount = LEVEL_3_KILLCOUNT;
 		hoboSpawnCount = LEVEL_3_HOBOS;
 		brawlerSpawnCount = LEVEL_3_BRAWLERS;
+		throwerSpawnCount = LEVEL_3_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
 }
@@ -481,7 +518,7 @@ void AmericanHobo::update()
 		hero.update(frameTime);
 		//sword.update(frameTime);
 		//spawn hobos and brawlers
-		if (spawnCooldown < 0 && (hoboSpawnCount > 0 || brawlerSpawnCount > 0))
+		if (spawnCooldown < 0 && (hoboSpawnCount > 0 || brawlerSpawnCount > 0 || throwerSpawnCount >0))
 		{
 			if(hoboSpawnCount > 0)
 			{
@@ -507,6 +544,18 @@ void AmericanHobo::update()
 					}
 				}
 			}
+			if(throwerSpawnCount > 0)
+			{
+				for(int i = 0; i<THROWER_NUMBER; i++)
+				{
+					if(!thrower[i].getActive())
+					{
+						thrower[i].spawn(gameStates);
+						throwerSpawnCount--;
+						break;
+					}
+				}
+			}
 			spawnCooldown = 2;
 		}
 
@@ -514,6 +563,10 @@ void AmericanHobo::update()
 		{
 			hobo[i].update(frameTime);
 			brawler[i].update(frameTime);
+		}
+		for(int i=0; i<THROWER_NUMBER; i++)
+		{
+			thrower[i].update(frameTime);
 		}
 
 		
@@ -545,6 +598,10 @@ void AmericanHobo::ai()
 		hobo[i].ai(frameTime, hero);
 		brawler[i].ai(frameTime, hero);
 	}
+	for(int i=0; i<THROWER_NUMBER; i++)
+	{
+		thrower[i].ai(frameTime, hero);
+	}
 }
 
 //=============================================================================
@@ -563,6 +620,13 @@ void AmericanHobo::collisions()
 	for(int i = 0; i < 10; i++) {
 		if(brawler[i].collidesWith(hero,collisionVector)) {
 			hero.damage(SWORD, brawler[i].getVelocity());
+
+		}
+	}
+
+	for(int i = 0; i < THROWER_NUMBER; i++) {
+		if(thrower[i].collidesWith(hero,collisionVector)) {
+			hero.damage(SWORD, thrower[i].getVelocity());
 
 		}
 	}
@@ -653,6 +717,43 @@ void AmericanHobo::collisions()
 			}
 		}
 	}
+
+	for(int i = 0; i < THROWER_NUMBER; i++) {
+		if(hero.sword.collidesWith(thrower[i],collisionVector)) {
+			switch(hero.dir) {
+			case 0:
+				break;
+			case 1:
+				if(thrower[i].damage(SWORD, D3DXVECTOR2(-1,0)))
+				{
+					killCount--;
+					setScore(getScore() + 150);
+				}
+				break;
+			case 2:
+				if(thrower[i].damage(SWORD, D3DXVECTOR2(1,0)))
+				{
+					killCount--;
+					setScore(getScore() + 150);
+				}
+				break;
+			case 3:
+				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,1)))
+				{
+					killCount--;
+					setScore(getScore() + 150);
+				}
+				break;
+			case 4:
+				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,-1)))
+				{
+					killCount--;
+					setScore(getScore() + 150);
+				}
+				break;
+			}
+		}
+	}
 }
 
 
@@ -691,6 +792,10 @@ void AmericanHobo::render()
 			hobo[i].draw(frameTime);
 			brawler[i].draw(frameTime);
 		}
+		for(int i=0; i<THROWER_NUMBER; i++)
+		{
+			thrower[i].draw(frameTime);
+		}
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		for(int i=0; i<5; i++)
 		{
@@ -706,6 +811,10 @@ void AmericanHobo::render()
 			hobo[i].draw(frameTime);
 			brawler[i].draw(frameTime);
 		}
+		for(int i=0; i<THROWER_NUMBER; i++)
+		{
+			thrower[i].draw(frameTime);
+		}
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		for(int i=0; i<5; i++)
 		{
@@ -720,6 +829,10 @@ void AmericanHobo::render()
 		{
 			hobo[i].draw(frameTime);
 			brawler[i].draw(frameTime);
+		}
+		for(int i=0; i<THROWER_NUMBER; i++)
+		{
+			thrower[i].draw(frameTime);
 		}
 		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
 		for(int i=0; i<5; i++)
@@ -756,6 +869,8 @@ void AmericanHobo::releaseAll()
 	heroTexture.onLostDevice();
 	brawlerTexture.onLostDevice();
 	swordTexture.onLostDevice();
+	heartTexture.onLostDevice();
+	throwerTexture.onLostDevice();
 	mainMenu->releaseAll();
     Game::releaseAll();
     return;
@@ -774,6 +889,8 @@ void AmericanHobo::resetAll()
 	heroTexture.onResetDevice();
 	brawlerTexture.onResetDevice();
 	swordTexture.onResetDevice();
+	heartTexture.onResetDevice();
+	throwerTexture.onResetDevice();
 	mainMenu->resetAll();
     Game::resetAll();
     return;

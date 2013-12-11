@@ -31,7 +31,7 @@ void Bottle::update(Entity *hero, float frameTime)
 {
 	if(!visible) {
 		velocity.x = hero->getVelocity().x;
-		velocity.x = hero->getVelocity().y;
+		velocity.y = hero->getVelocity().y;
 
 		spriteData.x += velocity.x * frameTime;
 		spriteData.y += velocity.y * frameTime;

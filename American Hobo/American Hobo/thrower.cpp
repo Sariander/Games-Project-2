@@ -59,9 +59,17 @@ void Thrower::update(float frameTime) {
 		}
 	}
 
+
 	VECTOR2 foo = -velocity*frameTime*speed;
 	
-	if(sword.swingTimer == 0) //Can only move when not attacking
+	
+
+	if(targetDist < 140)
+	{
+		setVelocity(VECTOR2(0, 0));
+	}
+	
+	if(sword.swingTimer == 0 && targetDist > 140) //Can only move when not attacking
 		incPosition(foo);
 
 
@@ -120,9 +128,9 @@ void Thrower::attack(Entity* hero) {
 
 void Thrower::ai(float frameTime, Entity &target)
 {
-	if(active) {
+	if(active ) {
 		vectorTrack(target);
-		if(targetDist < 600)
+		if(targetDist < 30)
 			attack(&target);
 	}
 }
