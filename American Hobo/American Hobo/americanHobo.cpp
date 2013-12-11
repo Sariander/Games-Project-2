@@ -105,8 +105,8 @@ void AmericanHobo::initialize(HWND hwnd)
 		//Initialize Hearts
 		if (!hearts[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 3, &heartTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hearts"));
-		hearts[i].setY(0);
-		hearts[i].setX(heartPos);
+		hearts[i].setY(GAME_HEIGHT/20);
+		hearts[i].setX(heartPos + 50);
 		heartPos += heartNS::WIDTH;
 	}
 
@@ -763,7 +763,7 @@ void AmericanHobo::collisions()
 void AmericanHobo::render()
 {
 	std::stringstream s;
-	s << "Score: " << score << "         Kills remaining: " << killCount << "              Health: " << hero.getHealth();
+	s << "Score: " << score << "         Kills remaining: " << killCount;
     graphics->spriteBegin();
 	switch (gameStates)
 	{
@@ -776,7 +776,7 @@ void AmericanHobo::render()
 		break;
 	case Title:
 		titleScreen.draw();
-		timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
+		//timerFont->print("Press Enter to continue", GAME_WIDTH / 2 - 100, GAME_HEIGHT / 8);
 		mainMenu->displayMenu();
 		break;
 	case Controls:
@@ -796,7 +796,7 @@ void AmericanHobo::render()
 		{
 			thrower[i].draw(frameTime);
 		}
-		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
 		for(int i=0; i<5; i++)
 		{
 			hearts[i].draw();
@@ -815,7 +815,7 @@ void AmericanHobo::render()
 		{
 			thrower[i].draw(frameTime);
 		}
-		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
 		for(int i=0; i<5; i++)
 		{
 			hearts[i].draw();
@@ -834,7 +834,7 @@ void AmericanHobo::render()
 		{
 			thrower[i].draw(frameTime);
 		}
-		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		killFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
 		for(int i=0; i<5; i++)
 		{
 			hearts[i].draw();
@@ -843,8 +843,8 @@ void AmericanHobo::render()
 	case MenuScreen:
 		mainMenu->displayMenu();
 		std::stringstream j;
-		j << "Score: " << score << "       Health: " << hero.getHealth();
-		killFont->print(s.str(), GAME_WIDTH / 4 - 75, GAME_HEIGHT / 20);
+		j << "Score: " << score;
+		killFont->print(j.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
 		for(int i=0; i<5; i++)
 		{
 			hearts[i].draw();

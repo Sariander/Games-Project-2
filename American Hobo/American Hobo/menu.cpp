@@ -6,7 +6,7 @@ Menu::Menu()
 	selectedItem = -1;	//nothing return
 	menuItemFont = new TextDX();
 	menuHeadingFont = new TextDX();
-	menuName = scores;
+	menuName = title;
 	ownage = null;
 	currentMoney = 0;
 }
@@ -35,7 +35,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	//subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
 	//subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
 	//subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
-	titleMenu.push_back("Play"); titleMenu.push_back("Controls"); titleMenu.push_back("Exit");
+	titleMenu.push_back("Play"); titleMenu.push_back("Controls");
 	retryMenu.push_back("Retry"); retryMenu.push_back("Exit");
 	scoreScreen.push_back("Scores");
 	highlightColor = graphicsNS::RED;

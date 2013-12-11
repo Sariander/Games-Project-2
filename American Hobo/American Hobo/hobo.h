@@ -33,7 +33,7 @@ namespace hoboNS
 	const float COLOR_WAIT = .2f;
 	const float HIT_DURATION = 0.1f;
 
-	const int HEALTH_MAX = 3;
+	const int HEALTH_MAX = 4;
 }
 
 // inherits from Entity class
