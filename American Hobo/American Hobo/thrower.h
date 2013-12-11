@@ -39,7 +39,7 @@ public:
 	//void death();
 	//void heal();
 	void spawn(GameStates level);
-
+	void vectorTrack(Entity &target);
 	void ai(float frameTime, Entity &target);
 	//void vectorTrack(Entity &target);
 

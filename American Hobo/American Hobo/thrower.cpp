@@ -64,7 +64,7 @@ void Thrower::update(float frameTime) {
 	
 	
 
-	if(targetDist < 140)
+	if(targetDist < 140 && targetDist >80)
 	{
 		setVelocity(VECTOR2(0, 0));
 	}
@@ -128,9 +128,30 @@ void Thrower::attack(Entity* hero) {
 
 void Thrower::ai(float frameTime, Entity &target)
 {
-	if(active ) {
+	if(active) {
 		vectorTrack(target);
 		if(targetDist < 30)
 			attack(&target);
 	}
+}
+
+void Thrower::vectorTrack(Entity &target)
+{
+	float tempX = getCenterX() - target.getCenterX();
+	if(tempX < 0)
+		tempX = -tempX;
+	float tempY = getCenterY() - target.getCenterY();
+	if(tempY < 0)
+		tempY = -tempY;
+
+	targetDist = sqrtf(tempY*tempY + tempX*tempX);
+
+
+	VECTOR2 vel = getCenterPoint() - target.getCenterPoint();
+	if(targetDist < 80)
+		vel = vel*-1;
+	
+	VECTOR2* temp = D3DXVec2Normalize(&vel, &vel);
+	
+	setVelocity(vel);
 }
