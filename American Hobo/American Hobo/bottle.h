@@ -37,6 +37,7 @@ private:
 	D3DXVECTOR2 radVector;
 
 	float radius(D3DXVECTOR2 vec);
+	float throwTimer;
 	D3DXVECTOR2 normalize(D3DXVECTOR2 vec);
 
 public:
