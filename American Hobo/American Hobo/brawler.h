@@ -18,7 +18,7 @@ namespace brawlerNS
 	const float SPEED = 50;                // 100 pixels per second
 	enum DIRECTION { NONE, LEFT, RIGHT };     // rotation direction
 	const int   TEXTURE_COLS = 0;           // texture has 8 columns
-	const int HEALTH_MAX = 5;
+	const int HEALTH_MAX = 1;
 }
 
 // inherits from Entity class

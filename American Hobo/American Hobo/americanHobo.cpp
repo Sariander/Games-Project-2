@@ -28,7 +28,6 @@ AmericanHobo::~AmericanHobo()
 void AmericanHobo::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
-
 	score = 0;
 	hobosActive = 0;
 	brawlersActive = 0;
@@ -395,11 +394,26 @@ void AmericanHobo::gameStateUpdate()
 	//Cycle back to level 1 currently, change to send back to title menu screen
 	if (gameStates == Win && !returnDebounce)
 	{
+		string s;
+		stringstream temp;
+		temp << score;
+		s = temp.str();
+		mainMenu->scoreScreen.push_back(s);
+		if (input->isKeyDown(VK_RETURN))
+		{
+			gameStates = ScoreScreen;
+			mainMenu->setMenuName(scores);
+		}
+		returnDebounce = true;
+	}
+	if (gameStates == ScoreScreen && !returnDebounce)
+	{
 		if (input->isKeyDown(VK_RETURN))
 		{
 			gameStates = Title;
 			mainMenu->setMenuName(title);
 		}
+		returnDebounce = true;
 	}
 }
 
@@ -491,7 +505,12 @@ void AmericanHobo::update()
 		mainMenu->update();
 
 		break;
+	case ScoreScreen:
+
+		break;
 	}
+	
+
 
 }
 

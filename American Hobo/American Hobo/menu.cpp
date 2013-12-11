@@ -6,7 +6,7 @@ Menu::Menu()
 	selectedItem = -1;	//nothing return
 	menuItemFont = new TextDX();
 	menuHeadingFont = new TextDX();
-	menuName = title;
+	menuName = scores;
 	ownage = null;
 	currentMoney = 0;
 }
@@ -37,6 +37,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	//subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
 	titleMenu.push_back("Play"); titleMenu.push_back("Controls"); titleMenu.push_back("Exit");
 	retryMenu.push_back("Retry"); retryMenu.push_back("Exit");
+	scoreScreen.push_back("Scores");
 	highlightColor = graphicsNS::RED;
 	normalColor = graphicsNS::WHITE;
 	menuAnchor = D3DXVECTOR2(50,50);
@@ -108,7 +109,7 @@ void Menu::update()
 		//changeToMenuWithTitle(1, sub1);
 		//changeToMenuWithTitle(2, sub2);
 		//changeToMenuWithTitle(3, sub3);
-		changeToMenuWithTitle(1, sub6);
+		//changeToMenuWithTitle(1, sub6);
 		exitMainMenu();
 		break;
 	case sub1:
@@ -176,6 +177,12 @@ void Menu::displayMenu()
 	{
 		menuAnchor = D3DXVECTOR2(300, 325);
 		buildMenuWithoutTitle(retryMenu, 0, retry);
+		menuAnchor = D3DXVECTOR2(50, 50);
+	}
+	else if (menuName == scores)
+	{
+		menuAnchor = D3DXVECTOR2(275, 50);
+		buildMenuWithTitle(scoreScreen, 0, scores);
 		menuAnchor = D3DXVECTOR2(50, 50);
 	}
 	else

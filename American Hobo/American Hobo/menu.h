@@ -93,6 +93,8 @@ public:
 	void setMenuName(menu menuGiven){ menuName = menuGiven; }
 
 	Hero hero;
+
+	vector<string> scoreScreen;
 };
 #endif
 
