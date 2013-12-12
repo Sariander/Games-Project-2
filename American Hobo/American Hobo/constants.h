@@ -29,8 +29,7 @@ const float MAX_FRAME_TIME = 1.0f/MIN_FRAME_RATE; // maximum time used in calcul
 const float FULL_HEALTH = 10;
 
 // RECT Definitions
-const RECT COLLISION_BOX_HERO_STANDING = { -5, -12, 5, 12 };
-const RECT COLLISION_BOX_HERO_ROLLING = { -0, -0, 0, 0 };
+const RECT COLLISION_BOX_HERO = { -5, -12, 5, 12 };
 const RECT COLLISION_BOX_SWORD = { -12, -12, 12, 12 };
 const RECT COLLISION_BOX_BOTTLE = { -16, -16, 16, 16 };
 const RECT COLLISION_BOX_HOBO = { -10, -19, 10, 19 };

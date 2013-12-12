@@ -115,7 +115,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!hero.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &heroTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hero"));
 	hero.setCollisionType(entityNS::BOX);
-	hero.setEdge(COLLISION_BOX_HERO_STANDING);
+	hero.setEdge(COLLISION_BOX_HERO);
 	hero.setX(GAME_WIDTH / 2);
 	hero.setY(GAME_HEIGHT / 2);
 	hero.setFrameDelay(heroNS::ANIMATION_DELAY);
@@ -277,6 +277,7 @@ void AmericanHobo::gameStateUpdate()
 	if(!input->isKeyDown(0x70) && !input->isKeyDown(0x71) && !input->isKeyDown(0x72))
 		fKeyDebounce = false;
 
+	//Level Skip Cheat Code (F1)
 	if(input->isKeyDown(0x70) && !fKeyDebounce)
 	{
 		for (int i = 0; i < HOBO_NUMBER; i++)
@@ -299,6 +300,7 @@ void AmericanHobo::gameStateUpdate()
 		initializeLevel1();
 		fKeyDebounce = true;
 	}
+	//Level Skip Cheat Code (F2)
 	if(input->isKeyDown(0x71) && !fKeyDebounce)
 	{
 		for (int i = 0; i < HOBO_NUMBER; i++)
@@ -321,6 +323,7 @@ void AmericanHobo::gameStateUpdate()
 		initializeLevel2();
 		fKeyDebounce = true;
 	}
+	//Level Skip Cheat Code (F3)
 	if(input->isKeyDown(0x72) && !fKeyDebounce)
 	{
 		for (int i = 0; i < HOBO_NUMBER; i++)
@@ -342,6 +345,11 @@ void AmericanHobo::gameStateUpdate()
 		hero.heal();
 		initializeLevel3();
 		fKeyDebounce = true;
+	}
+	//Health Cheat Code (F4)
+	if (input->isKeyDown(0x73) && !fKeyDebounce)
+	{
+		hero.heal();
 	}
 	//Hard coded title menu interface
 	if (gameStates == Title && input->isKeyDown(VK_RETURN) && !returnDebounce)
@@ -533,6 +541,9 @@ void AmericanHobo::initializeLevel1()
 		throwerSpawnCount = LEVEL_1_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
+		hero.setColorTimer(0);
+		hero.setCurrentFrame(heroNS::STAND_RIGHT);
+		hero.setVelocity(D3DXVECTOR2(0, 0));
 }
 void AmericanHobo::initializeLevel2()
 {
@@ -543,6 +554,9 @@ void AmericanHobo::initializeLevel2()
 		throwerSpawnCount = LEVEL_2_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
+		hero.setColorTimer(0);
+		hero.setCurrentFrame(heroNS::STAND_RIGHT);
+		hero.setVelocity(D3DXVECTOR2(0, 0));
 }
 void AmericanHobo::initializeLevel3()
 {
@@ -553,6 +567,9 @@ void AmericanHobo::initializeLevel3()
 		throwerSpawnCount = LEVEL_3_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
+		hero.setColorTimer(0);
+		hero.setCurrentFrame(heroNS::STAND_RIGHT);
+		hero.setVelocity(D3DXVECTOR2(0, 0));
 }
 
 void AmericanHobo::update()
