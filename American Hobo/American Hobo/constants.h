@@ -30,8 +30,8 @@ const float FULL_HEALTH = 10;
 
 // RECT Definitions
 const RECT COLLISION_BOX_HERO = { -5, -12, 5, 12 };
-const RECT COLLISION_BOX_SWORD = { -12, -12, 12, 12 };
-const RECT COLLISION_BOX_BOTTLE = { -16, -16, 16, 16 };
+const RECT COLLISION_BOX_SWORD = { -16, -16, 16, 16 };
+const RECT COLLISION_BOX_BOTTLE = { -20, -20, 20, 20 };
 const RECT COLLISION_BOX_HOBO = { -10, -19, 10, 19 };
 const RECT COLLISION_BOX_BRAWLER = { -10, -19, 10, 19 };
 const RECT COLLISION_BOX_THROWER = { -10, -19, 10, 19 };
