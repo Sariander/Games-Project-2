@@ -384,9 +384,14 @@ void AmericanHobo::gameStateUpdate()
 	//Go to menu after level 1
 	if (gameStates == Level1 && killCount == 0)
 	{
-		gameStates = MenuScreen;
+		gameStates = Transition1;
 		mainMenu->setMenuName(main);
 		currentLevel = 2;
+		timerCount = 3;
+	}
+	if (gameStates == Transition1 && timerCount < 0)
+	{
+		gameStates = MenuScreen;
 	}
 	//Hardcoded menu after level 1
 	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN) && !returnDebounce)
@@ -413,9 +418,14 @@ void AmericanHobo::gameStateUpdate()
 	//Go to menu after level 2
 	if (gameStates == Level2 && killCount == 0)
 	{
-		gameStates = MenuScreen;
+		gameStates = Transition2;
 		mainMenu->setMenuName(main);
 		currentLevel = 3;
+		timerCount = 3;
+	}
+	if (gameStates == Transition2 && timerCount < 0)
+	{
+		gameStates = MenuScreen;
 	}
 	//Hardcoded menu after level 2
 	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN) && !returnDebounce)
