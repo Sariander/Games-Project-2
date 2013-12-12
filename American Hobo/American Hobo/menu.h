@@ -48,9 +48,16 @@ private:
    int linePtr;
    COLOR_ARGB highlightColor ;
    COLOR_ARGB normalColor;
+   COLOR_ARGB boughtColor;
    bool upDepressedLastFrame;
    bool downDepressedLastFrame;
    bool mainDepressedLastFrame;
+   bool sub1DepressedLastFrame;
+   bool sub2DepressedLastFrame;
+   bool sub3DepressedLastFrame;
+   bool sub4DepressedLastFrame;
+   bool sub5DepressedLastFrame;
+   bool sub6DepressedLastFrame;
    bool titleMenuDepressedLastFrame;
    bool retryMenuDepressedLastFrame;
    menu menuName;
@@ -82,6 +89,7 @@ public:
 	void purchaseResponse();
 	void setCurrentMoney(int score);
 	int getCurrentMoney() {return currentMoney;}
+	void moneyDebugger();
 	void setMenuName(menu menuGiven){ menuName = menuGiven; }
 
 	Hero hero;

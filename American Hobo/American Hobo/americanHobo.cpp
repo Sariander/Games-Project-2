@@ -354,8 +354,6 @@ void AmericanHobo::gameStateUpdate()
 			mainMenu->setMenuName(main);
 			score = 0;
 			hero.heal();
-			hero.setCurrentFrame(heroNS::STAND_DOWN);
-			hero.setColorTimer(0);
 			scorePushed = false;
 			returnDebounce = true;
 		}
@@ -535,8 +533,6 @@ void AmericanHobo::initializeLevel1()
 		throwerSpawnCount = LEVEL_1_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
-		hero.setCurrentFrame(heroNS::STAND_DOWN);
-		hero.setColorTimer(0);
 }
 void AmericanHobo::initializeLevel2()
 {
@@ -547,8 +543,6 @@ void AmericanHobo::initializeLevel2()
 		throwerSpawnCount = LEVEL_2_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
-		hero.setCurrentFrame(heroNS::STAND_DOWN);
-		hero.setColorTimer(0);
 }
 void AmericanHobo::initializeLevel3()
 {
@@ -559,8 +553,6 @@ void AmericanHobo::initializeLevel3()
 		throwerSpawnCount = LEVEL_3_THROWERS;
 		hero.setX(GAME_WIDTH / 2);
 		hero.setY(GAME_HEIGHT / 2);
-		hero.setCurrentFrame(heroNS::STAND_DOWN);
-		hero.setColorTimer(0);
 }
 
 void AmericanHobo::update()

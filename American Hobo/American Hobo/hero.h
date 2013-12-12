@@ -85,6 +85,5 @@ public:
 	void draw(float frameTime);
 	
 	int getHealth() { return health; }
-	void setColorTimer(int val) { colorTimer = val; }
 };
 #endif
