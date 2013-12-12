@@ -791,28 +791,28 @@ void AmericanHobo::collisions()
 				if(thrower[i].damage(SWORD, D3DXVECTOR2(-1,0)))
 				{
 					killCount--;
-					setScore(getScore() + 150);
+					setScore(getScore() + 75);
 				}
 				break;
 			case 2:
 				if(thrower[i].damage(SWORD, D3DXVECTOR2(1,0)))
 				{
 					killCount--;
-					setScore(getScore() + 150);
+					setScore(getScore() + 75);
 				}
 				break;
 			case 3:
 				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,1)))
 				{
 					killCount--;
-					setScore(getScore() + 150);
+					setScore(getScore() + 75);
 				}
 				break;
 			case 4:
 				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,-1)))
 				{
 					killCount--;
-					setScore(getScore() + 150);
+					setScore(getScore() + 75);
 				}
 				break;
 			}
