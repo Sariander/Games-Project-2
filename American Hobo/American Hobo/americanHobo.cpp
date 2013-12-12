@@ -158,10 +158,13 @@ void AmericanHobo::initialize(HWND hwnd)
 
 		hobo[i].setActive(false);
 		hobo[i].setVisible(false);
+
+		if (!hobo[i].sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
+
+		hobo[i].sword.setCollisionType(entityNS::BOX);
+		hobo[i].sword.setEdge(COLLISION_BOX_SWORD);
 	}
-
-
-
 
 	//Initialize Brawler Texture
 	if (!brawlerTexture.initialize(graphics, BRAWLER_CELS_IMAGE))
@@ -173,7 +176,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		if (!brawler[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &brawlerTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
 		brawler[i].setCollisionType(entityNS::BOX);
-		brawler[i].setEdge(COLLISION_BOX_HOBO);
+		brawler[i].setEdge(COLLISION_BOX_BRAWLER);
 		brawler[i].setPosition(VECTOR2(brawlerNS::X, brawlerNS::Y));
 		brawler[i].setX(brawler[i].getPositionX());
 		brawler[i].setY(brawler[i].getPositionY());
@@ -184,6 +187,12 @@ void AmericanHobo::initialize(HWND hwnd)
 
 		brawler[i].setActive(false);
 		brawler[i].setVisible(false);
+
+		if (!brawler[i].sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
+
+		brawler[i].sword.setCollisionType(entityNS::BOX);
+		brawler[i].sword.setEdge(COLLISION_BOX_SWORD);
 	}
 
 	//thrower texture
@@ -197,7 +206,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		if (!thrower[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &throwerTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 		thrower[i].setCollisionType(entityNS::BOX);
-		thrower[i].setEdge(COLLISION_BOX_HOBO);
+		thrower[i].setEdge(COLLISION_BOX_THROWER);
 		thrower[i].setPosition(VECTOR2(hoboNS::X, hoboNS::Y));
 		thrower[i].setX(hobo[i].getPositionX());
 		thrower[i].setY(hobo[i].getPositionY());

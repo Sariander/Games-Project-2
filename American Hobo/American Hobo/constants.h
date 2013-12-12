@@ -30,10 +30,11 @@ const float FULL_HEALTH = 10;
 const float SHIP_ANGULAR_SPEED = .05f;			////////////////////////////////[added]
 
 // RECT Definitions
-const RECT COLLISION_BOX_HERO = { -14, -19, 14, 19 };
+const RECT COLLISION_BOX_HERO = { -13, -19, 13, 19 };
 const RECT COLLISION_BOX_SWORD = { -16, -16, 16, 16 };
-const RECT COLLISION_BOX_HOBO = { -14, -19, 14, 19 };
-const RECT COLLISION_BOX_BRAWLER = { -14, -19, 14, 19 };
+const RECT COLLISION_BOX_HOBO = { -13, -19, 13, 19 };
+const RECT COLLISION_BOX_BRAWLER = { -13, -19, 13, 19 };
+const RECT COLLISION_BOX_THROWER = { -13, -19, 13, 19 };
 
 // graphic images
 const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";
@@ -72,18 +73,7 @@ const char DEATH_SOUND[] = "hoboDeath";
 const UCHAR CONSOLE_KEY  = '`';         // ` key
 const UCHAR ESC_KEY      = VK_ESCAPE;   // escape key
 const UCHAR ALT_KEY      = VK_MENU;     // Alt key
-const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
-const UCHAR SHIP1_LEFT_KEY    = 'A';
-const UCHAR SHIP1_RIGHT_KEY   = 'D';
-const UCHAR SHIP1_FORWARD_KEY = 'W';
-const UCHAR SHIP1_FIRE_KEY    = 'S';
-const UCHAR SHIP2_LEFT_KEY    = VK_LEFT; // left arrow
-const UCHAR SHIP2_RIGHT_KEY   = VK_RIGHT; // right arrow
-const UCHAR SHIP2_FORWARD_KEY = VK_UP;   // up arrow
-const UCHAR SHIP2_FIRE_KEY    = VK_DOWN; // down arrow
-
-const UCHAR SHIP_LEFT_KEY    = VK_LEFT;    /////////////////////////////[added]
-const UCHAR SHIP_RIGHT_KEY   = VK_RIGHT;    
+const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key  
 
 const UCHAR HERO_LEFT_KEY = VK_LEFT;
 const UCHAR HERO_RIGHT_KEY = VK_RIGHT;
