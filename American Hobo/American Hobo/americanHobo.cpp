@@ -115,7 +115,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!hero.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &heroTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hero"));
 	hero.setCollisionType(entityNS::BOX);
-	hero.setEdge(COLLISION_BOX_HERO);
+	hero.setEdge(COLLISION_BOX_HERO_STANDING);
 	hero.setX(GAME_WIDTH / 2);
 	hero.setY(GAME_HEIGHT / 2);
 	hero.setFrameDelay(heroNS::ANIMATION_DELAY);

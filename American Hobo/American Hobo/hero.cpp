@@ -52,6 +52,7 @@ void Hero::update(float frameTime)
 		if(dashTimer < 0) {
 			dashTimer = 0;
 			dashVector = D3DXVECTOR2(0,0);
+			setEdge(COLLISION_BOX_HERO_STANDING);
 		}
 	}
 
@@ -210,6 +211,7 @@ void Hero::dash() {
 		
 		setFrames(heroNS::START_ROLL, heroNS::END_ROLL);
 		setCurrentFrame(heroNS::START_ROLL);
+		setEdge(COLLISION_BOX_HERO_ROLLING);
 	}
 }
 
