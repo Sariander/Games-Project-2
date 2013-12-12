@@ -27,15 +27,14 @@ const float MIN_FRAME_RATE = 10.0f;             // the minimum frame rate
 const float MIN_FRAME_TIME = 1.0f/FRAME_RATE;   // minimum desired time for 1 frame
 const float MAX_FRAME_TIME = 1.0f/MIN_FRAME_RATE; // maximum time used in calculations
 const float FULL_HEALTH = 10;
-const float SHIP_ANGULAR_SPEED = .05f;			////////////////////////////////[added]
 
 // RECT Definitions
-const RECT COLLISION_BOX_HERO = { -11, -18, 11, 18 };
-const RECT COLLISION_BOX_SWORD = { -16, -16, 16, 16 };
+const RECT COLLISION_BOX_HERO = { -9, -18, 9, 18 };
+const RECT COLLISION_BOX_SWORD = { -10, -10, 10, 10 };
 const RECT COLLISION_BOX_BOTTLE = { -16, -16, 16, 16 };
-const RECT COLLISION_BOX_HOBO = { -12, -19, 12, 19 };
-const RECT COLLISION_BOX_BRAWLER = { -12, -19, 12, 19 };
-const RECT COLLISION_BOX_THROWER = { -12, -19, 12, 19 };
+const RECT COLLISION_BOX_HOBO = { -9, -19, 9, 19 };
+const RECT COLLISION_BOX_BRAWLER = { -9, -19, 9, 19 };
+const RECT COLLISION_BOX_THROWER = { -9, -19, 9, 19 };
 
 // graphic images
 const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";
@@ -87,7 +86,7 @@ const UCHAR HERO_DASH_KEY = VK_SHIFT;
 // weapon types
 enum WEAPON {SWORD, TORPEDO, MILK, EYE};
 enum GameStates { Title, Controls, Level1, Level2, Level3, MenuScreen, GameOver, Win, ScoreScreen };
-enum menu{ main, sub1, sub2, sub3, sub4, sub5, sub6, title, retry, scores };
+enum menu{ main, title, retry, scores };
 enum ownership{null, purchased, cannotpurchase};
 enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
 
