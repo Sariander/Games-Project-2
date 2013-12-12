@@ -1,4 +1,3 @@
-
 #include "menu.h"
 
 Menu::Menu()
@@ -19,22 +18,7 @@ Menu::~Menu()
 void Menu::initialize(Graphics *g, Input *i)
 {
 	mainMenu.push_back("Main Menu"); 
-	//mainMenu.push_back("Weapons"); mainMenu.push_back("Armor");
-	//mainMenu.push_back("Stats"); 
 	mainMenu.push_back("Recovery - 200"); mainMenu.push_back("Projectile Ammo (Not in yet) - 100"); mainMenu.push_back("Done");
-	//subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
-	//subMenu1.push_back("Shields"); 
-	//subMenu1.push_back("Back");
-	//subMenu2.push_back("Armor"); subMenu2.push_back("Very Long Armor 1 - 800");
-	//subMenu2.push_back("Very Long Armor 2 - 1200"); subMenu2.push_back("Back");
-	//subMenu3.push_back("Stats"); subMenu3.push_back("Health Up - 300");
-	//subMenu3.push_back("Strength Up - 300"); subMenu3.push_back("Stat Up 3 - 300");
-	//subMenu3.push_back("Stat Up 4 - 300"); subMenu3.push_back("Back");
-	//subMenu4.push_back("Swords"); subMenu4.push_back("Very Long Sword 1 - 100");
-	//subMenu4.push_back("Very Long Sword 2 - 200"); subMenu4.push_back("Back");
-	//subMenu5.push_back("Shields"); subMenu5.push_back("Very Long Shield 1 - 300");
-	//subMenu5.push_back("Very Long Shield 2 - 500"); subMenu5.push_back("Back");
-	//subMenu6.push_back("Recovery"); subMenu6.push_back("25 HP - 300"); subMenu6.push_back("50 HP - 400");  subMenu6.push_back("Back");
 	titleMenu.push_back("Play"); titleMenu.push_back("Controls");
 	retryMenu.push_back("Retry"); retryMenu.push_back("Exit");
 	scoreScreen.push_back("Scores");
@@ -62,15 +46,8 @@ void Menu::initialize(Graphics *g, Input *i)
 	upDepressedLastFrame = false;
 	downDepressedLastFrame = false;
 	mainDepressedLastFrame = false;
-	sub1DepressedLastFrame = false;
-	sub2DepressedLastFrame = false;
-	sub3DepressedLastFrame = false;
-	sub4DepressedLastFrame = false;
-	sub5DepressedLastFrame = false;
-	sub6DepressedLastFrame = false;
 	titleMenuDepressedLastFrame = false;
 	done = false;
-	//currentMoney = 0;
 }
 
 void Menu::setCurrentMoney(int score)
@@ -79,8 +56,7 @@ void Menu::setCurrentMoney(int score)
 }
 
 void Menu::update()
-{
-	
+{	
 	if (input->isKeyDown(VK_UP))
 	{
 		upDepressedLastFrame = true;
@@ -106,55 +82,8 @@ void Menu::update()
 	case main:
 		pointerCheckerWrappingWithTitle(linePtr, mainMenu);
 		confirmChecker(mainDepressedLastFrame);
-		//changeToMenuWithTitle(1, sub1);
-		//changeToMenuWithTitle(2, sub2);
-		//changeToMenuWithTitle(3, sub3);
-		//changeToMenuWithTitle(1, sub6);
 		exitMainMenu();
 		break;
-	case sub1:
-		pointerCheckerWrappingWithTitle(linePtr, subMenu1);
-		confirmChecker(sub1DepressedLastFrame);
-		changeToMenuWithTitle(1, sub4);
-		changeToMenuWithTitle(2, sub5);
-		changeToMenuWithTitle(subMenu1.size() - 1, main);
-		break;
-	case sub2:
-		pointerCheckerWrappingWithTitle(linePtr, subMenu2);
-		confirmChecker(sub2DepressedLastFrame);
-		purchaseThis(1, 800);
-		purchaseThis(2, 1200);
-		changeToMenuWithTitle(subMenu2.size() - 1, main);
-		break;
-	case sub3:
-		pointerCheckerWrappingWithTitle(linePtr, subMenu3);
-		confirmChecker(sub3DepressedLastFrame);
-		purchaseThis(1, 300);
-		purchaseThis(2, 300);
-		purchaseThis(3, 300);
-		purchaseThis(4, 300);
-		changeToMenuWithTitle(subMenu3.size() - 1, main);
-		break;
-	case sub4:
-		pointerCheckerWrappingWithTitle(linePtr, subMenu4);
-		confirmChecker(sub4DepressedLastFrame);
-		purchaseThis(1, 100);
-		purchaseThis(2, 200);
-		changeToMenuWithTitle(subMenu4.size() - 1, sub1);
-		break;
-	case sub5:
-		pointerCheckerWrappingWithTitle(linePtr, subMenu5);
-		confirmChecker(sub5DepressedLastFrame);
-		purchaseThis(1, 300);
-		purchaseThis(2, 500);
-		changeToMenuWithTitle(subMenu5.size() - 1, sub1);
-		break;
-	case sub6:
-		pointerCheckerWrappingWithTitle(linePtr, subMenu6);
-		confirmChecker(sub6DepressedLastFrame);
-		purchaseHealth(1, 300, 25);
-		purchaseHealth(2, 400, 50);
-		changeToMenuWithTitle(subMenu6.size() - 1, main);
 	case title:
 		pointerCheckerWrappingWithoutTitle(linePtr, titleMenu);
 		confirmChecker(titleMenuDepressedLastFrame);
@@ -188,30 +117,6 @@ void Menu::displayMenu()
 	else
 	{
 		buildMenuWithTitle(mainMenu, 0, main);
-	}
-	if (menuName == sub1 || menuName == sub4 || menuName == sub5)
-	{
-		buildMenuWithTitle(subMenu1, 1, sub1);
-	}
-	if (menuName == sub2)
-	{
-		buildMenuWithTitle(subMenu2, 1, sub2);
-	}
-	if (menuName == sub3)
-	{
-		buildMenuWithTitle(subMenu3, 1, sub3);
-	}
-	if (menuName == sub4)
-	{
-		buildMenuWithTitle(subMenu4, 2, sub4);
-	}
-	if (menuName == sub5)
-	{
-		buildMenuWithTitle(subMenu5, 2, sub5);
-	}
-	if (menuName == sub6)
-	{
-		buildMenuWithTitle(subMenu6, 1, sub6);
 	}
 	purchaseResponse();
 }
@@ -372,13 +277,4 @@ void Menu::resetAll()
 	menuHeadingFont->onResetDevice();
 	menuItemFontHighlight->onResetDevice();
 	return;
-}
-
-void Menu::moneyDebugger()
-{
-	if (input->isKeyDown('1') && input->isKeyDown('0'))
-	{
-		menuItemFont->print("Cheating in progress...", GAME_WIDTH / 4 - 100, GAME_HEIGHT / 60);
-		currentMoney += 10;
-	}
 }
