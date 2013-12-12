@@ -19,7 +19,8 @@ namespace throwerNS
 	const float SPEED = 50;                // 100 pixels per second
 	enum DIRECTION { NONE, LEFT, RIGHT };     // rotation direction
 	const int   TEXTURE_COLS = 0;           // texture has 8 columns
-	const int HEALTH_MAX = 5;
+	const float ANIMATION_DELAY = 0.25f;
+	const int HEALTH_MAX = 2;
 }
 
 // inherits from Entity class
