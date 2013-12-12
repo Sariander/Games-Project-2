@@ -544,6 +544,7 @@ void AmericanHobo::initializeLevel1()
 		hero.setColorTimer(0);
 		hero.setCurrentFrame(heroNS::STAND_RIGHT);
 		hero.setVelocity(D3DXVECTOR2(0, 0));
+		hero.setHitTimer(0);
 }
 void AmericanHobo::initializeLevel2()
 {
@@ -557,6 +558,7 @@ void AmericanHobo::initializeLevel2()
 		hero.setColorTimer(0);
 		hero.setCurrentFrame(heroNS::STAND_RIGHT);
 		hero.setVelocity(D3DXVECTOR2(0, 0));
+		hero.setHitTimer(0);
 }
 void AmericanHobo::initializeLevel3()
 {
@@ -570,6 +572,7 @@ void AmericanHobo::initializeLevel3()
 		hero.setColorTimer(0);
 		hero.setCurrentFrame(heroNS::STAND_RIGHT);
 		hero.setVelocity(D3DXVECTOR2(0, 0));
+		hero.setHitTimer(0);
 }
 
 void AmericanHobo::update()

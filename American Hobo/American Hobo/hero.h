@@ -86,5 +86,6 @@ public:
 	
 	int getHealth() { return health; }
 	void setColorTimer(int val) { colorTimer = val; }
+	void setHitTimer(int val) {hitTimer = val;}
 };
 #endif
