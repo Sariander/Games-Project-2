@@ -277,71 +277,87 @@ void AmericanHobo::gameStateUpdate()
 	if(!input->isKeyDown(0x70) && !input->isKeyDown(0x71) && !input->isKeyDown(0x72))
 		fKeyDebounce = false;
 
+	//Level Skip Cheat Code (F1)
 	if(input->isKeyDown(0x70) && !fKeyDebounce)
 	{
 		for (int i = 0; i < HOBO_NUMBER; i++)
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
+			hobo[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		for (int i = 0; i < BRAWLER_NUMBER; i++)
 		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+			brawler[i].setHealth(hoboNS::HEALTH_MAX);
 
 		}
 		for (int i = 0; i < THROWER_NUMBER; i++)
 		{
 			thrower[i].setActive(false);
 			thrower[i].setVisible(false);
+			thrower[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		hero.heal();
 		initializeLevel1();
 		fKeyDebounce = true;
 	}
+	//Level Skip Cheat Code (F2)
 	if(input->isKeyDown(0x71) && !fKeyDebounce)
 	{
 		for (int i = 0; i < HOBO_NUMBER; i++)
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
+			hobo[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		for (int i = 0; i < BRAWLER_NUMBER; i++)
 		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
-
+			brawler[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		for (int i = 0; i < THROWER_NUMBER; i++)
 		{
 			thrower[i].setActive(false);
 			thrower[i].setVisible(false);
+			thrower[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		hero.heal();
 		initializeLevel2();
 		fKeyDebounce = true;
 	}
+	//Level Skip Cheat Code (F3)
 	if(input->isKeyDown(0x72) && !fKeyDebounce)
 	{
 		for (int i = 0; i < HOBO_NUMBER; i++)
 		{
 			hobo[i].setActive(false);
 			hobo[i].setVisible(false);
+			hobo[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		for (int i = 0; i < BRAWLER_NUMBER; i++)
 		{
 			brawler[i].setActive(false);
 			brawler[i].setVisible(false);
+			brawler[i].setHealth(hoboNS::HEALTH_MAX);
 
 		}
 		for (int i = 0; i < THROWER_NUMBER; i++)
 		{
 			thrower[i].setActive(false);
 			thrower[i].setVisible(false);
+			thrower[i].setHealth(hoboNS::HEALTH_MAX);
 		}
 		hero.heal();
 		initializeLevel3();
 		fKeyDebounce = true;
+	}
+	//Health Cheat Code (F4)
+	if (input->isKeyDown(0x73) && !fKeyDebounce)
+	{
+		hero.heal();
 	}
 	//Hard coded title menu interface
 	if (gameStates == Title && input->isKeyDown(VK_RETURN) && !returnDebounce)
