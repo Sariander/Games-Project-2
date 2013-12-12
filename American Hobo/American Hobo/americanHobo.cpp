@@ -346,6 +346,8 @@ void AmericanHobo::gameStateUpdate()
 			initializeLevel1();
 			mainMenu->setMenuName(main);
 			score = 0;
+			hero.heal();
+			scorePushed = false;
 			returnDebounce = true;
 		}
 		else if (mainMenu->getSelectedItem() == 1)

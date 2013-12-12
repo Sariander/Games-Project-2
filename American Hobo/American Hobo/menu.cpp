@@ -21,7 +21,7 @@ void Menu::initialize(Graphics *g, Input *i)
 	mainMenu.push_back("Main Menu"); 
 	//mainMenu.push_back("Weapons"); mainMenu.push_back("Armor");
 	//mainMenu.push_back("Stats"); 
-	mainMenu.push_back("Recovery"); mainMenu.push_back("Projectile Ammo"); mainMenu.push_back("Done");
+	mainMenu.push_back("Recovery - 200"); mainMenu.push_back("Projectile Ammo (Not in yet) - 100"); mainMenu.push_back("Done");
 	//subMenu1.push_back("Weapons"); subMenu1.push_back("Swords"); 
 	//subMenu1.push_back("Shields"); 
 	//subMenu1.push_back("Back");
