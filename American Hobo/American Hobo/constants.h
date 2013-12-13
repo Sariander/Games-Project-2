@@ -85,7 +85,7 @@ const UCHAR HERO_DASH_KEY = VK_SHIFT;
 
 // weapon types
 enum WEAPON {SWORD, TORPEDO, MILK, EYE};
-enum GameStates { Title, Controls, Level1, Level2, Level3, MenuScreen, GameOver, Win, ScoreScreen, Transition1, Transition2 };
+enum GameStates { Title, Controls, Level1, Level2, Level3, MenuScreen, GameOver, Win, ScoreScreen, Transition1, Transition2, Transition3 };
 enum menu{ main, title, retry, scores };
 enum ownership{null, purchased, cannotpurchase};
 enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};

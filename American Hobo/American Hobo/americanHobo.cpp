@@ -356,14 +356,8 @@ void AmericanHobo::gameStateUpdate()
 	{
 		if (mainMenu->getSelectedItem() == 0)
 		{
-			gameStates = Level1;
-			currentLevel = 1;
-			initializeLevel1();
-			mainMenu->setMenuName(main);
-			score = 0;
-			hero.heal();
-			scorePushed = false;
-			returnDebounce = true;
+			gameStates = Transition1;
+			timerCount = 3;
 		}
 		else if (mainMenu->getSelectedItem() == 1)
 		{
@@ -381,15 +375,26 @@ void AmericanHobo::gameStateUpdate()
 		gameStates = Title;
 		returnDebounce = true;
 	}
+	if (gameStates == Transition1 && timerCount < 0)
+	{
+		gameStates = Level1;
+		currentLevel = 1;
+		initializeLevel1();
+		mainMenu->setMenuName(main);
+		score = 0;
+		hero.heal();
+		scorePushed = false;
+		returnDebounce = true;
+	}
 	//Go to menu after level 1
 	if (gameStates == Level1 && killCount == 0)
 	{
-		gameStates = Transition1;
+		gameStates = Transition2;
 		mainMenu->setMenuName(main);
 		currentLevel = 2;
 		timerCount = 3;
 	}
-	if (gameStates == Transition1 && timerCount < 0)
+	if (gameStates == Transition2 && timerCount < 0)
 	{
 		gameStates = MenuScreen;
 	}
@@ -418,12 +423,12 @@ void AmericanHobo::gameStateUpdate()
 	//Go to menu after level 2
 	if (gameStates == Level2 && killCount == 0)
 	{
-		gameStates = Transition2;
+		gameStates = Transition3;
 		mainMenu->setMenuName(main);
 		currentLevel = 3;
 		timerCount = 3;
 	}
-	if (gameStates == Transition2 && timerCount < 0)
+	if (gameStates == Transition3 && timerCount < 0)
 	{
 		gameStates = MenuScreen;
 	}
