@@ -99,18 +99,18 @@ enum ownership{null, purchased, cannotpurchase};
 enum DIRECTION { NONE, LEFT, RIGHT, DOWN, UP};
 
 //level config
-const int LEVEL_1_HOBOS = 0;
+const int LEVEL_1_HOBOS = 10;
 const int LEVEL_1_BRAWLERS = 0;
-const int LEVEL_1_THROWERS = 5;
+const int LEVEL_1_THROWERS = 0;
 const int LEVEL_1_KILLCOUNT = LEVEL_1_HOBOS + LEVEL_1_BRAWLERS + LEVEL_1_THROWERS;
 const int LEVEL_2_HOBOS = 5;
 const int LEVEL_2_BRAWLERS = 10;
 const int LEVEL_2_THROWERS = 0;
 const int LEVEL_2_KILLCOUNT = LEVEL_2_HOBOS + LEVEL_2_BRAWLERS + LEVEL_2_THROWERS;
 const int LEVEL_3_HOBOS = 0;
-const int LEVEL_3_BRAWLERS = 20;
+const int LEVEL_3_BRAWLERS = 10;
 const int LEVEL_3_THROWERS = 0;
-const int LEVEL_3_KILLCOUNT = LEVEL_3_HOBOS + LEVEL_3_BRAWLERS + LEVEL_3_THROWERS;
+const int LEVEL_3_KILLCOUNT = LEVEL_3_HOBOS + LEVEL_3_BRAWLERS + LEVEL_3_THROWERS + 1;
 
 const int LEVEL_TRANSITION_DELAY = 2;
 

@@ -30,21 +30,6 @@
     <ClCompile Include="winmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="americanHobo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hero.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sword.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hobo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="item.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
@@ -81,22 +66,37 @@
     <ClCompile Include="input.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="brawler.cpp">
+    <ClCompile Include="americanHobo %28everyone%29.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bottle.cpp">
+    <ClCompile Include="boss %28Miller, Young%29.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="thrower.cpp">
+    <ClCompile Include="bottle %28Miller, Kershaw%29.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="heart.cpp">
+    <ClCompile Include="brawler%28Miller, Kershaw%29.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="boss.cpp">
+    <ClCompile Include="heart%28Kershaw%29.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="spikeball.cpp">
+    <ClCompile Include="hero %28Young, Miller%29.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hobo %28Kershaw, Miller%29.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="menu %28Young%29.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spikeball %28Miller%29.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sword %28Young%29.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="thrower %28Miller, Kershaw%29.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

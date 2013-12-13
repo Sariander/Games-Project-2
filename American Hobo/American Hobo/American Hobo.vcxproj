@@ -13,26 +13,26 @@
   <ItemGroup>
     <ClCompile Include="armor.cpp" />
     <ClCompile Include="audio.cpp" />
-    <ClCompile Include="boss.cpp" />
-    <ClCompile Include="bottle.cpp" />
-    <ClCompile Include="brawler.cpp" />
+    <ClCompile Include="boss %28Miller, Young%29.cpp" />
+    <ClCompile Include="bottle %28Miller, Kershaw%29.cpp" />
+    <ClCompile Include="brawler%28Miller, Kershaw%29.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="heart.cpp" />
-    <ClCompile Include="hero.cpp" />
-    <ClCompile Include="hobo.cpp" />
+    <ClCompile Include="heart%28Kershaw%29.cpp" />
+    <ClCompile Include="hero %28Young, Miller%29.cpp" />
+    <ClCompile Include="hobo %28Kershaw, Miller%29.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="item.cpp" />
-    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="menu %28Young%29.cpp" />
     <ClCompile Include="shield.cpp" />
-    <ClCompile Include="spikeball.cpp" />
-    <ClCompile Include="sword.cpp" />
+    <ClCompile Include="spikeball %28Miller%29.cpp" />
+    <ClCompile Include="sword %28Young%29.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
-    <ClCompile Include="americanHobo.cpp" />
-    <ClCompile Include="thrower.cpp" />
+    <ClCompile Include="americanHobo %28everyone%29.cpp" />
+    <ClCompile Include="thrower %28Miller, Kershaw%29.cpp" />
     <ClCompile Include="weapon.cpp" />
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
