@@ -258,10 +258,11 @@ void AmericanHobo::initialize(HWND hwnd)
 		boss.sword[i].setActive(false);
 		boss.sword[i].setVisible(false);
 		*/
-		if (!boss.spikeball[i].initialize(this, spikeballNS::WIDTH, spikeballNS::HEIGHT, spikeballNS::TEXTURE_COLS, &bossWepTM))
+		if (!boss.spikeball[i].initialize(this, 0, 0, spikeballNS::TEXTURE_COLS, &bossWepTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
-		//boss.spikeball[i].setCollisionType(entityNS::BOX);
-		//boss.spikeball[i].setCollisionRadius(swordNS::WIDTH / 2);
+		boss.spikeball[i].setCollisionType(entityNS::BOX);
+		boss.spikeball[i].setEdge(COLLISION_BOX_SPIKEBALL);
+		//boss.spikeball[i].setCollisionRadius(swordNS::WIDTH);
 		boss.spikeball[i].setActive(false);
 		boss.spikeball[i].setVisible(false);
 		boss.spikeball[i].setX(boss.getX());
@@ -824,12 +825,9 @@ void AmericanHobo::collisions()
 	for (int i = 0; i < bossNS::NUM_BALLS; i++) {
 		if (boss.spikeball[i].collidesWith(hero, collisionVector)) {
 			hero.damage(SWORD, boss.spikeball[i].getVelocity());
-			char buff[] = "HEY LISTEN!";
-			OutputDebugString(buff);
-
 		}
 	}
-	
+
 	for(int i = 0; i < HOBO_NUMBER; i++) {
 		if(hero.sword.collidesWith(hobo[i],collisionVector)) {
 			switch(hero.dir) {
@@ -1041,16 +1039,17 @@ void AmericanHobo::render()
 		{
 			thrower[i].draw(frameTime);
 		}
-		killFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
-		for(int i=0; i<5; i++)
-		{
-			hearts[i].draw();
-		}
 		boss.draw(frameTime);
 		for (int i = 0; i < bossNS::NUM_BALLS; ++i)
 		{
 			//boss.sword[i].draw();
 			boss.spikeball[i].draw();
+		}
+
+		killFont->print(s.str(), GAME_WIDTH / 2 - 100, GAME_HEIGHT / 20);
+		for(int i=0; i<5; i++)
+		{
+			hearts[i].draw();
 		}
 
 		break;

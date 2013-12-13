@@ -8,10 +8,11 @@
 namespace spikeballNS {
 	const int   WIDTH = 40;
 	const int   HEIGHT = 40;
+	const int	OFFSET = 24;
+
 	const float FIRE_DELAY = 1.5f;
 
 	const int   TEXTURE_COLS = 0;
-
 	const float ANIMATION_DELAY = 0.1f;
 }
 
@@ -23,7 +24,7 @@ private:
 public:
 	// constructor
 	Spikeball();
-	void update(Entity *hero, float frameTime);
+	//void update(Entity *hero, float frameTime);
 
 };
 #endif

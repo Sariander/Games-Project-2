@@ -75,7 +75,7 @@ void Boss::update(float frameTime) {
 	for (int i = 0; i < bossNS::NUM_BALLS; ++i)
 	{
 		//sword[i].update(this, frameTime);
-		spikeball[i].update(this,frameTime);
+		spikeball[i].update(frameTime);
 	}
 }
 
