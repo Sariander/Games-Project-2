@@ -77,34 +77,34 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
 
 	//Initialize Game Over Texture
-	if (!gameOverTexture.initialize(graphics, GAME_OVER_IMAGE))
+	if (!gameOverTM.initialize(graphics, GAME_OVER_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Game Over texture!"));
 
 	//Initialize Game Over
-	if (!gameOver.initialize(graphics, 0, 0, 0, &gameOverTexture))
+	if (!gameOver.initialize(graphics, 0, 0, 0, &gameOverTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Game Over"));
 
 	//Initialize Win Texture
-	if (!winTexture.initialize(graphics, WIN_IMAGE))
+	if (!winTM.initialize(graphics, WIN_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Win texture!"));
 
 	//Initialize Win
-	if (!win.initialize(graphics, 0, 0, 0, &winTexture))
+	if (!win.initialize(graphics, 0, 0, 0, &winTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Win"));
 
 	//Initialize Hero Texture
-	if (!heroTexture.initialize(graphics, HERO_CELS_IMAGE))
+	if (!heroTM.initialize(graphics, HERO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hero texture!"));
 
 	//Initialize Heart Texture
-	if (!heartTexture.initialize(graphics, HEART_IMAGE))
+	if (!heartTM.initialize(graphics, HEART_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing heart texture!"));
 
 	int heartPos = 0;
 	for(int i = 0; i<5; i++)
 	{
 		//Initialize Hearts
-		if (!hearts[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 3, &heartTexture))
+		if (!hearts[i].initialize(graphics, heartNS::WIDTH, heartNS::HEIGHT, 3, &heartTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hearts"));
 		hearts[i].setY(GAME_HEIGHT/20);
 		hearts[i].setX(heartPos + 50);
@@ -112,7 +112,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	}
 
 	//Initialize Hero
-	if (!hero.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &heroTexture))
+	if (!hero.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &heroTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hero"));
 	hero.setCollisionType(entityNS::BOX);
 	hero.setEdge(COLLISION_BOX_HERO);
@@ -123,10 +123,10 @@ void AmericanHobo::initialize(HWND hwnd)
 	hero.setCurrentFrame(heroNS::STAND_RIGHT);
 
 	//Initialize Sword Texture
-	if (!swordTexture.initialize(graphics, SWORD_CELS_IMAGE))
+	if (!swordTM.initialize(graphics, SWORD_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Sword texture!"));
 
-	if (!hero.sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTexture))
+	if (!hero.sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
 
 	hero.sword.setCollisionType(entityNS::BOX);
@@ -135,13 +135,13 @@ void AmericanHobo::initialize(HWND hwnd)
 	hero.sword.setY(GAME_HEIGHT / 2);
 
 	//Initialize Hobo Texture
-	if (!hoboTexture.initialize(graphics, HOBO_CELS_IMAGE))
+	if (!hoboTM.initialize(graphics, HOBO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hobo texture!"));
 
 	for(int i=0; i<HOBO_NUMBER; i++)
 	{
 		//Initialize Hobo
-		if (!hobo[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &hoboTexture))
+		if (!hobo[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &hoboTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 		hobo[i].setCollisionType(entityNS::BOX);
 		hobo[i].setEdge(COLLISION_BOX_HOBO);
@@ -156,7 +156,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		hobo[i].setActive(false);
 		hobo[i].setVisible(false);
 
-		if (!hobo[i].sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTexture))
+		if (!hobo[i].sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
 
 		hobo[i].sword.setCollisionType(entityNS::BOX);
@@ -164,13 +164,13 @@ void AmericanHobo::initialize(HWND hwnd)
 	}
 
 	//Initialize Brawler Texture
-	if (!brawlerTexture.initialize(graphics, BRAWLER_CELS_IMAGE))
+	if (!brawlerTM.initialize(graphics, BRAWLER_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Brawler texture!"));
 
 	for(int i=0; i<BRAWLER_NUMBER; i++)
 	{
 		//initialize Brawler
-		if (!brawler[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &brawlerTexture))
+		if (!brawler[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &brawlerTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Brawler"));
 		brawler[i].setCollisionType(entityNS::BOX);
 		brawler[i].setEdge(COLLISION_BOX_BRAWLER);
@@ -185,7 +185,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		brawler[i].setActive(false);
 		brawler[i].setVisible(false);
 
-		if (!brawler[i].sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTexture))
+		if (!brawler[i].sword.initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &swordTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Sword"));
 
 		brawler[i].sword.setCollisionType(entityNS::BOX);
@@ -193,17 +193,17 @@ void AmericanHobo::initialize(HWND hwnd)
 	}
 
 	//thrower texture
-	if (!throwerTexture.initialize(graphics, THROWER_CELS_IMAGE))
+	if (!throwerTM.initialize(graphics, THROWER_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing thrower texture!"));
 
 	//Initialize bottle Texture
-	if (!bottleTexture.initialize(graphics, MOLOTOV_CELS_IMAGE))
+	if (!bottleTM.initialize(graphics, MOLOTOV_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing molotov texture!"));
 
 	for(int i=0; i<THROWER_NUMBER; i++)
 	{
 		//Initialize Thrower
-		if (!thrower[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &throwerTexture))
+		if (!thrower[i].initialize(this, hoboNS::WIDTH, hoboNS::HEIGHT, hoboNS::TEXTURE_COLS, &throwerTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 		thrower[i].setCollisionType(entityNS::BOX);
 		thrower[i].setEdge(COLLISION_BOX_THROWER);
@@ -218,7 +218,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		thrower[i].setActive(false);
 		thrower[i].setVisible(false);
 
-		if (!thrower[i].bottle.initialize(this, bottleNS::WIDTH, bottleNS::HEIGHT, bottleNS::TEXTURE_COLS, &bottleTexture))
+		if (!thrower[i].bottle.initialize(this, bottleNS::WIDTH, bottleNS::HEIGHT, bottleNS::TEXTURE_COLS, &bottleTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 
 		thrower[i].bottle.setCollisionType(entityNS::BOX);
@@ -1000,12 +1000,12 @@ void AmericanHobo::releaseAll()
 	streetsTM.onLostDevice();
 	stadiumTM.onLostDevice();
 	colosseumTM.onLostDevice();
-	hoboTexture.onLostDevice();
-	heroTexture.onLostDevice();
-	brawlerTexture.onLostDevice();
-	swordTexture.onLostDevice();
-	heartTexture.onLostDevice();
-	throwerTexture.onLostDevice();
+	hoboTM.onLostDevice();
+	heroTM.onLostDevice();
+	brawlerTM.onLostDevice();
+	swordTM.onLostDevice();
+	heartTM.onLostDevice();
+	throwerTM.onLostDevice();
 	mainMenu->releaseAll();
     Game::releaseAll();
     return;
@@ -1023,12 +1023,12 @@ void AmericanHobo::resetAll()
 	streetsTM.onResetDevice();
 	stadiumTM.onResetDevice();
 	colosseumTM.onResetDevice();
-	hoboTexture.onResetDevice();
-	heroTexture.onResetDevice();
-	brawlerTexture.onResetDevice();
-	swordTexture.onResetDevice();
-	heartTexture.onResetDevice();
-	throwerTexture.onResetDevice();
+	hoboTM.onResetDevice();
+	heroTM.onResetDevice();
+	brawlerTM.onResetDevice();
+	swordTM.onResetDevice();
+	heartTM.onResetDevice();
+	throwerTM.onResetDevice();
 	mainMenu->resetAll();
     Game::resetAll();
     return;
