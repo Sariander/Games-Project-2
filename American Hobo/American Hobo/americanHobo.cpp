@@ -228,7 +228,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	}
 
 	//Intialize Transition 1 Texture
-	if (!transition1TM.initialize(graphics, STREETS_IMAGE))
+	if (!transition1TM.initialize(graphics, TRANSITION1_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition1 texture!"));
 
 	//Intialize Transition 1
@@ -236,7 +236,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
 
 	//Initialize Transition 2 Texture
-	if (!transition2TM.initialize(graphics, STADIUM_IMAGE))
+	if (!transition2TM.initialize(graphics, TRANSITION2_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition2 texture!"));
 
 	//Initialize Transition 2
@@ -244,7 +244,7 @@ void AmericanHobo::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
 
 	//Initialize Transition 3 Texture
-	if (!transition3TM.initialize(graphics, COLOSSEUM_IMAGE))
+	if (!transition3TM.initialize(graphics, TRANSITION3_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition2 texture!"));
 
 	//Initialize Transition 3
