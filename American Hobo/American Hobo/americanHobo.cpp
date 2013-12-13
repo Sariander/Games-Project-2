@@ -220,10 +220,10 @@ void AmericanHobo::initialize(HWND hwnd)
 		thrower[i].setVisible(false);
 
 		if (!thrower[i].bottle.initialize(this, bottleNS::WIDTH, bottleNS::HEIGHT, bottleNS::TEXTURE_COLS, &bottleTM))
-			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing bottle"));
 
 		thrower[i].bottle.setCollisionType(entityNS::BOX);
-		brawler[i].sword.setEdge(COLLISION_BOX_BOTTLE);
+		thrower[i].bottle.setEdge(COLLISION_BOX_BOTTLE);
 		thrower[i].bottle.setActive(false);
 		thrower[i].bottle.setVisible(false);
 	}
