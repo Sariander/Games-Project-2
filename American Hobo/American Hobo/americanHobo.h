@@ -23,27 +23,21 @@ class AmericanHobo : public Game
 private:
     // game items 
 
-	Image earth;
-	Image menuScreen;
-	Image textScreen;
-	Image playButton;
-	Image gameoverButton;
-	Image winButton;
+	Image menuScreen, textScreen;
+	Image winButton, gameoverButton, playButton;
 	Image hearts[5];
+	Image transition1, transition2, transition3;
 
 	Image streets, stadium, colosseum;
 	Image titleScreen, controls, gameOver, win;
-	//Sword sword;
 	Hero hero;
-	Hobo hobo[10];
-	Brawler brawler[10];
-	Thrower thrower[5];
-	TextureManager streetsTexture, stadiumTexture, colosseumTexture;
-	TextureManager titleTexture, controlsTexture;
-	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture, throwerTexture;
-	TextureManager gameOverTexture, winTexture;
-	TextureManager bottleTexture;
-	TextureManager heartTexture;
+	Hobo hobo[HOBO_NUMBER];
+	Brawler brawler[BRAWLER_NUMBER];
+	Thrower thrower[THROWER_NUMBER];
+	TextureManager streetsTM, stadiumTM, colosseumTM;
+	TextureManager titleTM, controlsTM, transition1TM, transition2TM, transition3TM;
+	TextureManager heroTexture, swordTexture, hoboTexture, brawlerTexture, throwerTexture, bottleTexture;
+	TextureManager gameOverTexture, winTexture, heartTexture;
 
 	GameStates gameStates;
 
@@ -68,7 +62,6 @@ private:
 	bool fKeyDebounce;
 
 	int oldPlayerHealth;
-
 
 	bool menu;
 	bool text;

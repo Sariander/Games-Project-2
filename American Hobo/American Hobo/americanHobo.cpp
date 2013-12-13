@@ -37,43 +37,43 @@ void AmericanHobo::initialize(HWND hwnd)
 	fKeyDebounce = false;
 	scorePushed = false;
 	//Initialize Streets Texture
-	if (!streetsTexture.initialize(graphics, STREETS_IMAGE))
+	if (!streetsTM.initialize(graphics, STREETS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Streets texture!"));
 
 	//Initialize Streets
-	if (!streets.initialize(graphics, 0, 0, 0, &streetsTexture))
+	if (!streets.initialize(graphics, 0, 0, 0, &streetsTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Streets"));
 
 	//Initialize Stadium Texture
-	if (!stadiumTexture.initialize(graphics, STADIUM_IMAGE))
+	if (!stadiumTM.initialize(graphics, STADIUM_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Stadium texture!"));
 
 	//Initialize Stadium
-	if (!stadium.initialize(graphics, 0, 0, 0, &stadiumTexture))
+	if (!stadium.initialize(graphics, 0, 0, 0, &stadiumTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Stadium"));
 
 	//Initialize Colosseum Texture
-	if (!colosseumTexture.initialize(graphics, COLOSSEUM_IMAGE))
+	if (!colosseumTM.initialize(graphics, COLOSSEUM_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Colosseum texture!"));
 
 	//Initialize Colosseum
-	if (!colosseum.initialize(graphics, 0, 0, 0, &colosseumTexture))
+	if (!colosseum.initialize(graphics, 0, 0, 0, &colosseumTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Colosseum"));
 
 	//Intialize Title Texture
-	if (!titleTexture.initialize(graphics, TITLE_IMAGE))
+	if (!titleTM.initialize(graphics, TITLE_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Title texture!"));
 
 	//Intialize Title
-	if (!titleScreen.initialize(graphics, 0, 0, 0, &titleTexture))
+	if (!titleScreen.initialize(graphics, 0, 0, 0, &titleTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Title"));
 
 	//Intialize Controls Texture
-	if (!controlsTexture.initialize(graphics, CONTROLS_IMAGE))
+	if (!controlsTM.initialize(graphics, CONTROLS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Controls texture!"));
 
 	//Intialize Controls
-	if (!controls.initialize(graphics, 0, 0, 0, &controlsTexture))
+	if (!controls.initialize(graphics, 0, 0, 0, &controlsTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
 
 	//Initialize Game Over Texture
@@ -122,7 +122,6 @@ void AmericanHobo::initialize(HWND hwnd)
 	hero.setFrames(heroNS::STAND_RIGHT, heroNS::STAND_RIGHT);
 	hero.setCurrentFrame(heroNS::STAND_RIGHT);
 
-
 	//Initialize Sword Texture
 	if (!swordTexture.initialize(graphics, SWORD_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Sword texture!"));
@@ -135,11 +134,9 @@ void AmericanHobo::initialize(HWND hwnd)
 	hero.sword.setX(GAME_WIDTH / 2 + 60);
 	hero.sword.setY(GAME_HEIGHT / 2);
 
-
 	//Initialize Hobo Texture
 	if (!hoboTexture.initialize(graphics, HOBO_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Hobo texture!"));
-
 
 	for(int i=0; i<HOBO_NUMBER; i++)
 	{
@@ -229,6 +226,30 @@ void AmericanHobo::initialize(HWND hwnd)
 		thrower[i].bottle.setActive(false);
 		thrower[i].bottle.setVisible(false);
 	}
+
+	//Intialize Transition 1 Texture
+	if (!transition1TM.initialize(graphics, STREETS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition1 texture!"));
+
+	//Intialize Transition 1
+	if (!transition1.initialize(graphics, 0, 0, 0, &transition1TM))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
+
+	//Initialize Transition 2 Texture
+	if (!transition2TM.initialize(graphics, STADIUM_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition2 texture!"));
+
+	//Initialize Transition 2
+	if (!transition2.initialize(graphics, 0, 0, 0, &transition2TM))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
+
+	//Initialize Transition 3 Texture
+	if (!transition3TM.initialize(graphics, COLOSSEUM_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition2 texture!"));
+
+	//Initialize Transition 3
+	if (!transition3.initialize(graphics, 0, 0, 0, &transition3TM))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
 
 	//Initialize Fonts
 	timerFont = new TextDX();
@@ -866,6 +887,15 @@ void AmericanHobo::render()
     graphics->spriteBegin();
 	switch (gameStates)
 	{
+	case Transition1:
+		transition1.draw();
+		break;
+	case Transition2:
+		transition2.draw();
+		break;
+	case Transition3:
+		transition3.draw();
+		break;
 	case Win:
 		win.draw();
 		break;
@@ -964,9 +994,12 @@ void AmericanHobo::render()
 //=============================================================================
 void AmericanHobo::releaseAll()
 {
-	streetsTexture.onLostDevice();
-	stadiumTexture.onLostDevice();
-	colosseumTexture.onLostDevice();
+	transition1TM.onLostDevice();
+	transition2TM.onLostDevice();
+	transition3TM.onLostDevice();
+	streetsTM.onLostDevice();
+	stadiumTM.onLostDevice();
+	colosseumTM.onLostDevice();
 	hoboTexture.onLostDevice();
 	heroTexture.onLostDevice();
 	brawlerTexture.onLostDevice();
@@ -984,9 +1017,12 @@ void AmericanHobo::releaseAll()
 //=============================================================================
 void AmericanHobo::resetAll()
 {
-	streetsTexture.onResetDevice();
-	stadiumTexture.onResetDevice();
-	colosseumTexture.onResetDevice();
+	transition1TM.onResetDevice();
+	transition2TM.onResetDevice();
+	transition3TM.onResetDevice();
+	streetsTM.onResetDevice();
+	stadiumTM.onResetDevice();
+	colosseumTM.onResetDevice();
 	hoboTexture.onResetDevice();
 	heroTexture.onResetDevice();
 	brawlerTexture.onResetDevice();
