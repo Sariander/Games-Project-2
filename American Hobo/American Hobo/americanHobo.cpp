@@ -393,6 +393,7 @@ void AmericanHobo::gameStateUpdate()
 		hero.heal();
 		//initializeLevel2();
 		gameStates = Transition2;
+		transitionForeground.setX(0);
 		timerCount = LEVEL_TRANSITION_DELAY;
 		fKeyDebounce = true;
 	}
@@ -417,6 +418,7 @@ void AmericanHobo::gameStateUpdate()
 		}
 		hero.heal();
 		//initializeLevel3();
+		transitionForeground.setX(0);
 		gameStates = Transition3;
 		timerCount = LEVEL_TRANSITION_DELAY;
 		fKeyDebounce = true;
@@ -489,6 +491,7 @@ void AmericanHobo::gameStateUpdate()
 		{
 
 			gameStates = Transition2;
+			transitionForeground.setX(0);
 			timerCount = LEVEL_TRANSITION_DELAY;
 		}
 		returnDebounce = true;
@@ -525,6 +528,7 @@ void AmericanHobo::gameStateUpdate()
 		{
 			//initializeLevel3();
 			gameStates = Transition3;
+			transitionForeground.setX(0);
 			timerCount = LEVEL_TRANSITION_DELAY;
 		}
 		returnDebounce = true;
@@ -682,6 +686,11 @@ void AmericanHobo::update()
 		break;
 	case Controls:
 
+		break;
+	case Transition1:
+	case Transition2:
+	case Transition3:
+		transitionForeground.setX(transitionForeground.getX() + 40 * frameTime);
 		break;
 	case Level1:
 	case Level2:
