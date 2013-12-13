@@ -25,7 +25,7 @@ Thrower::Thrower() : Hobo()
 	health = throwerNS::HEALTH_MAX;
 }
 
-void Thrower::update(float frameTime) {
+void Thrower::update(float frameTime, Entity* hero) {
 	if (!visible)
 		return;
 
@@ -67,6 +67,7 @@ void Thrower::update(float frameTime) {
 	if(targetDist < 140 && targetDist >80)
 	{
 		setVelocity(VECTOR2(0, 0));
+		bottle.toss(hero);
 	}
 	
 	if(sword.swingTimer == 0 && targetDist > 140) //Can only move when not attacking
@@ -115,6 +116,8 @@ void Thrower::spawn(GameStates level)
 		setY(getPositionY());
 		break;
 	}
+
+	//bottle.setPositionX
 
 	setActive(true);
 	setVisible(true);

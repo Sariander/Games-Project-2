@@ -30,11 +30,14 @@ Bottle::Bottle() : Entity()
 void Bottle::update(Entity *holder, float frameTime)
 {
 	if(!visible) {
-		/*velocity.x = holder->getVelocity().x;
-		velocity.y = holder->getVelocity().y;*/
+		velocity.x = holder->getVelocity().x;
+		velocity.y = holder->getVelocity().y;
 
 		spriteData.x += velocity.x * frameTime;
 		spriteData.y += velocity.y * frameTime;
+
+
+
 
 		velocity = D3DXVECTOR2(0, 0);
 		return;

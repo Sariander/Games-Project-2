@@ -35,7 +35,7 @@ public:
 	Bottle bottle;
 	DIRECTION dir;
 
-	void update(float frameTime);
+	void update(float frameTime, Entity* hero);
 	void attack(Entity* hero);
 	//void damage(WEAPON);
 	//void death();

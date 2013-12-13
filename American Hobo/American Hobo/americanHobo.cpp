@@ -726,7 +726,7 @@ void AmericanHobo::update()
 
 		for(int i=0; i<THROWER_NUMBER; i++)
 		{
-			thrower[i].update(frameTime);
+			thrower[i].update(frameTime, &hero);
 			 
 		}
 
@@ -1038,6 +1038,7 @@ void AmericanHobo::render()
 		for(int i=0; i<THROWER_NUMBER; i++)
 		{
 			thrower[i].draw(frameTime);
+			thrower[i].bottle.draw(frameTime);
 		}
 		boss.draw(frameTime);
 		for (int i = 0; i < bossNS::NUM_BALLS; ++i)
