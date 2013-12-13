@@ -17,11 +17,14 @@ namespace bossNS
 	const float ROTATION_RATE = (float)PI; // radians per second
 	const float SPEED = 10;                // 100 pixels per second
 	enum DIRECTION { NONE, LEFT, RIGHT };     // rotation direction
-	const int   TEXTURE_COLS = 0;           // texture has 8 columns
+	const int   TEXTURE_COLS = 3;           // texture has 8 columns
 	const float ANIMATION_DELAY = 0.2f;
 	const int HEALTH_MAX = 20;
 
 	const int NUM_BALLS = 4;
+	const int BOSS_WALK_1 = 0;
+	const int BOSS_WALK_2 = 1;
+	const int BOSS_WALK_3 = 2;
 }
 
 // inherits from Entity class

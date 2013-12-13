@@ -228,19 +228,19 @@ void AmericanHobo::initialize(HWND hwnd)
 		thrower[i].bottle.setVisible(false);
 	}
 	//Initialize Boss Texture
-	if (!bossTM.initialize(graphics, HERO_CELS_IMAGE))
+	if (!bossTM.initialize(graphics, BOSS_CELS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Boss texture!"));
 
 	//Initialize Boss
-	if (!boss.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &bossTM))
+	if (!boss.initialize(this, bossNS::WIDTH, bossNS::HEIGHT, bossNS::TEXTURE_COLS, &bossTM))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Boss"));
 	boss.setCollisionType(entityNS::BOX);
 	boss.setEdge(COLLISION_BOX_BOSS);
 	boss.setX(GAME_WIDTH / 2);
 	boss.setY(20);
-	boss.setFrameDelay(heroNS::ANIMATION_DELAY);
-	boss.setFrames(heroNS::STAND_RIGHT, heroNS::STAND_RIGHT);
-	boss.setCurrentFrame(heroNS::STAND_RIGHT);
+	boss.setFrameDelay(bossNS::ANIMATION_DELAY);
+	boss.setFrames(bossNS::BOSS_WALK_1, bossNS::BOSS_WALK_3);
+	boss.setCurrentFrame(bossNS::BOSS_WALK_2);
 	boss.setActive(false);
 	boss.setVisible(false);
 
