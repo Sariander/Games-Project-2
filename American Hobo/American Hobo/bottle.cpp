@@ -42,6 +42,10 @@ void Bottle::update(Entity *holder, float frameTime)
 		velocity = D3DXVECTOR2(0, 0);
 		return;
 	}
+	else
+	{
+		int j = 0;
+	}
 	
 	
 

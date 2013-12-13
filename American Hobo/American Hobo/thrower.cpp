@@ -64,14 +64,16 @@ void Thrower::update(float frameTime, Entity* hero) {
 	
 	
 
-	if(targetDist < 140 && targetDist >80)
+	if(targetDist < 140 && targetDist > 80)
 	{
 		setVelocity(VECTOR2(0, 0));
 		if(!bottle.isActive())
 			attack(hero);
 	}
+	else if(targetDist < 80)
+		foo = velocity*frameTime*speed;
 	
-	if(sword.swingTimer == 0 && targetDist > 140) //Can only move when not attacking
+	if(sword.swingTimer == 0 && (targetDist > 140 || targetDist < 80)) //Can only move when not attacking
 		incPosition(foo);
 
 
@@ -153,8 +155,8 @@ void Thrower::vectorTrack(Entity &target)
 
 
 	VECTOR2 vel = getCenterPoint() - target.getCenterPoint();
-	if(targetDist < 80)
-		vel = vel*-1;
+	/*if(targetDist < 80)
+		vel = vel*-1;*/
 	
 	VECTOR2* temp = D3DXVec2Normalize(&vel, &vel);
 	
