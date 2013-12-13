@@ -725,7 +725,6 @@ void AmericanHobo::update()
 			spawned = true;
 		}
 		boss.update(frameTime);
-		
 		break;
 
 	case MenuScreen:
@@ -1013,6 +1012,10 @@ void AmericanHobo::render()
 			hearts[i].draw();
 		}
 		boss.draw(frameTime);
+		for (int i = 0; i < bossNS::NUM_BALLS; ++i)
+		{
+			boss.sword[i].draw();
+		}
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();

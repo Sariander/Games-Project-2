@@ -53,7 +53,7 @@ const char SWORD_IMAGE[] = "pictures\\Sword.png";
 const char SWORD_CELS_IMAGE[] = "pictures\\Sword Cel Sheet.png";
 const char HERO_CELS_IMAGE[] = "pictures\\Hero Cel Sheet.png";
 const char BOSS_CELS_IMAGE[] = "pictures\\Boss Cel Sheet.png";
-const char BOSS_WEP_IMAGE[];
+const char BOSS_WEP_IMAGE[] = "pictures\\Ball.png";
 const char HOBO_CELS_IMAGE[] = "pictures\\Hobo Minion Cel Sheet.png";
 const char BRAWLER_CELS_IMAGE[] = "pictures\\Hobo Brawler Cel Sheet.png";
 const char GAME_OVER_IMAGE[] = "pictures\\GameOver Screen.png";

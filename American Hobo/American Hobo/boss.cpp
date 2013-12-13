@@ -62,5 +62,11 @@ void Boss::spawn(GameStates level)
 
 	setActive(true);
 	setVisible(true);
+	for (int i = 0; i < bossNS::NUM_BALLS; ++i)
+	{
+		sword[i].setActive(true);
+		sword[i].setVisible(true);
+		//Position code here?
+	}
 
 }
