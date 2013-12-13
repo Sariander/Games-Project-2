@@ -21,6 +21,7 @@ namespace throwerNS
 	const int   TEXTURE_COLS = 0;           // texture has 8 columns
 	const float ANIMATION_DELAY = 0.25f;
 	const int HEALTH_MAX = 2;
+	const int ATTACK_RANGE = 50;
 }
 
 // inherits from Entity class

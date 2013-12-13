@@ -27,11 +27,11 @@ Bottle::Bottle() : Entity()
 // update
 // typically called once per frame
 //=============================================================================
-void Bottle::update(Entity *hero, float frameTime)
+void Bottle::update(Entity *holder, float frameTime)
 {
 	if(!visible) {
-		velocity.x = hero->getVelocity().x;
-		velocity.y = hero->getVelocity().y;
+		/*velocity.x = holder->getVelocity().x;
+		velocity.y = holder->getVelocity().y;*/
 
 		spriteData.x += velocity.x * frameTime;
 		spriteData.y += velocity.y * frameTime;
@@ -42,10 +42,10 @@ void Bottle::update(Entity *hero, float frameTime)
 	
 	
 
-	if(attackVector == D3DXVECTOR2(0.0, 0.0) && flameTimer == 0) {
-		D3DXVECTOR2 radiusVec;
-		velocity = normalize(attackVector)*bottleNS::AIR_SPEED;
-	}
+	//if(attackVector == D3DXVECTOR2(0.0, 0.0) && flameTimer == 0) {
+	//	D3DXVECTOR2 radiusVec;
+	//	velocity = normalize(attackVector)*bottleNS::AIR_SPEED;
+	//}
 
 	spriteData.x += velocity.x * frameTime;
 	spriteData.y += velocity.y * frameTime;
@@ -53,11 +53,13 @@ void Bottle::update(Entity *hero, float frameTime)
 
 	radVector = getPosition() - posVector;
 
-	if(radius(radVector) < bottleNS::AIR_RADIUS) {
+	//handled in void explode()
+	/*if(radius(radVector) < bottleNS::AIR_RADIUS) {
 		flameTimer = bottleNS::FLAME_TIME;
 		velocity = D3DXVECTOR2(0.0,0.0);
-	}
+	}*/
 
+	
 	if((flameTimer -= frameTime) <= 0 && attackVector == D3DXVECTOR2(0.0, 0.0)) {
 		visible = false;
 		active = false;
@@ -68,19 +70,29 @@ void Bottle::update(Entity *hero, float frameTime)
 }
 
 //=============================================================================
-// swing
-// Handle sword swinging
+// toss
+// 
 //=============================================================================
-void Bottle::toss(Entity *hero)
+void Bottle::toss(Entity *target)
 {
 	setFrames(bottleNS::START_THROW_FRAME,bottleNS::END_THROW_FRAME);
 	setCurrentFrame(bottleNS::START_THROW_FRAME);
 
-	posVector = hero->getPosition();
-	attackVector = hero->getPosition() - D3DXVECTOR2(spriteData.x,spriteData.y);
+	
+	posVector = target->getPosition();
+	attackVector = target->getPosition() - D3DXVECTOR2(spriteData.x,spriteData.y);//get direction to fly;
 	radVector = attackVector;
+	velocity = velocity = normalize(attackVector)*bottleNS::AIR_SPEED;
 	visible = true;
 	active = true;
+}
+
+void Bottle::explode()
+{
+	flameTimer = bottleNS::FLAME_TIME;
+	velocity = D3DXVECTOR2(0.0,0.0);
+
+
 }
 
 float Bottle::radius(D3DXVECTOR2 vec) {
@@ -90,4 +102,9 @@ float Bottle::radius(D3DXVECTOR2 vec) {
 
 D3DXVECTOR2 Bottle::normalize(D3DXVECTOR2 vec) {
 	return vec/radius(vec);
+}
+
+bool Bottle::isActive()
+{
+	return active;
 }

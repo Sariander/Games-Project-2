@@ -40,6 +40,7 @@ private:
 	float throwTimer;
 	D3DXVECTOR2 normalize(D3DXVECTOR2 vec);
 
+
 public:
 	// constructor
 	Bottle();
@@ -49,6 +50,8 @@ public:
 
 	void update(Entity *hero, float frameTime);
 	void toss(Entity *hero);
+	void explode();
+	bool isActive();
 
 
 };

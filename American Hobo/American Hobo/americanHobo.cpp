@@ -713,9 +713,11 @@ void AmericanHobo::update()
 		{
 			brawler[i].update(frameTime);
 		}
+
 		for(int i=0; i<THROWER_NUMBER; i++)
 		{
 			thrower[i].update(frameTime);
+			 
 		}
 
 		updateHearts();
