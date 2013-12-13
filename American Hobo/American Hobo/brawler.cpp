@@ -29,7 +29,6 @@ void Brawler::update(float frameTime) {
 	if (!visible)
 		return;
 
-
 	if(hitTimer != 0) {
 		hitTimer -= frameTime;
 		

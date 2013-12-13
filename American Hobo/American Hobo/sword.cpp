@@ -57,7 +57,7 @@ void Sword::swing(Entity *hero, DIRECTION dir)
 	swingTimer = swordNS::SWING_TIME;
 	visible = true;
 	active = true;
-
+	
 	if(dir == RIGHT) {
 		setX(hero->getCenterX() - spriteData.width / 2 + swordNS::SWING_RANGE);
 		setY(hero->getCenterY() - spriteData.height / 2);
@@ -71,7 +71,7 @@ void Sword::swing(Entity *hero, DIRECTION dir)
 		setX(hero->getCenterX() - spriteData.width / 2);
 		setY(hero->getCenterY() - spriteData.height / 2 + swordNS::SWING_RANGE);
 	}
-
+	/*
 	if(dir == UP) {
 		setFrames(swordNS::SWING_UP,swordNS::SWING_UP);
 		setCurrentFrame(swordNS::SWING_UP);
@@ -86,7 +86,7 @@ void Sword::swing(Entity *hero, DIRECTION dir)
 		setCurrentFrame(swordNS::SWING_LEFT);
 	}
 	//audio->playCue(SWORD_SWING);
-	
+	*/
 	visible = true;
 	active = true;
 }

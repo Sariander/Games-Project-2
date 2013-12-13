@@ -8,6 +8,8 @@
 #include "sword.h"
 #include "hobo.h"
 
+//using namespace hoboNS;
+
 namespace brawlerNS
 {
 	const int   WIDTH = 64;                 // image width (each frame)
