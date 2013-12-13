@@ -244,6 +244,21 @@ void AmericanHobo::initialize(HWND hwnd)
 	boss.setActive(false);
 	boss.setVisible(false);
 
+	//Initialize Boss Weapon Texture
+	if (!bossWepTM.initialize(graphics, BOSS_WEP_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Boss texture!"));
+
+	//Initialize Boss Weapon
+	for (int i = 0; i < bossNS::NUM_BALLS; i++)
+	{
+		if (!boss.sword[i].initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &throwerTM))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
+		boss.sword[i].setCollisionType(entityNS::CIRCLE);
+		boss.sword[i].setCollisionRadius(swordNS::WIDTH / 2);
+		boss.sword[i].setActive(false);
+		boss.sword[i].setVisible(false);
+	}
+
 	//Intialize Transition 1 Texture
 	if (!transition1TM.initialize(graphics, TRANSITION1_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition1 texture!"));

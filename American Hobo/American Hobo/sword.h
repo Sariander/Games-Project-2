@@ -7,10 +7,10 @@
 
 namespace swordNS
 {
-	const int   WIDTH = 20;             // image width
-	const int   HEIGHT = 20;           // image height
+	const int   WIDTH = 40;             // image width
+	const int   HEIGHT = 40;           // image height
 	const float FIRE_DELAY = 1.5f;      // 4 seconds between torpedo firing
-	const int   TEXTURE_COLS = 4;       // texture has 8 columns
+	const int   TEXTURE_COLS = 0;       // texture has 8 columns
 	const int   START_FRAME = 0;       // starts at frame 40
 	const int   END_FRAME = 0;         // animation frames 40,41,42,43
 	const float ANIMATION_DELAY = 0.1f; // time between frames

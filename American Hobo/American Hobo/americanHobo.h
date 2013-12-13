@@ -38,7 +38,7 @@ private:
 	Thrower thrower[THROWER_NUMBER];
 	TextureManager streetsTM, stadiumTM, colosseumTM;
 	TextureManager titleTM, controlsTM, transition1TM, transition2TM, transition3TM;
-	TextureManager bossTM, heroTM, swordTM, hoboTM, brawlerTM, throwerTM, bottleTM;
+	TextureManager bossTM, bossWepTM, heroTM, swordTM, hoboTM, brawlerTM, throwerTM, bottleTM;
 	TextureManager gameOverTM, winTM, heartTM;
 
 	GameStates gameStates;

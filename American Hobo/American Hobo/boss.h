@@ -10,8 +10,8 @@
 
 namespace bossNS
 {
-	const int   WIDTH = 128;                 // image width (each frame)
-	const int   HEIGHT = 128;                // image height
+	const int   WIDTH = 100;                 // image width (each frame)
+	const int   HEIGHT = 100;                // image height
 	const int   X = GAME_WIDTH / 4;			 // location on screen
 	const int   Y = GAME_HEIGHT / 4;
 	const float ROTATION_RATE = (float)PI; // radians per second
