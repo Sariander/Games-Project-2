@@ -66,6 +66,7 @@ void Boss::update(float frameTime) {
 		//sword[i].setCenterY(newY);
 		spikeball[i].setCenterX(newX);
 		spikeball[i].setCenterY(newY);
+		spikeball[i].setVelocity(spikeballNS::SPEED*D3DXVECTOR2(cos(theta),sin(theta)));
 		theta = theta + 90.0f;
 		if(theta > 360)
 			theta = theta - 360.0f;

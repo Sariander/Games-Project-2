@@ -11,6 +11,7 @@ namespace spikeballNS {
 	const int	OFFSET = 24;
 
 	const float FIRE_DELAY = 1.5f;
+	const float SPEED = 1.0f;
 
 	const int   TEXTURE_COLS = 0;
 	const float ANIMATION_DELAY = 0.1f;
