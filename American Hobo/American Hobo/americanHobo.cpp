@@ -36,6 +36,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	returnDebounce = false;
 	fKeyDebounce = false;
 	scorePushed = false;
+	spawned = false;
 	//Initialize Streets Texture
 	if (!streetsTM.initialize(graphics, STREETS_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Streets texture!"));
@@ -226,6 +227,22 @@ void AmericanHobo::initialize(HWND hwnd)
 		thrower[i].bottle.setActive(false);
 		thrower[i].bottle.setVisible(false);
 	}
+	//Initialize Boss Texture
+	if (!bossTM.initialize(graphics, HERO_CELS_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing Boss texture!"));
+
+	//Initialize Boss
+	if (!boss.initialize(this, heroNS::WIDTH, heroNS::HEIGHT, heroNS::TEXTURE_COLS, &bossTM))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Boss"));
+	boss.setCollisionType(entityNS::BOX);
+	boss.setEdge(COLLISION_BOX_BOSS);
+	boss.setX(GAME_WIDTH / 2);
+	boss.setY(20);
+	boss.setFrameDelay(heroNS::ANIMATION_DELAY);
+	boss.setFrames(heroNS::STAND_RIGHT, heroNS::STAND_RIGHT);
+	boss.setCurrentFrame(heroNS::STAND_RIGHT);
+	boss.setActive(false);
+	boss.setVisible(false);
 
 	//Intialize Transition 1 Texture
 	if (!transition1TM.initialize(graphics, TRANSITION1_IMAGE))
@@ -405,6 +422,7 @@ void AmericanHobo::gameStateUpdate()
 		score = 0;
 		hero.heal();
 		scorePushed = false;
+		spawned = false;
 		returnDebounce = true;
 	}
 	//Go to menu after level 1
@@ -672,9 +690,12 @@ void AmericanHobo::update()
 			spawnCooldown = 2;
 		}
 
-		for(int i=0; i<10; i++)
+		for(int i=0; i<HOBO_NUMBER; i++)
 		{
 			hobo[i].update(frameTime);
+		}
+		for (int i = 0; i < BRAWLER_NUMBER; ++i)
+		{
 			brawler[i].update(frameTime);
 		}
 		for(int i=0; i<THROWER_NUMBER; i++)
@@ -682,8 +703,13 @@ void AmericanHobo::update()
 			thrower[i].update(frameTime);
 		}
 
-		
 		updateHearts();
+		if (!spawned && gameStates == Level3)
+		{
+			boss.spawn(gameStates);
+			spawned = true;
+		}
+		boss.update(frameTime);
 		
 		break;
 
@@ -971,6 +997,7 @@ void AmericanHobo::render()
 		{
 			hearts[i].draw();
 		}
+		boss.draw(frameTime);
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
@@ -1006,6 +1033,7 @@ void AmericanHobo::releaseAll()
 	swordTM.onLostDevice();
 	heartTM.onLostDevice();
 	throwerTM.onLostDevice();
+	bossTM.onLostDevice();
 	mainMenu->releaseAll();
     Game::releaseAll();
     return;
@@ -1029,6 +1057,7 @@ void AmericanHobo::resetAll()
 	swordTM.onResetDevice();
 	heartTM.onResetDevice();
 	throwerTM.onResetDevice();
+	bossTM.onResetDevice();
 	mainMenu->resetAll();
     Game::resetAll();
     return;

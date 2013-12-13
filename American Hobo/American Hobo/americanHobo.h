@@ -75,6 +75,7 @@ private:
 	float textWait;
 
 	bool scorePushed;
+	bool spawned;
 
 public:
     // Constructor

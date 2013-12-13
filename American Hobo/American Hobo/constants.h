@@ -35,6 +35,7 @@ const RECT COLLISION_BOX_BOTTLE = { -20, -20, 20, 20 };
 const RECT COLLISION_BOX_HOBO = { -10, -19, 10, 19 };
 const RECT COLLISION_BOX_BRAWLER = { -10, -19, 10, 19 };
 const RECT COLLISION_BOX_THROWER = { -10, -19, 10, 19 };
+const RECT COLLISION_BOX_BOSS = { -40, -40, 40, 40 };
 
 // graphic images
 const char COLOSSEUM_IMAGE[] = "pictures\\The Colosseum.png";
