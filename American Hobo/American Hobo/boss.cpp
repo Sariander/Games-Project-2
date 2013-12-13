@@ -48,28 +48,34 @@ void Boss::update(float frameTime) {
 
 	//Rotational update
 
-	theta = theta + frameTime;
+	theta = theta + 30*frameTime;
+
 	if(theta > 360)
-		theta = 0.0f;
+		theta = theta - 360.0f;
 
 	float conRad = PI/180;
-	float newX = 200*cos(theta*conRad - PI/2) + getCenterX(); //200 is rotation radius
-	float newY = 200*sin(theta*conRad - PI/2) + getCenterY();
+	float newX; 
+	float newY;
 
 
 	for (int i = 0; i < bossNS::NUM_BALLS; ++i)
 	{
-		newX = 200*cos(theta*conRad - PI/2) + getCenterX();
-		newY = 200*sin(theta*conRad - PI/2) + getCenterY();
-		sword[i].setCenterX(newX);
-		sword[i].setCenterY(newY);
-		theta + PI/2;
+		newX = 80*cos(theta*conRad - PI/2) + getCenterX();
+		newY = 80*sin(theta*conRad - PI/2) + getCenterY();
+		//sword[i].setCenterX(newX);
+		//sword[i].setCenterY(newY);
+		spikeball[i].setCenterX(newX);
+		spikeball[i].setCenterY(newY);
+		theta = theta + 90.0f;
+		if(theta > 360)
+			theta = theta - 360.0f;
 	}
 
 
 	for (int i = 0; i < bossNS::NUM_BALLS; ++i)
 	{
-		sword[i].update(this, frameTime);
+		//sword[i].update(this, frameTime);
+		spikeball[i].update(this,frameTime);
 	}
 }
 
@@ -87,9 +93,10 @@ void Boss::spawn(GameStates level)
 	setVisible(true);
 	for (int i = 0; i < bossNS::NUM_BALLS; ++i)
 	{
-		sword[i].setActive(true);
-		sword[i].setVisible(true);
-		//Position code here?
+		//sword[i].setActive(true);
+		//sword[i].setVisible(true);
+		spikeball[i].setActive(true);
+		spikeball[i].setVisible(true);
 	}
 
 }

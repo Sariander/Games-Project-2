@@ -18,9 +18,9 @@ namespace swordNS
 	const float SWING_TIME = .1f;
 	const float SWING_RANGE = 25;
 	const int SWING_UP = 0;
-	const int SWING_RIGHT = 1;
-	const int SWING_DOWN = 2;
-	const int SWING_LEFT = 3;
+	const int SWING_RIGHT = 0; //1
+	const int SWING_DOWN = 0; //2
+	const int SWING_LEFT = 0; //3
 }
 
 class Sword : public Entity           // inherits from Entity class
@@ -31,7 +31,7 @@ public:
 	// constructor
 	Sword();
 	float swingTimer;
-
+	bool alwaysVisible;
 	void update(Entity *hero, float frameTime);
 	void swing(Entity *hero, DIRECTION dir);                // fire torpedo from ship
 };

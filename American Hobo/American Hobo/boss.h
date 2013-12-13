@@ -7,6 +7,7 @@
 #include "textDX.h"
 #include "sword.h"
 #include "hobo.h"
+#include "spikeball.h"
 
 namespace bossNS
 {
@@ -37,7 +38,8 @@ public:
 	// constructor
 	Boss();
 
-	Sword sword[bossNS::NUM_BALLS];
+	//Sword sword[bossNS::NUM_BALLS];
+	Spikeball spikeball[bossNS::NUM_BALLS];
 
 	void update(float frameTime);
 	//void attack(Entity* hero);
@@ -50,6 +52,8 @@ public:
 	//void ai(float frameTime, Entity &target);
 	//void vectorTrack(Entity &target);
 
-	//float getHealth() { return health; }
+	float getHealth() { return health; }
+
+	
 };
 #endif

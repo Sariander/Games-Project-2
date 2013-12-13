@@ -32,11 +32,11 @@ public:
 	// constructor
 	Brawler();
 
-	Sword sword;
+	//Sword sword;
 	DIRECTION dir;
 
 	void update(float frameTime);
-	//void attack();
+	//void attack() {sword.swing(this, dir);};
 	//void damage(WEAPON);
 	//void death();
 	//void heal();

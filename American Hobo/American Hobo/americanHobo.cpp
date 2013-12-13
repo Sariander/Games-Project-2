@@ -237,7 +237,7 @@ void AmericanHobo::initialize(HWND hwnd)
 	boss.setCollisionType(entityNS::BOX);
 	boss.setEdge(COLLISION_BOX_BOSS);
 	boss.setX(GAME_WIDTH / 2);
-	boss.setY(20);
+	boss.setY(GAME_HEIGHT / 2 + 100);
 	boss.setFrameDelay(bossNS::ANIMATION_DELAY);
 	boss.setFrames(bossNS::BOSS_WALK_1, bossNS::BOSS_WALK_3);
 	boss.setCurrentFrame(bossNS::BOSS_WALK_2);
@@ -250,13 +250,22 @@ void AmericanHobo::initialize(HWND hwnd)
 
 	//Initialize Boss Weapon
 	for (int i = 0; i < bossNS::NUM_BALLS; i++)
-	{
-		if (!boss.sword[i].initialize(this, swordNS::WIDTH, swordNS::HEIGHT, swordNS::TEXTURE_COLS, &throwerTM))
+	{	/*
+		if (!boss.sword[i].initialize(this, spikeballNS::WIDTH, spikeballNS::HEIGHT, spikeballNS::TEXTURE_COLS, &throwerTM))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
 		boss.sword[i].setCollisionType(entityNS::CIRCLE);
 		boss.sword[i].setCollisionRadius(swordNS::WIDTH / 2);
 		boss.sword[i].setActive(false);
 		boss.sword[i].setVisible(false);
+		*/
+		if (!boss.spikeball[i].initialize(this, spikeballNS::WIDTH, spikeballNS::HEIGHT, spikeballNS::TEXTURE_COLS, &bossWepTM))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Hobo"));
+		//boss.spikeball[i].setCollisionType(entityNS::BOX);
+		//boss.spikeball[i].setCollisionRadius(swordNS::WIDTH / 2);
+		boss.spikeball[i].setActive(false);
+		boss.spikeball[i].setVisible(false);
+		boss.spikeball[i].setX(boss.getX());
+		boss.spikeball[i].setY(boss.getY());
 	}
 
 	//Intialize Transition 1 Texture
@@ -509,7 +518,7 @@ void AmericanHobo::gameStateUpdate()
 		returnDebounce = true;
 	}
 	//Win afetr level 3
-	if (gameStates == Level3 && killCount == 0)
+	if (gameStates == Level3 && killCount == 0 && boss.getHealth() == 0)
 	{
 		gameStates = Win;
 	}
@@ -662,7 +671,7 @@ void AmericanHobo::update()
 	case Level2:
 	case Level3:
 		hero.update(frameTime);
-		//sword.update(frameTime);
+		
 		//spawn hobos and brawlers
 		if (spawnCooldown < 0 && (hoboSpawnCount > 0 || brawlerSpawnCount > 0 || throwerSpawnCount >0))
 		{
@@ -727,6 +736,7 @@ void AmericanHobo::update()
 			spawned = true;
 		}
 		boss.update(frameTime);
+
 		break;
 
 	case MenuScreen:
@@ -739,8 +749,6 @@ void AmericanHobo::update()
 		break;
 	}
 	
-
-
 }
 
 //=============================================================================
@@ -748,15 +756,18 @@ void AmericanHobo::update()
 //=============================================================================
 void AmericanHobo::ai()
 {
-	for(int i=0; i<10; i++)
+	for(int i=0; i<HOBO_NUMBER; i++)
 	{
 		hobo[i].ai(frameTime, hero);
+	}
+	for(int i = 0; i < BRAWLER_NUMBER; i++) {
 		brawler[i].ai(frameTime, hero);
 	}
 	for(int i=0; i<THROWER_NUMBER; i++)
 	{
 		thrower[i].ai(frameTime, hero);
 	}
+	boss.ai(frameTime, hero);
 }
 
 //=============================================================================
@@ -802,6 +813,19 @@ void AmericanHobo::collisions()
 	for (int i = 0; i < THROWER_NUMBER; i++) {
 		if (thrower[i].bottle.collidesWith(hero, collisionVector)) {
 			hero.damage(SWORD, thrower[i].getVelocity());
+
+		}
+	}
+
+	if (boss.collidesWith(hero, collisionVector)) {
+		hero.damage(SWORD, boss.getVelocity());
+	}
+
+	for (int i = 0; i < bossNS::NUM_BALLS; i++) {
+		if (boss.spikeball[i].collidesWith(hero, collisionVector)) {
+			hero.damage(SWORD, boss.spikeball[i].getVelocity());
+			char buff[] = "HEY LISTEN!";
+			OutputDebugString(buff);
 
 		}
 	}
@@ -916,6 +940,15 @@ void AmericanHobo::collisions()
 			}
 		}
 	}
+
+	if(hero.sword.collidesWith(boss, collisionVector)) {
+		if(boss.damage(SWORD, D3DXVECTOR2(0,0)))
+		{
+			killCount--;
+			setScore(getScore() + 75);
+		}
+
+	}
 }
 
 
@@ -1016,8 +1049,10 @@ void AmericanHobo::render()
 		boss.draw(frameTime);
 		for (int i = 0; i < bossNS::NUM_BALLS; ++i)
 		{
-			boss.sword[i].draw();
+			//boss.sword[i].draw();
+			boss.spikeball[i].draw();
 		}
+
 		break;
 	case MenuScreen:
 		mainMenu->displayMenu();
@@ -1054,6 +1089,7 @@ void AmericanHobo::releaseAll()
 	heartTM.onLostDevice();
 	throwerTM.onLostDevice();
 	bossTM.onLostDevice();
+	bossWepTM.onLostDevice();
 	mainMenu->releaseAll();
     Game::releaseAll();
     return;
@@ -1078,6 +1114,7 @@ void AmericanHobo::resetAll()
 	heartTM.onResetDevice();
 	throwerTM.onResetDevice();
 	bossTM.onResetDevice();
+	bossWepTM.onResetDevice();
 	mainMenu->resetAll();
     Game::resetAll();
     return;

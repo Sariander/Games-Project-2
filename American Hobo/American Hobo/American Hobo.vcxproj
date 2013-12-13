@@ -27,6 +27,7 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="shield.cpp" />
+    <ClCompile Include="spikeball.cpp" />
     <ClCompile Include="sword.cpp" />
     <ClCompile Include="textDX.cpp" />
     <ClCompile Include="textureManager.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="shield.h" />
+    <ClInclude Include="spikeball.h" />
     <ClInclude Include="sword.h" />
     <ClInclude Include="textDX.h" />
     <ClInclude Include="textureManager.h" />
