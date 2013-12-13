@@ -793,7 +793,7 @@ void AmericanHobo::collisions()
 
 	for(int i = 0; i < THROWER_NUMBER; i++) {
 		if(thrower[i].collidesWith(hero,collisionVector)) {
-			hero.damage(SWORD, -thrower[i].getVelocity());
+			hero.damage(SWORD, thrower[i].getVelocity());
 
 		}
 	}
@@ -908,28 +908,28 @@ void AmericanHobo::collisions()
 			case 0:
 				break;
 			case 1:
-				if(thrower[i].damage(SWORD, D3DXVECTOR2(-1,0)))
-				{
-					killCount--;
-					setScore(getScore() + 75);
-				}
-				break;
-			case 2:
 				if(thrower[i].damage(SWORD, D3DXVECTOR2(1,0)))
 				{
 					killCount--;
 					setScore(getScore() + 75);
 				}
 				break;
+			case 2:
+				if(thrower[i].damage(SWORD, D3DXVECTOR2(-1,0)))
+				{
+					killCount--;
+					setScore(getScore() + 75);
+				}
+				break;
 			case 3:
-				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,1)))
+				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,-1)))
 				{
 					killCount--;
 					setScore(getScore() + 75);
 				}
 				break;
 			case 4:
-				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,-1)))
+				if(thrower[i].damage(SWORD, D3DXVECTOR2(0,1)))
 				{
 					killCount--;
 					setScore(getScore() + 75);
