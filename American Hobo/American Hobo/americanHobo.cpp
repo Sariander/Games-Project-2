@@ -273,9 +273,17 @@ void AmericanHobo::initialize(HWND hwnd)
 	if (!transition1TM.initialize(graphics, TRANSITION1_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition1 texture!"));
 
+	//Intialize Transition foreground Texture
+	if (!transitionForegroundTM.initialize(graphics, TRANSITION_FOREGROUND_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error intializing transition foreground texture!"));
+
+	//Intialize Transition foreground
+	if (!transitionForeground.initialize(graphics, 0, 0, 0, &transitionForegroundTM))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing transition foreground"));
+
 	//Intialize Transition 1
 	if (!transition1.initialize(graphics, 0, 0, 0, &transition1TM))
-		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing Controls"));
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing transition1"));
 
 	//Initialize Transition 2 Texture
 	if (!transition2TM.initialize(graphics, TRANSITION2_IMAGE))
@@ -383,7 +391,9 @@ void AmericanHobo::gameStateUpdate()
 			thrower[i].setVisible(false);
 		}
 		hero.heal();
-		initializeLevel2();
+		//initializeLevel2();
+		gameStates = Transition2;
+		timerCount = LEVEL_TRANSITION_DELAY;
 		fKeyDebounce = true;
 	}
 	//Level Skip Cheat Code (F3)
@@ -406,7 +416,9 @@ void AmericanHobo::gameStateUpdate()
 			thrower[i].setVisible(false);
 		}
 		hero.heal();
-		initializeLevel3();
+		//initializeLevel3();
+		gameStates = Transition3;
+		timerCount = LEVEL_TRANSITION_DELAY;
 		fKeyDebounce = true;
 	}
 	//Health Cheat Code (F4)
@@ -420,7 +432,7 @@ void AmericanHobo::gameStateUpdate()
 		if (mainMenu->getSelectedItem() == 0)
 		{
 			gameStates = Transition1;
-			timerCount = 3;
+			timerCount = LEVEL_TRANSITION_DELAY;
 		}
 		else if (mainMenu->getSelectedItem() == 1)
 		{
@@ -440,7 +452,7 @@ void AmericanHobo::gameStateUpdate()
 	}
 	if (gameStates == Transition1 && timerCount < 0)
 	{
-		gameStates = Level1;
+		//gameStates = Level1;
 		currentLevel = 1;
 		initializeLevel1();
 		mainMenu->setMenuName(main);
@@ -453,14 +465,9 @@ void AmericanHobo::gameStateUpdate()
 	//Go to menu after level 1
 	if (gameStates == Level1 && killCount == 0)
 	{
-		gameStates = Transition2;
+		gameStates = MenuScreen;
 		mainMenu->setMenuName(main);
 		currentLevel = 2;
-		timerCount = 3;
-	}
-	if (gameStates == Transition2 && timerCount < 0)
-	{
-		gameStates = MenuScreen;
 	}
 	//Hardcoded menu after level 1
 	if(gameStates == MenuScreen && currentLevel == 2 && input->isKeyDown(VK_RETURN) && !returnDebounce)
@@ -480,22 +487,24 @@ void AmericanHobo::gameStateUpdate()
 		}
 		if (mainMenu->getSelectedItem() == 3)
 		{
-			initializeLevel2();
+
+			gameStates = Transition2;
+			timerCount = LEVEL_TRANSITION_DELAY;
 		}
 		returnDebounce = true;
+	}
+	if (gameStates == Transition2 && timerCount < 0)
+	{
+		initializeLevel2();
 	}
 	//Go to menu after level 2
 	if (gameStates == Level2 && killCount == 0)
 	{
-		gameStates = Transition3;
+		gameStates = MenuScreen;
 		mainMenu->setMenuName(main);
 		currentLevel = 3;
-		timerCount = 3;
 	}
-	if (gameStates == Transition3 && timerCount < 0)
-	{
-		gameStates = MenuScreen;
-	}
+
 	//Hardcoded menu after level 2
 	if(gameStates == MenuScreen && currentLevel == 3 && input->isKeyDown(VK_RETURN) && !returnDebounce)
 	{
@@ -514,9 +523,15 @@ void AmericanHobo::gameStateUpdate()
 		}
 		if (mainMenu->getSelectedItem() == 3)
 		{
-			initializeLevel3();
+			//initializeLevel3();
+			gameStates = Transition3;
+			timerCount = LEVEL_TRANSITION_DELAY;
 		}
 		returnDebounce = true;
+	}
+	if (gameStates == Transition3 && timerCount < 0)
+	{
+		initializeLevel3();
 	}
 	//Win afetr level 3
 	if (gameStates == Level3 && killCount == 0 && boss.getHealth() == 0)
@@ -962,12 +977,15 @@ void AmericanHobo::render()
 	{
 	case Transition1:
 		transition1.draw();
+		transitionForeground.draw();
 		break;
 	case Transition2:
 		transition2.draw();
+		transitionForeground.draw();
 		break;
 	case Transition3:
 		transition3.draw();
+		transitionForeground.draw();
 		break;
 	case Win:
 		win.draw();

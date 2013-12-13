@@ -44,9 +44,10 @@ const char STADIUM_IMAGE[] = "pictures\\The Stadium.png";
 const char STREETS_IMAGE[] = "pictures\\The Streets.png";
 const char TITLE_IMAGE[] = "pictures\\Title Screen.png";
 const char CONTROLS_IMAGE[] = "pictures\\Control Screen.png";
-const char TRANSITION1_IMAGE[] = "pictures\\Streets Cut Scene Complete.png";
-const char TRANSITION2_IMAGE[] = "pictures\\Stadium Cut Scene Complete.png";
-const char TRANSITION3_IMAGE[] = "pictures\\Colliseum Cut Scene Complete.png";
+const char TRANSITION_FOREGROUND_IMAGE[] = "pictures\\Foreground.png";
+const char TRANSITION1_IMAGE[] = "pictures\\Streets Cut Scene Background.png";
+const char TRANSITION2_IMAGE[] = "pictures\\Stadium Cut Scene Background.png";
+const char TRANSITION3_IMAGE[] = "pictures\\Colliseum Cut Scene Background.png";
 const char HOBO_IMAGE[] = "pictures\\Hobo Minion.png"; 
 const char HERO_IMAGE[] = "pictures\\Hero.png";
 const char BRAWLER_IMAGE[] = "pictures\\brawler.png";
@@ -110,6 +111,8 @@ const int LEVEL_3_HOBOS = 0;
 const int LEVEL_3_BRAWLERS = 20;
 const int LEVEL_3_THROWERS = 0;
 const int LEVEL_3_KILLCOUNT = LEVEL_3_HOBOS + LEVEL_3_BRAWLERS + LEVEL_3_THROWERS;
+
+const int LEVEL_TRANSITION_DELAY = 2;
 
 const int HOBO_NUMBER = 10;
 const int BRAWLER_NUMBER = 10;

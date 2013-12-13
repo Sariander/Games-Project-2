@@ -27,7 +27,7 @@ private:
 	Image menuScreen, textScreen;
 	Image winButton, gameoverButton, playButton;
 	Image hearts[5];
-	Image transition1, transition2, transition3;
+	Image transition1, transition2, transition3, transitionForeground;
 
 	Image streets, stadium, colosseum;
 	Image titleScreen, controls, gameOver, win;
@@ -37,7 +37,7 @@ private:
 	Brawler brawler[BRAWLER_NUMBER];
 	Thrower thrower[THROWER_NUMBER];
 	TextureManager streetsTM, stadiumTM, colosseumTM;
-	TextureManager titleTM, controlsTM, transition1TM, transition2TM, transition3TM;
+	TextureManager titleTM, controlsTM, transition1TM, transition2TM, transition3TM, transitionForegroundTM;
 	TextureManager bossTM, bossWepTM, heroTM, swordTM, hoboTM, brawlerTM, throwerTM, bottleTM;
 	TextureManager gameOverTM, winTM, heartTM;
 
