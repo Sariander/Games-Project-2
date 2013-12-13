@@ -67,7 +67,8 @@ void Thrower::update(float frameTime, Entity* hero) {
 	if(targetDist < 140 && targetDist >80)
 	{
 		setVelocity(VECTOR2(0, 0));
-		bottle.toss(hero);
+		if(!bottle.isActive())
+			attack(hero);
 	}
 	
 	if(sword.swingTimer == 0 && targetDist > 140) //Can only move when not attacking
@@ -117,7 +118,8 @@ void Thrower::spawn(GameStates level)
 		break;
 	}
 
-	//bottle.setPositionX
+	bottle.setPositionX(getPositionX());
+	bottle.setPositionY(getPositionY());
 
 	setActive(true);
 	setVisible(true);
