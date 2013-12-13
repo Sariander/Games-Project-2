@@ -23,6 +23,7 @@ Boss::Boss() : Hobo()
 	active = true;
 	speed = bossNS::SPEED;
 	health = bossNS::HEALTH_MAX;
+	theta = 0.0f;
 }
 
 void Boss::update(float frameTime) {
@@ -44,6 +45,28 @@ void Boss::update(float frameTime) {
 	Image::setX(getPositionX());
 	Image::setY(getPositionY());
 	Entity::update(frameTime);
+
+	//Rotational update
+
+	theta = theta + frameTime;
+	if(theta > 360)
+		theta = 0.0f;
+
+	float conRad = PI/180;
+	float newX = 200*cos(theta*conRad - PI/2) + getCenterX(); //200 is rotation radius
+	float newY = 200*sin(theta*conRad - PI/2) + getCenterY();
+
+
+	for (int i = 0; i < bossNS::NUM_BALLS; ++i)
+	{
+		newX = 200*cos(theta*conRad - PI/2) + getCenterX();
+		newY = 200*sin(theta*conRad - PI/2) + getCenterY();
+		sword[i].setCenterX(newX);
+		sword[i].setCenterY(newY);
+		theta + PI/2;
+	}
+
+
 	for (int i = 0; i < bossNS::NUM_BALLS; ++i)
 	{
 		sword[i].update(this, frameTime);

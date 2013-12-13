@@ -30,6 +30,8 @@ namespace bossNS
 // inherits from Entity class
 class Boss : public Hobo
 {
+private:
+	float theta;
 
 public:
 	// constructor
